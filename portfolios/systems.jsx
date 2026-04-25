@@ -578,74 +578,80 @@ function SystemsPortfolio() {
       {/* CONTACT */}
       <SystemsSectionHead id="07" label="// contact" />
       <section className="sys-contact-section" style={{ padding: '64px 32px' }}>
-        <h2 style={{
-          fontSize: 'clamp(28px, 6vw, 56px)',
-          fontWeight: 500,
-          letterSpacing: '-0.03em',
-          margin: '0 0 40px',
-          color: SystemsStyles.ink,
-          lineHeight: 1.05,
-          maxWidth: 880,
-        }}>
-          Looking for a backend engineer who can <span style={{ color: SystemsStyles.accent }}>own production</span>?
-        </h2>
-        <div className="sys-contact-grid" style={{
+        <div className="sys-contact-layout" style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          border: `1px solid ${SystemsStyles.rule}`,
-          background: SystemsStyles.panel,
+          gridTemplateColumns: '1.2fr 1fr',
+          gap: 64,
+          alignItems: 'center',
+          marginBottom: 64,
         }}>
-          {[
-            { k: 'LINKEDIN', val: v.linkedin, href: v.linkedinUrl, external: true },
-            { k: 'GITHUB', val: v.github, href: v.githubUrl, external: true },
-            { k: 'LOCATION', val: v.location },
-          ].map(({ k, val, href, external }, i) => (
-            <div key={k} className="sys-contact-cell" style={{
-              padding: '24px 20px',
-              borderRight: i < 2 ? `1px solid ${SystemsStyles.rule}` : 'none',
-            }}>
-              <div style={{
-                fontFamily: SystemsStyles.mono,
-                fontSize: 10,
-                letterSpacing: '0.12em',
-                color: SystemsStyles.muted,
-                marginBottom: 8,
-              }}>{k}</div>
-              {external ? (
-                <a
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{
-                    fontFamily: SystemsStyles.mono,
-                    fontSize: 13,
-                    color: SystemsStyles.ink,
-                    textDecoration: 'none',
-                  }}
-                >{val}</a>
-              ) : href ? (
-                <a
-                  href={href}
-                  style={{
-                    fontFamily: SystemsStyles.mono,
-                    fontSize: 13,
-                    color: SystemsStyles.ink,
-                    textDecoration: 'none',
-                  }}
-                >{val}</a>
-              ) : (
+          <h2 style={{
+            fontSize: 'clamp(28px, 6vw, 56px)',
+            fontWeight: 500,
+            letterSpacing: '-0.03em',
+            margin: 0,
+            color: SystemsStyles.ink,
+            lineHeight: 1.05,
+          }}>
+            Looking for a backend engineer who can <span style={{ color: SystemsStyles.accent }}>own production</span>?
+          </h2>
+          <div className="sys-contact-grid" style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            border: `1px solid ${SystemsStyles.rule}`,
+            background: SystemsStyles.panel,
+          }}>
+            {[
+              { k: 'LINKEDIN', val: v.linkedin, href: v.linkedinUrl, external: true },
+              { k: 'GITHUB', val: v.github, href: v.githubUrl, external: true },
+              { k: 'LOCATION', val: v.location },
+            ].map(({ k, val, href, external }, i) => (
+              <div key={k} className="sys-contact-cell" style={{
+                padding: '24px 20px',
+                borderRight: i < 2 ? `1px solid ${SystemsStyles.rule}` : 'none',
+              }}>
                 <div style={{
                   fontFamily: SystemsStyles.mono,
-                  fontSize: 13,
-                  color: SystemsStyles.ink,
-                }}>{val}</div>
-              )}
-            </div>
-          ))}
+                  fontSize: 10,
+                  letterSpacing: '0.12em',
+                  color: SystemsStyles.muted,
+                  marginBottom: 8,
+                }}>{k}</div>
+                {external ? (
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{
+                      fontFamily: SystemsStyles.mono,
+                      fontSize: 13,
+                      color: SystemsStyles.ink,
+                      textDecoration: 'none',
+                    }}
+                  >{val}</a>
+                ) : href ? (
+                  <a
+                    href={href}
+                    style={{
+                      fontFamily: SystemsStyles.mono,
+                      fontSize: 13,
+                      color: SystemsStyles.ink,
+                      textDecoration: 'none',
+                    }}
+                  >{val}</a>
+                ) : (
+                  <div style={{
+                    fontFamily: SystemsStyles.mono,
+                    fontSize: 13,
+                    color: SystemsStyles.ink,
+                  }}>{val}</div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="sys-footer" style={{
-          marginTop: 64,
           paddingTop: 24,
           borderTop: `1px solid ${SystemsStyles.rule}`,
           display: 'flex',
