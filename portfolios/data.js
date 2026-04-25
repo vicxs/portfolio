@@ -3,9 +3,9 @@ window.VICTOR = {
   name: "Victor Esteban",
   role: "Software Engineer",
   location: "Valencia, Spain",
-  linkedin: "linkedin.com/in/victoresteban",
+  linkedin: "linkedin.com/in/victorestebann",
   github: "github.com/vicxs",
-  linkedinUrl: "https://www.linkedin.com/in/victoresteban",
+  linkedinUrl: "https://www.linkedin.com/in/victorestebann",
   githubUrl: "https://github.com/vicxs",
   cvUrl: "/portfolio/assets/Victor_Esteban_CV.pdf",
 
@@ -54,7 +54,7 @@ window.VICTOR = {
       role: "Software Engineer",
       period: "Nov 2024 — Present",
       location: "Valencia",
-      summary: "Owner of pan-European backend systems across product and dealer domains, serving high-traffic APIs that consolidate data for Toyota's European operations.",
+      summary: "Lead of pan-European backend systems across product and dealer domains, serving high-traffic APIs that consolidate data for Toyota's European operations.",
       bullets: [
         "Maintained and evolved high-traffic APIs serving 2M+ requests/day across product and dealer domains.",
         "Drove technical solution design for cross-domain features and led integration with adjacent teams.",

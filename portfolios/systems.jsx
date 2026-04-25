@@ -577,21 +577,21 @@ function SystemsPortfolio() {
 
       {/* CONTACT */}
       <SystemsSectionHead id="07" label="// contact" />
-      <section className="sys-contact-section" style={{ padding: '64px 32px' }}>
+      <section className="sys-contact-section" style={{ padding: '40px 32px' }}>
         <h2 style={{
           fontSize: 'clamp(28px, 6vw, 56px)',
           fontWeight: 500,
           letterSpacing: '-0.03em',
-          margin: '0 0 40px',
+          margin: '0 0 24px',
           color: SystemsStyles.ink,
           lineHeight: 1.05,
-          maxWidth: 880,
+          maxWidth: '60%',
         }}>
           Looking for a backend engineer who can <span style={{ color: SystemsStyles.accent }}>own production</span>?
         </h2>
         <div className="sys-contact-grid" style={{
-          display: 'inline-grid',
-          gridTemplateColumns: 'auto auto auto',
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr 1fr',
           border: `1px solid ${SystemsStyles.rule}`,
           background: SystemsStyles.panel,
         }}>
@@ -645,7 +645,7 @@ function SystemsPortfolio() {
         </div>
 
         <div className="sys-footer" style={{
-          marginTop: 64,
+          marginTop: 40,
           paddingTop: 24,
           borderTop: `1px solid ${SystemsStyles.rule}`,
           display: 'flex',
