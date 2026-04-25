@@ -35,7 +35,7 @@ function SystemsKV({ k, v, accent }) {
 
 function SystemsSectionHead({ id, label, count }) {
   return (
-    <div style={{
+    <div className="sys-section-head" style={{
       display: 'flex',
       alignItems: 'center',
       gap: 16,
@@ -59,7 +59,7 @@ function SystemsSectionHead({ id, label, count }) {
 function SystemsPortfolio() {
   const v = window.VICTOR;
   return (
-    <div style={{
+    <div className="sys-bg-grid" style={{
       background: SystemsStyles.bg,
       color: SystemsStyles.ink,
       fontFamily: SystemsStyles.sans,
@@ -71,7 +71,7 @@ function SystemsPortfolio() {
       backgroundSize: '32px 32px',
     }}>
       {/* Status bar */}
-      <div style={{
+      <div className="sys-status-bar" style={{
         padding: '12px 32px',
         borderBottom: `1px solid ${SystemsStyles.rule}`,
         background: SystemsStyles.bg,
@@ -82,12 +82,12 @@ function SystemsPortfolio() {
         color: SystemsStyles.muted,
         letterSpacing: '0.06em',
       }}>
-        <div style={{ display: 'flex', gap: 24 }}>
+        <div className="sys-status-left" style={{ display: 'flex', gap: 24 }}>
           <span style={{ color: SystemsStyles.ink }}>victoresteban.dev</span>
           <span>~/portfolio</span>
           <span>main</span>
         </div>
-        <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+        <div className="sys-status-right" style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
           <span style={{
             width: 6, height: 6, borderRadius: '50%',
             background: SystemsStyles.accent,
@@ -100,7 +100,7 @@ function SystemsPortfolio() {
       </div>
 
       {/* HERO */}
-      <section style={{
+      <section className="sys-hero" style={{
         padding: '88px 32px 64px',
         position: 'relative',
       }}>
@@ -116,7 +116,7 @@ function SystemsPortfolio() {
 
         <h1 style={{
           fontFamily: SystemsStyles.sans,
-          fontSize: 96,
+          fontSize: 'clamp(40px, 9vw, 96px)',
           fontWeight: 500,
           letterSpacing: '-0.045em',
           lineHeight: 0.95,
@@ -126,7 +126,7 @@ function SystemsPortfolio() {
           Victor Esteban<span style={{ color: SystemsStyles.accent }}>.</span>
         </h1>
 
-        <div style={{
+        <div className="sys-hero-meta" style={{
           marginTop: 16,
           display: 'flex',
           gap: 12,
@@ -145,14 +145,14 @@ function SystemsPortfolio() {
           <span style={{ color: SystemsStyles.ink2 }}>backend / integration / production</span>
         </div>
 
-        <div style={{
+        <div className="sys-hero-grid" style={{
           marginTop: 56,
           display: 'grid',
           gridTemplateColumns: '1.4fr 1fr',
           gap: 48,
           alignItems: 'start',
         }}>
-          <p style={{
+          <p className="sys-hero-lead" style={{
             fontSize: 22,
             lineHeight: 1.5,
             color: SystemsStyles.ink2,
@@ -215,8 +215,8 @@ function SystemsPortfolio() {
 
       {/* ABOUT */}
       <SystemsSectionHead id="01" label="// about" />
-      <section style={{ padding: '48px 32px' }}>
-        <div style={{
+      <section className="sys-section" style={{ padding: '48px 32px' }}>
+        <div className="sys-about-grid" style={{
           display: 'grid',
           gridTemplateColumns: '180px 1fr',
           gap: 48,
@@ -232,7 +232,7 @@ function SystemsPortfolio() {
             <span style={{ color: SystemsStyles.accent }}>2 paragraphs</span><br />
             ~ 90s read
           </div>
-          <div style={{
+          <div className="sys-about-inner" style={{
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
             gap: 48,
@@ -246,18 +246,21 @@ function SystemsPortfolio() {
 
       {/* STRENGTHS */}
       <SystemsSectionHead id="02" label="// strengths" count={v.strengths.length} />
-      <section style={{ padding: '32px' }}>
-        <div style={{
+      <section className="sys-section" style={{ padding: '32px' }}>
+        <div className="sys-strengths" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(4, 1fr)',
           border: `1px solid ${SystemsStyles.rule}`,
           background: SystemsStyles.panel,
+          overflow: 'hidden',
         }}>
           {v.strengths.map((s, i) => (
             <div key={s} style={{
               padding: '24px 20px',
-              borderRight: (i + 1) % 4 !== 0 ? `1px solid ${SystemsStyles.rule}` : 'none',
-              borderBottom: i < 4 ? `1px solid ${SystemsStyles.rule}` : 'none',
+              borderRight: `1px solid ${SystemsStyles.rule}`,
+              borderBottom: `1px solid ${SystemsStyles.rule}`,
+              marginRight: -1,
+              marginBottom: -1,
               minHeight: 120,
               display: 'flex',
               flexDirection: 'column',
@@ -283,8 +286,8 @@ function SystemsPortfolio() {
 
       {/* SKILLS */}
       <SystemsSectionHead id="03" label="// stack" />
-      <section style={{ padding: '32px' }}>
-        <div style={{
+      <section className="sys-section" style={{ padding: '32px' }}>
+        <div className="sys-skills-grid" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(2, 1fr)',
           gap: 16,
@@ -333,7 +336,7 @@ function SystemsPortfolio() {
 
       {/* EXPERIENCE */}
       <SystemsSectionHead id="04" label="// selected_work" />
-      <section style={{ padding: '32px' }}>
+      <section className="sys-section" style={{ padding: '32px' }}>
         {v.experiences.filter(e => e.tier === 'main').map((exp, i) => (
           <article key={exp.company} style={{
             border: `1px solid ${SystemsStyles.rule}`,
@@ -341,7 +344,7 @@ function SystemsPortfolio() {
             background: SystemsStyles.panel,
           }}>
             {/* header bar */}
-            <div style={{
+            <div className="sys-case-header" style={{
               padding: '14px 24px',
               borderBottom: `1px solid ${SystemsStyles.rule}`,
               background: SystemsStyles.panel2,
@@ -353,7 +356,7 @@ function SystemsPortfolio() {
               letterSpacing: '0.08em',
               color: SystemsStyles.muted,
             }}>
-              <div style={{ display: 'flex', gap: 16 }}>
+              <div className="sys-case-header-meta" style={{ display: 'flex', gap: 16 }}>
                 <span style={{ color: SystemsStyles.accent }}>case_{String(i + 1).padStart(2, '0')}.md</span>
                 <span>·</span>
                 <span>{exp.period}</span>
@@ -363,14 +366,14 @@ function SystemsPortfolio() {
               <span style={{ color: SystemsStyles.ink }}>{exp.role}</span>
             </div>
 
-            <div style={{
+            <div className="sys-case-grid" style={{
               padding: '32px 24px',
               display: 'grid',
               gridTemplateColumns: '320px 1fr',
               gap: 32,
             }}>
               <div>
-                <h3 style={{
+                <h3 className="sys-case-title" style={{
                   fontSize: 36,
                   fontWeight: 500,
                   letterSpacing: '-0.025em',
@@ -443,7 +446,7 @@ function SystemsPortfolio() {
             color: SystemsStyles.muted,
           }}>// EARLIER_ROLES</div>
           {v.experiences.filter(e => e.tier === 'secondary').map((e, i, arr) => (
-            <div key={e.company} style={{
+            <div key={e.company} className="sys-earlier-row" style={{
               display: 'grid',
               gridTemplateColumns: '160px 200px 120px 1fr',
               gap: 24,
@@ -463,8 +466,8 @@ function SystemsPortfolio() {
 
       {/* PROJECTS */}
       <SystemsSectionHead id="05" label="// personal_projects" count={v.projects.length} />
-      <section style={{ padding: '32px' }}>
-        <div style={{
+      <section className="sys-section" style={{ padding: '32px' }}>
+        <div className="sys-projects-grid" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(3, 1fr)',
           gap: 16,
@@ -505,8 +508,8 @@ function SystemsPortfolio() {
 
       {/* CERTS */}
       <SystemsSectionHead id="06" label="// credentials" />
-      <section style={{ padding: '32px' }}>
-        <div style={{
+      <section className="sys-section" style={{ padding: '32px' }}>
+        <div className="sys-certs-grid" style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
           gap: 16,
@@ -574,9 +577,9 @@ function SystemsPortfolio() {
 
       {/* CONTACT */}
       <SystemsSectionHead id="07" label="// contact" />
-      <section style={{ padding: '64px 32px' }}>
+      <section className="sys-contact-section" style={{ padding: '64px 32px' }}>
         <h2 style={{
-          fontSize: 56,
+          fontSize: 'clamp(28px, 6vw, 56px)',
           fontWeight: 500,
           letterSpacing: '-0.03em',
           margin: '0 0 40px',
@@ -586,7 +589,7 @@ function SystemsPortfolio() {
         }}>
           Looking for a backend engineer who can <span style={{ color: SystemsStyles.accent }}>own production</span>?
         </h2>
-        <div style={{
+        <div className="sys-contact-grid" style={{
           display: 'inline-grid',
           gridTemplateColumns: 'auto auto auto',
           border: `1px solid ${SystemsStyles.rule}`,
@@ -597,7 +600,7 @@ function SystemsPortfolio() {
             { k: 'GITHUB', val: v.github, href: v.githubUrl, external: true },
             { k: 'LOCATION', val: v.location },
           ].map(({ k, val, href, external }, i) => (
-            <div key={k} style={{
+            <div key={k} className="sys-contact-cell" style={{
               padding: '24px 20px',
               borderRight: i < 2 ? `1px solid ${SystemsStyles.rule}` : 'none',
             }}>
@@ -641,7 +644,7 @@ function SystemsPortfolio() {
           ))}
         </div>
 
-        <div style={{
+        <div className="sys-footer" style={{
           marginTop: 64,
           paddingTop: 24,
           borderTop: `1px solid ${SystemsStyles.rule}`,
