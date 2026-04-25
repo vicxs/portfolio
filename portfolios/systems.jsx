@@ -590,8 +590,8 @@ function SystemsPortfolio() {
           Looking for a backend engineer who can <span style={{ color: SystemsStyles.accent }}>own production</span>?
         </h2>
         <div className="sys-contact-grid" style={{
-          display: 'inline-grid',
-          gridTemplateColumns: 'auto auto auto',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
           border: `1px solid ${SystemsStyles.rule}`,
           background: SystemsStyles.panel,
         }}>
