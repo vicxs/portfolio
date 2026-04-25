@@ -3,9 +3,11 @@ window.VICTOR = {
   name: "Victor Esteban",
   role: "Software Engineer",
   location: "Valencia, Spain",
-  email: "victor.esteban@example.com",
   linkedin: "linkedin.com/in/victoresteban",
-  github: "github.com/victoresteban",
+  github: "github.com/vicxs",
+  linkedinUrl: "https://www.linkedin.com/in/victoresteban",
+  githubUrl: "https://github.com/vicxs",
+  cvUrl: "/portfolio/assets/Victor_Esteban_CV.pdf",
 
   hero: "I am a software engineer especially interested in turning ideas into well-implemented solutions, shipping reliable software, improving systems through observability, and using AI to improve productivity and deliver more value to clients.",
 

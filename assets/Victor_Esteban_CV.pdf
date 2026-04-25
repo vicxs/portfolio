@@ -1,0 +1,54 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 924 >>
+stream
+BT
+/F1 18 Tf
+72 790 Td
+(Victor Esteban) Tj
+/F1 11 Tf
+0 -20 Td (Software Engineer) Tj
+0 -20 Td (Valencia, Spain) Tj
+0 -20 Td () Tj
+0 -20 Td (Backend development, system integration, and production support.) Tj
+0 -20 Td (Focus: reliable software, observability, and practical solution design.) Tj
+0 -20 Td () Tj
+0 -20 Td (Experience) Tj
+0 -20 Td (Xplore Group / Toyota Motor Europe - Software Engineer - Nov 2024 to Present) Tj
+0 -20 Td (Plexus Tech / Inditex - Software Engineer - Dec 2023 to Nov 2024) Tj
+0 -20 Td (Mercadona - Software Engineer - Mar 2022 to Dec 2023) Tj
+0 -20 Td (Capgemini - Software Engineer - Jan 2021 to Mar 2022) Tj
+0 -20 Td () Tj
+0 -20 Td (Skills) Tj
+0 -20 Td (Java, Spring Boot, Node.js, TypeScript, REST APIs, Kafka, RabbitMQ, SQL, MongoDB, Kubernetes, AWS, Datadog) Tj
+0 -20 Td () Tj
+0 -20 Td (Education) Tj
+0 -20 Td (BSc in Computer Engineering, Universitat Politecnica de Valencia \(UPV\)) Tj
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000311 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1286
+%%EOF
