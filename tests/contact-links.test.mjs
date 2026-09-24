@@ -3,7 +3,7 @@ import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 
 const dataSource = readFileSync("portfolios/data.js", "utf8");
-const systemsSource = readFileSync("portfolios/systems.jsx", "utf8");
+const siteSource = readFileSync("portfolios/cabanyal.jsx", "utf8");
 
 function assertContains(source, expected, message) {
   assert.ok(source.includes(expected), message);
@@ -15,13 +15,13 @@ assert.ok(
 );
 
 assert.ok(
-  !dataSource.includes("emailHref") && !systemsSource.includes("mailto:"),
+  !dataSource.includes("emailHref") && !siteSource.includes("mailto:"),
   "Email contact should be omitted until a public contact strategy is decided"
 );
 
 assertContains(
   dataSource,
-  'linkedinUrl: "https://www.linkedin.com/in/victoresteban"',
+  'linkedinUrl: "https://www.linkedin.com/in/victorestebann"',
   "window.VICTOR should expose a full LinkedIn URL"
 );
 
@@ -43,37 +43,37 @@ assert.ok(
 );
 
 assertContains(
-  systemsSource,
+  siteSource,
   "href={v.linkedinUrl}",
-  "CONTACT hero button should use the public LinkedIn URL while email is undecided"
+  "Hero contact link should use the public LinkedIn URL while email is undecided"
 );
 
 assertContains(
-  systemsSource,
+  siteSource,
   "href={v.cvUrl}",
-  "CV.PDF hero button should render the CV href"
+  "Hero and navigation CV links should render the CV href"
 );
 
 assertContains(
-  systemsSource,
-  "{ k: 'LINKEDIN', val: v.linkedin, href: v.linkedinUrl, external: true }",
+  siteSource,
+  "{ k: 'LinkedIn', val: v.linkedin, href: v.linkedinUrl, external: true }",
   "Contact section LinkedIn label should come from shared contact data"
 );
 
 assertContains(
-  systemsSource,
-  "{ k: 'GITHUB', val: v.github, href: v.githubUrl, external: true }",
+  siteSource,
+  "{ k: 'GitHub', val: v.github, href: v.githubUrl, external: true }",
   "Contact section GitHub label should come from shared contact data"
 );
 
 assertContains(
-  systemsSource,
+  siteSource,
   'target="_blank"',
   "External links should open in a new tab"
 );
 
 assertContains(
-  systemsSource,
+  siteSource,
   'rel="noreferrer"',
   "External links should avoid passing referrer data"
 );

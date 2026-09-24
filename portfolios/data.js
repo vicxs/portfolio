@@ -1,4 +1,4 @@
-// Shared content for all portfolio variations
+// Portfolio content, rendered by portfolios/cabanyal.jsx
 window.VICTOR = {
   name: "Victor Esteban",
   role: "Software Engineer",
@@ -55,6 +55,7 @@ window.VICTOR = {
       period: "Nov 2024 — Present",
       location: "Valencia",
       summary: "Lead of pan-European backend systems across product and dealer domains, serving high-traffic APIs that consolidate data for Toyota's European operations.",
+      note: "High-traffic APIs serving 2M+ requests a day across product and dealer domains.",
       bullets: [
         "Maintained and evolved high-traffic APIs serving 2M+ requests/day across product and dealer domains.",
         "Drove technical solution design for cross-domain features and led integration with adjacent teams.",
@@ -80,11 +81,12 @@ window.VICTOR = {
     {
       tier: "main",
       company: "Mercadona",
-      client: "Logistics & Supply Chain",
+      domain: "Logistics & Supply Chain",
       role: "Software Engineer",
       period: "Mar 2022 — Dec 2023",
       location: "Valencia",
       summary: "Backend engineer on logistics platforms, contributing to warehouse migrations, Kafka-based data unification, and legal-compliance workflows.",
+      note: "A warehouse migration with strict consistency requirements and a minimal-downtime cutover.",
       bullets: [
         "Designed and shipped a Kafka-based data unification layer used across logistics services.",
         "Led a warehouse migration with strict consistency requirements and minimal downtime cutover.",

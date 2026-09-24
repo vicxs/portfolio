@@ -12,7 +12,7 @@ const expectedSiteUrl = 'https://vicxs.github.io/portfolio/';
 const expectedTitle = 'Victor Esteban — Software Engineer';
 const expectedDescription =
   'Victor Esteban — Software Engineer. Backend, system integration, production support.';
-const expectedThemeColor = '#0E0F11';
+const expectedThemeColor = '#F7F5EF';
 
 function findMetaValue(attribute, key) {
   const pattern = new RegExp(

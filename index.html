@@ -5,7 +5,7 @@
 <title>Victor Esteban — Software Engineer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="Victor Esteban — Software Engineer. Backend, system integration, production support." />
-<meta name="theme-color" content="#0E0F11" />
+<meta name="theme-color" content="#F7F5EF" />
 <link rel="canonical" href="https://vicxs.github.io/portfolio/" />
 
 <meta property="og:title" content="Victor Esteban — Software Engineer" />
@@ -25,53 +25,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=JetBrains+Mono:wght@300..600&display=swap" rel="stylesheet" />
-
-<style>
-  html, body { margin: 0; padding: 0; background: #0E0F11; }
-  body { font-family: "Inter", system-ui, sans-serif; color: #E8E6E1; }
-  * { box-sizing: border-box; }
-
-  /* Responsive overrides — inline styles win, so use !important to override at breakpoints */
-  @media (max-width: 768px) {
-    .sys-bg-grid { background-size: 24px 24px !important; }
-
-    .sys-status-bar { flex-wrap: wrap !important; gap: 8px 16px !important; padding: 10px 16px !important; }
-    .sys-status-left { gap: 12px !important; flex-wrap: wrap !important; }
-    .sys-status-right { gap: 8px !important; flex-wrap: wrap !important; }
-
-    .sys-hero { padding: 48px 16px 40px !important; }
-    .sys-hero-grid { grid-template-columns: 1fr !important; gap: 32px !important; margin-top: 36px !important; }
-    .sys-hero-lead { font-size: 18px !important; max-width: 100% !important; }
-    .sys-hero-meta { flex-wrap: wrap !important; }
-
-    .sys-section { padding: 32px 16px !important; }
-    .sys-section-head { padding: 12px 16px !important; gap: 10px !important; }
-
-    .sys-about-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
-    .sys-about-inner { grid-template-columns: 1fr !important; gap: 20px !important; }
-
-    .sys-strengths { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important; }
-
-    .sys-skills-grid { grid-template-columns: 1fr !important; }
-
-    .sys-case-header { flex-wrap: wrap !important; gap: 8px !important; padding: 12px 16px !important; }
-    .sys-case-header-meta { flex-wrap: wrap !important; gap: 6px 10px !important; }
-    .sys-case-grid { grid-template-columns: 1fr !important; gap: 24px !important; padding: 24px 16px !important; }
-    .sys-case-title { font-size: 28px !important; }
-
-    .sys-earlier-row { grid-template-columns: 1fr !important; gap: 4px !important; padding: 16px !important; }
-
-    .sys-projects-grid { grid-template-columns: 1fr !important; }
-    .sys-certs-grid { grid-template-columns: 1fr !important; }
-
-    .sys-contact-section { padding: 48px 16px !important; }
-    .sys-contact-grid { display: block !important; }
-    .sys-contact-cell { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.08) !important; }
-    .sys-contact-cell:last-child { border-bottom: none !important; }
-    .sys-footer { flex-wrap: wrap !important; gap: 8px !important; }
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="portfolios/cabanyal.css?v=1" />
 
 <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
@@ -81,10 +36,10 @@
 <body>
 <div id="root"></div>
 
-<script src="portfolios/data.js?v=2"></script>
-<script type="text/babel" data-presets="react" src="portfolios/systems.jsx?v=2"></script>
+<script src="portfolios/data.js?v=3"></script>
+<script type="text/babel" data-presets="react" src="portfolios/cabanyal.jsx?v=1"></script>
 <script type="text/babel" data-presets="react">
-  ReactDOM.createRoot(document.getElementById('root')).render(<SystemsPortfolio />);
+  ReactDOM.createRoot(document.getElementById('root')).render(<CabanyalPortfolio />);
 </script>
 </body>
 </html>

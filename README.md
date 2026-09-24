@@ -13,15 +13,17 @@ Personal portfolio site. Software Engineer · Backend / Integration / Production
 
 ## Design
 
-Engineering Minimal direction (Option C from Claude Design exploration). Dark, hairline grid, Inter + JetBrains Mono, single teal accent. Sections: about, strengths, stack, selected work, personal projects, credentials, contact.
+"Cabanyal" direction: a light lime-wash ground, a Swiss 12-column grid and footnotes in the margin, set in Schibsted Grotesk with Instrument Serif italic accents. The one ornament is a band of simplified rajoles after the tiled façades of El Cabanyal, Valencia's old fishing quarter; it flips as one, cycling Flor → Estrella → Rombe → Cenefa → Ona. The mark is a minimal rosa dels vents. All motion respects `prefers-reduced-motion`.
 
 ## Structure
 
 ```
-index.html              # Entry; loads React + mounts <SystemsPortfolio />
+index.html              # Entry; loads React + mounts <CabanyalPortfolio />
 portfolios/
   data.js               # Content (experience, skills, projects, etc.)
-  systems.jsx           # SystemsPortfolio component
+  cabanyal.jsx          # CabanyalPortfolio component, tile band, rosa mark
+  cabanyal.css          # Layout, grid, motion and responsive styles
+tests/                  # Node assertion scripts (node tests/<file>.mjs)
 ```
 
 ## Local development
@@ -33,7 +35,7 @@ python3 -m http.server 8000
 # then visit http://localhost:8000
 ```
 
-Edit `portfolios/data.js` to update content. Edit `portfolios/systems.jsx` to change layout.
+Edit `portfolios/data.js` to update content. Edit `portfolios/cabanyal.jsx` and `portfolios/cabanyal.css` to change layout.
 
 ## Deployment
 
