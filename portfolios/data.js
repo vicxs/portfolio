@@ -9,42 +9,17 @@ window.VICTOR = {
   githubUrl: "https://github.com/vicxs",
   cvUrl: "/portfolio/assets/Victor_Esteban_CV.pdf",
 
-  hero: "I am a software engineer especially interested in turning ideas into well-implemented solutions, shipping reliable software, improving systems through observability, and using AI to improve productivity and deliver more value to clients.",
+  lede: "Software engineer in Valencia working on backend, system integration and production support for Toyota Motor Europe, Inditex and Mercadona. Claude Certified Developer and Architect.",
 
-  about: [
-    "I'm a software engineer with experience across backend development, system integration, and production support, with a strong focus on large-scale systems, reliability, observability, and practical solution design. I enjoy contributing across the full implementation cycle, from shaping technical solutions to maintaining them in production, and I'm always looking for ways to use AI to work more efficiently and create more value.",
-    "I consider myself someone who integrates well into teams and is easy to work with. I care about building a good environment around me, and outside work I enjoy sports, reading, films and series, and staying in continuous learning."
+  // Key figures under the hero. `value` counts up on scroll; `text` is shown as is.
+  facts: [
+    { value: 6, suffix: "+", label: "years in software engineering" },
+    { value: 2, suffix: "M+", label: "API requests a day on the systems I maintain" },
+    { value: 3, label: "Claude certifications, Developer and Architect" },
+    { text: "Daily", label: "Claude Code in my engineering workflow" }
   ],
 
-  strengths: [
-    "Backend development",
-    "System integration",
-    "Production support",
-    "Observability",
-    "Technical solution design",
-    "Ownership in evolving teams",
-    "Cross-team coordination",
-    "AI for productivity"
-  ],
-
-  skills: [
-    {
-      group: "Languages & Frameworks",
-      items: ["Java 17+", "Spring Boot", "Spring Security", "Spring Data", "Spring Batch", "Node.js", "TypeScript", "REST APIs"]
-    },
-    {
-      group: "Architecture",
-      items: ["Microservices", "Hexagonal Architecture", "Domain-Driven Design"]
-    },
-    {
-      group: "Messaging & Data",
-      items: ["Kafka", "RabbitMQ", "Oracle", "PostgreSQL", "MongoDB"]
-    },
-    {
-      group: "Cloud, DevOps & Runtime",
-      items: ["Kubernetes", "Datadog", "AWS"]
-    }
-  ],
+  personal: "I integrate well into teams and care about the environment around me. Outside work: sports, reading, films and series, and always learning something new.",
 
   experiences: [
     {
@@ -54,14 +29,14 @@ window.VICTOR = {
       role: "Software Engineer",
       period: "Nov 2024 — Present",
       location: "Valencia",
-      summary: "Lead of pan-European backend systems across product and dealer domains, serving high-traffic APIs that consolidate data for Toyota's European operations.",
+      summary: "Leading pan-European backend systems across product and dealer domains, serving high-traffic APIs that consolidate data for Toyota's European operations.",
       note: "High-traffic APIs serving 2M+ requests a day across product and dealer domains.",
       bullets: [
         "Maintained and evolved high-traffic APIs serving 2M+ requests/day across product and dealer domains.",
         "Drove technical solution design for cross-domain features and led integration with adjacent teams.",
         "Improved observability across services, reducing time-to-diagnose for production incidents.",
         "Owned legacy modernization work while keeping the system fully operational for dependent teams.",
-        "Onboarded fast into a complex environment and quickly took ownership of critical components."
+        "Use Claude Code daily in delivery and help teammates adopt AI-assisted engineering workflows."
       ]
     },
     {
@@ -118,21 +93,56 @@ window.VICTOR = {
     }
   ],
 
+  ai: {
+    intro: "AI is part of how I engineer, not a side topic. Claude Code is in my workflow every day, I build the skills and agents that make that work repeatable, and I look for places where agents can take real work off our processes.",
+    certifications: [
+      { role: "Architect", level: "Professional" },
+      { role: "Architect", level: "Foundations" },
+      { role: "Developer", level: "Foundations" }
+    ],
+    practice: [
+      { title: "Claude Code, every day", text: "Implementing, refactoring, testing and reviewing code on the systems I work on, with the same standards I'd hold hand-written code to." },
+      { title: "Skills and agents of my own", text: "Custom skills, subagents and project context that make AI-assisted work consistent and repeatable." },
+      { title: "Agents for business processes", text: "Exploring agent-based solutions we can integrate into our company's processes." },
+      { title: "Helping teams adopt it", text: "Sharing workflows and training colleagues so AI-assisted engineering becomes part of how the team works." }
+    ]
+  },
+
   projects: [
     {
       title: "Claude Code Custom Skills",
-      summary: "Custom productivity skills for Claude Code that help me scope tasks, implement features end-to-end, review code, and triage dependency updates. I use them daily to improve my own productivity and keep my workflow consistent."
+      summary: "Productivity skills for Claude Code that help me scope tasks, implement features end-to-end, review code, and triage dependency updates. I use them daily to keep my workflow fast and consistent."
     },
     {
       title: "Quick-diff-reviewer",
-      summary: "A terminal-based diff review tool that lets me inspect code changes hunk by hunk, annotate issues or self-fixes, and export structured JSON for downstream automation in CI or AI-assisted review workflows."
-    },
-    {
-      title: "Personal Portfolio",
-      summary: "My own portfolio website, built with AI assistance, designed to showcase my experience, projects, and engineering focus in a clear and professional way."
+      summary: "A terminal diff reviewer: inspect changes hunk by hunk, annotate issues or self-fixes, and export structured JSON for CI or AI-assisted review workflows."
     }
   ],
 
+  skills: [
+    {
+      group: "Languages & Frameworks",
+      items: ["Java 17+", "Spring Boot", "Spring Security", "Spring Data", "Spring Batch", "Node.js", "TypeScript", "REST APIs"]
+    },
+    {
+      group: "Architecture",
+      items: ["Microservices", "Hexagonal Architecture", "Domain-Driven Design"]
+    },
+    {
+      group: "Messaging & Data",
+      items: ["Kafka", "RabbitMQ", "Oracle", "PostgreSQL", "MongoDB"]
+    },
+    {
+      group: "Cloud, DevOps & Runtime",
+      items: ["Kubernetes", "Datadog", "AWS"]
+    },
+    {
+      group: "AI & Agents",
+      items: ["Claude Code", "Claude API", "MCP", "Skills & subagents", "Agentic workflows"]
+    }
+  ],
+
+  // Claude certifications are shown in the AI section.
   certifications: [
     "AWS Certified Cloud Practitioner",
     "English (Cambridge)",
