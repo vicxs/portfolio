@@ -179,7 +179,7 @@ function TileBand() {
 
 function SectionHead({ n, title }) {
   return (
-    <header className="sec-head">
+    <header className="sec-head rv">
       <span className="serif">{n}</span>
       <h2>{title}</h2>
     </header>
@@ -190,27 +190,39 @@ function CabanyalPortfolio() {
   const v = window.VICTOR;
   const [activeNote, setActiveNote] = useState(null);
 
-  // Fade sections in as they scroll into view.
+  // Reveal items as they scroll into view. Items entering together are
+  // staggered so rows, cards and list entries cascade instead of popping.
   useEffect(() => {
-    const els = Array.from(document.querySelectorAll('.reveal'));
+    const els = Array.from(document.querySelectorAll('.rv'));
     if (prefersReducedMotion() || !('IntersectionObserver' in window)) {
       els.forEach((el) => el.classList.add('is-in'));
       return undefined;
     }
+    const timers = [];
     const io = new IntersectionObserver((entries) => {
+      let k = 0;
       entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add('is-in');
-          io.unobserve(e.target);
-        }
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const delay = Math.min(k, 6) * 90;
+        k += 1;
+        el.style.transitionDelay = `${delay}ms`;
+        el.classList.add('is-in');
+        io.unobserve(el);
+        // Drop the delay once in, so hover transitions stay instant.
+        timers.push(setTimeout(() => { el.style.transitionDelay = ''; }, delay + 1100));
       });
-    }, { rootMargin: '0px 0px -10% 0px' });
+    }, { rootMargin: '0px 0px -8% 0px' });
     els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+    return () => { io.disconnect(); timers.forEach(clearTimeout); };
   }, []);
 
   const main = v.experiences.filter((e) => e.tier === 'main');
-  const earlier = v.experiences.filter((e) => e.tier === 'secondary');
+  const secondary = v.experiences.filter((e) => e.tier === 'secondary');
+  const earlier = v.experiences.filter((e) => e.tier === 'earlier');
+  const earlierSpan = earlier.length
+    ? `${earlier[earlier.length - 1].period.split(' — ')[0]} — ${earlier[0].period.split(' — ')[1]}`
+    : '';
   const noted = main.filter((e) => e.note);
   const noteNumber = (exp) => noted.indexOf(exp) + 1;
   const noteHandlers = (n) => ({
@@ -225,6 +237,7 @@ function CabanyalPortfolio() {
   return (
     <>
       <TileDefs />
+      <div className="progress" aria-hidden="true"></div>
 
       <div id="top" className="site-header anim-fade">
         <div className="wrap">
@@ -249,11 +262,12 @@ function CabanyalPortfolio() {
         <section className="hero wrap" aria-label="Introduction">
           <div className="grid">
             <h1>
-              <span className="ln"><span className="anim-rise" style={{ animationDelay: '150ms' }}>I turn ideas into</span></span>{' '}
-              <span className="ln"><span className="anim-rise" style={{ animationDelay: '240ms' }}><span className="serif">well‑implemented</span> software,</span></span>{' '}
-              <span className="ln"><span className="anim-rise" style={{ animationDelay: '330ms' }}>ship it reliably, and make it</span></span>{' '}
-              <span className="ln"><span className="anim-rise" style={{ animationDelay: '420ms' }}>observable in production.</span></span>
+              <span className="ln"><span className="anim-rise" style={{ animationDelay: '150ms' }}><span className="serif">Product-minded</span> and</span></span>{' '}
+              <span className="ln"><span className="anim-rise" style={{ animationDelay: '240ms' }}>AI-oriented software engineer.</span></span>{' '}
+              <span className="ln"><span className="anim-rise" style={{ animationDelay: '330ms' }}>I turn what a business needs</span></span>{' '}
+              <span className="ln"><span className="anim-rise" style={{ animationDelay: '420ms' }}>into software that works.</span></span>
             </h1>
+            <p className="hero-lede anim-fade" style={{ animationDelay: '700ms' }}>{v.lede}</p>
             <div className="hero-links anim-fade" style={{ animationDelay: '900ms' }}>
               <a className="link link-on" href={v.linkedinUrl} target="_blank" rel="noreferrer">Get in touch on LinkedIn ↗</a>
               <a className="link" href={v.cvUrl}>Download CV</a>
@@ -263,24 +277,9 @@ function CabanyalPortfolio() {
 
         <TileBand />
 
-        <section id="about" className="section wrap reveal">
-          <SectionHead n="01" title="About" />
-          <div className="grid about">
-            <span className="label" style={{ gridColumn: '1 / span 3' }}>{v.location}</span>
-            <div className="about-copy">
-              {v.about.map((p) => <p key={p.slice(0, 24)}>{p}</p>)}
-            </div>
-            <ul className="strengths" aria-label="Strengths">
-              {v.strengths.map((s, i) => (
-                <li key={s}><span className="serif">{pad(i)}</span><span>{s}</span></li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        <section id="work" className="section wrap reveal">
-          <SectionHead n="02" title="Work" />
-          <div className="grid table-head" aria-hidden="true">
+        <section id="work" className="section wrap">
+          <SectionHead n="01" title="Work" />
+          <div className="grid table-head rv" aria-hidden="true">
             <span className="c-period">Period</span>
             <span className="c-company">Company</span>
             <span className="c-what">What I did</span>
@@ -289,7 +288,7 @@ function CabanyalPortfolio() {
           {main.map((exp, i) => {
             const n = exp.note ? noteNumber(exp) : 0;
             return (
-              <article key={exp.company} className={`grid row${i === 0 ? ' first' : ''}`}>
+              <article key={exp.company} className={`grid row rv${i === 0 ? ' first' : ''}`}>
                 <span className="c-period">
                   {exp.period.includes('Present') && <span className="live" aria-hidden="true"></span>}
                   {exp.period}
@@ -319,8 +318,8 @@ function CabanyalPortfolio() {
               </article>
             );
           })}
-          {earlier.map((exp, i) => (
-            <div key={exp.company} className={`grid row row-earlier${i === earlier.length - 1 ? ' last' : ''}`}>
+          {secondary.map((exp, i) => (
+            <div key={exp.company} className={`grid row row-earlier rv${!earlier.length && i === secondary.length - 1 ? ' last' : ''}`}>
               <span className="c-period muted">{exp.period}</span>
               <div className="c-company">
                 <span className="co">{exp.company}</span>
@@ -329,43 +328,49 @@ function CabanyalPortfolio() {
               <p className="c-what" style={{ margin: 0 }}>{exp.summary}</p>
             </div>
           ))}
+          {earlier.length > 0 && (
+            <div className="grid row row-earlier last rv">
+              <span className="c-period muted">{earlierSpan}</span>
+              <div className="c-company">
+                <span className="co">Earlier experience</span>
+                <span className="sub">{earlier.length} roles</span>
+              </div>
+              <ul className="c-what earlier-list">
+                {earlier.map((exp) => (
+                  <li key={exp.company}>
+                    <span className="earlier-co">{exp.company}</span>
+                    <span className="muted"> · {exp.role}</span>
+                    <span className="earlier-period">{exp.period}</span>
+                    <span className="earlier-sum">{exp.summary}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </section>
 
-        <section id="stack" className="section wrap reveal">
-          <SectionHead n="03" title="Stack" />
+        <section id="stack" className="section wrap">
+          <SectionHead n="02" title="Stack" />
           {v.skills.map((g, i) => (
-            <div key={g.group} className={`grid stack-row${i === 0 ? ' first' : ''}${i === v.skills.length - 1 ? ' last' : ''}`}>
+            <div key={g.group} className={`grid stack-row rv${i === 0 ? ' first' : ''}${i === v.skills.length - 1 ? ' last' : ''}`}>
               <span className="g">{g.group}</span>
               <span className="items">{g.items.map((it) => <span key={it}>{it}</span>)}</span>
             </div>
           ))}
         </section>
 
-        <section id="projects" className="section wrap reveal">
-          <SectionHead n="04" title="Personal projects" />
-          <div className="grid projects">
-            {v.projects.map((p, i) => (
-              <article key={p.title} className="project">
-                <span className="serif">{pad(i)}</span>
-                <h3>{p.title}</h3>
-                <p>{p.summary}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="credentials" className="section wrap reveal">
-          <SectionHead n="05" title="Credentials" />
+        <section id="credentials" className="section wrap">
+          <SectionHead n="03" title="Education & certifications" />
           <div className="grid creds">
-            <span className="label" style={{ gridColumn: '1 / span 3' }}>Certifications</span>
-            <ul className="certs">
+            <span className="label rv" style={{ gridColumn: '1 / span 3' }}>Certifications</span>
+            <ul className="certs rv">
               {v.certifications.map((c) => (
                 c.startsWith(preparing)
                   ? <li key={c} className="prep">{c.slice(preparing.length)} <span className="serif">— in preparation</span></li>
                   : <li key={c}>{c}</li>
               ))}
             </ul>
-            <div className="edu">
+            <div className="edu rv">
               <span className="label">Education</span>
               <span className="school">{v.education.school}</span>
               <span>{v.education.degree}</span>
@@ -374,10 +379,10 @@ function CabanyalPortfolio() {
           </div>
         </section>
 
-        <section id="contact" className="section wrap contact reveal">
-          <SectionHead n="06" title="Contact" />
+        <section id="contact" className="section wrap contact">
+          <SectionHead n="04" title="Contact" />
           <div className="grid">
-            <h2 className="contact-title">Looking for a backend engineer who can <span className="serif">own production</span>?</h2>
+            <h2 className="contact-title rv">Looking for a software engineer who owns production and builds with AI, <span className="serif">safely</span>?</h2>
           </div>
           <div className="grid contact-links">
             {[
@@ -385,7 +390,7 @@ function CabanyalPortfolio() {
               { k: 'GitHub', val: v.github, href: v.githubUrl, external: true },
               { k: 'Location', val: v.location },
             ].map(({ k, val, href, external }) => (
-              <div key={k} className="contact-cell">
+              <div key={k} className="contact-cell rv">
                 <span className="label">{k}</span>
                 {external
                   ? <a className="val link" href={href} target="_blank" rel="noreferrer">{val}</a>

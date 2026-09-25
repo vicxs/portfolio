@@ -9,42 +9,7 @@ window.VICTOR = {
   githubUrl: "https://github.com/vicxs",
   cvUrl: "/portfolio/assets/Victor_Esteban_CV.pdf",
 
-  hero: "I am a software engineer especially interested in turning ideas into well-implemented solutions, shipping reliable software, improving systems through observability, and using AI to improve productivity and deliver more value to clients.",
-
-  about: [
-    "I'm a software engineer with experience across backend development, system integration, and production support, with a strong focus on large-scale systems, reliability, observability, and practical solution design. I enjoy contributing across the full implementation cycle, from shaping technical solutions to maintaining them in production, and I'm always looking for ways to use AI to work more efficiently and create more value.",
-    "I consider myself someone who integrates well into teams and is easy to work with. I care about building a good environment around me, and outside work I enjoy sports, reading, films and series, and staying in continuous learning."
-  ],
-
-  strengths: [
-    "Backend development",
-    "System integration",
-    "Production support",
-    "Observability",
-    "Technical solution design",
-    "Ownership in evolving teams",
-    "Cross-team coordination",
-    "AI for productivity"
-  ],
-
-  skills: [
-    {
-      group: "Languages & Frameworks",
-      items: ["Java 17+", "Spring Boot", "Spring Security", "Spring Data", "Spring Batch", "Node.js", "TypeScript", "REST APIs"]
-    },
-    {
-      group: "Architecture",
-      items: ["Microservices", "Hexagonal Architecture", "Domain-Driven Design"]
-    },
-    {
-      group: "Messaging & Data",
-      items: ["Kafka", "RabbitMQ", "Oracle", "PostgreSQL", "MongoDB"]
-    },
-    {
-      group: "Cloud, DevOps & Runtime",
-      items: ["Kubernetes", "Datadog", "AWS"]
-    }
-  ],
+  lede: "Based in Valencia, with 6+ years building products for Toyota, Inditex and Mercadona. I design the solution, build it with the team, own it in production and bring in AI where it adds value.",
 
   experiences: [
     {
@@ -54,14 +19,13 @@ window.VICTOR = {
       role: "Software Engineer",
       period: "Nov 2024 — Present",
       location: "Valencia",
-      summary: "Lead of pan-European backend systems across product and dealer domains, serving high-traffic APIs that consolidate data for Toyota's European operations.",
+      summary: "Leading pan-European backend systems across product and dealer domains, serving high-traffic APIs that consolidate data for Toyota's European operations.",
       note: "High-traffic APIs serving 2M+ requests a day across product and dealer domains.",
       bullets: [
         "Maintained and evolved high-traffic APIs serving 2M+ requests/day across product and dealer domains.",
         "Drove technical solution design for cross-domain features and led integration with adjacent teams.",
         "Improved observability across services, reducing time-to-diagnose for production incidents.",
-        "Owned legacy modernization work while keeping the system fully operational for dependent teams.",
-        "Onboarded fast into a complex environment and quickly took ownership of critical components."
+        "Owned legacy modernization work while keeping the system fully operational for dependent teams."
       ]
     },
     {
@@ -103,14 +67,14 @@ window.VICTOR = {
       summary: "Backend development for Consum, in the food retail sector."
     },
     {
-      tier: "secondary",
+      tier: "earlier",
       company: "Infoverity",
       role: "Software Engineer",
       period: "Mar 2020 — Nov 2020",
       summary: "Data governance and internal tools software development."
     },
     {
-      tier: "secondary",
+      tier: "earlier",
       company: "F1-Connecting",
       role: "Systems Technician",
       period: "Feb 2019 — Sept 2019",
@@ -118,22 +82,33 @@ window.VICTOR = {
     }
   ],
 
-  projects: [
+  skills: [
     {
-      title: "Claude Code Custom Skills",
-      summary: "Custom productivity skills for Claude Code that help me scope tasks, implement features end-to-end, review code, and triage dependency updates. I use them daily to improve my own productivity and keep my workflow consistent."
+      group: "Languages & Frameworks",
+      items: ["Java 17+", "Spring", "Node.js", "TypeScript", "REST APIs"]
     },
     {
-      title: "Quick-diff-reviewer",
-      summary: "A terminal-based diff review tool that lets me inspect code changes hunk by hunk, annotate issues or self-fixes, and export structured JSON for downstream automation in CI or AI-assisted review workflows."
+      group: "Architecture",
+      items: ["Microservices", "Hexagonal Architecture", "Domain-Driven Design"]
     },
     {
-      title: "Personal Portfolio",
-      summary: "My own portfolio website, built with AI assistance, designed to showcase my experience, projects, and engineering focus in a clear and professional way."
+      group: "Messaging & Data",
+      items: ["Kafka", "RabbitMQ", "Oracle", "PostgreSQL", "MongoDB"]
+    },
+    {
+      group: "Cloud, DevOps & Runtime",
+      items: ["Kubernetes", "Datadog", "AWS"]
+    },
+    {
+      group: "AI & Agents",
+      items: ["Claude Code", "OpenCode", "Claude API", "MCP", "Skills & subagents", "Agentic workflows"]
     }
   ],
 
   certifications: [
+    "Claude Certified Architect — Professional",
+    "Claude Certified Architect — Foundations",
+    "Claude Certified Developer — Foundations",
     "AWS Certified Cloud Practitioner",
     "English (Cambridge)",
     "Currently preparing — AWS Developer Associate",
