@@ -2,7 +2,7 @@
 
 Personal portfolio site. Software Engineer · Backend / Integration / Production.
 
-**Live:** https://vicxs.github.io/portfolio/
+**Live:** https://victoresteban.com/
 
 ## Stack
 
