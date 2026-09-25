@@ -502,15 +502,18 @@ function CabanyalPortfolio() {
             <h2 className="contact-title rv">{withSerif(t.contactTitle)}</h2>
             <div className="contact-stack">
               {[
+                { k: t.email, val: v.email, href: v.emailUrl },
                 { k: 'LinkedIn', val: v.linkedin, href: v.linkedinUrl, external: true },
                 { k: 'GitHub', val: v.github, href: v.githubUrl, external: true },
                 { k: t.location, val: v.location },
               ].map(({ k, val, href, external }, i) => (
                 <div key={i} className="contact-cell rv">
                   <span className="label">{k}</span>
-                  {external
-                    ? <a className="val link" href={href} target="_blank" rel="noreferrer">{val}</a>
-                    : <span className="val">{val}</span>}
+                  {!href
+                    ? <span className="val">{val}</span>
+                    : external
+                      ? <a className="val link" href={href} target="_blank" rel="noreferrer">{val}</a>
+                      : <a className="val link" href={href}>{val}</a>}
                 </div>
               ))}
             </div>

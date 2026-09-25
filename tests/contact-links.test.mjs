@@ -15,9 +15,10 @@ assert.ok(
   "window.VICTOR should not publish placeholder example.com contact data"
 );
 
-assert.ok(
-  !dataSource.includes("emailHref") && !siteSource.includes("mailto:"),
-  "Email contact should be omitted until a public contact strategy is decided"
+assertContains(
+  dataSource,
+  'emailUrl: "mailto:hola@victoresteban.com"',
+  "window.VICTOR should expose the public contact email on the site's domain"
 );
 
 assertContains(
@@ -60,7 +61,7 @@ assertContains(
 assertContains(
   siteSource,
   "href={v.linkedinUrl}",
-  "Hero contact link should use the public LinkedIn URL while email is undecided"
+  "Hero contact link should use the public LinkedIn URL"
 );
 
 assertContains(
@@ -68,6 +69,20 @@ assertContains(
   "href={v.cvUrl}",
   "Hero and navigation CV links should render the CV href"
 );
+
+assertContains(
+  siteSource,
+  "{ k: t.email, val: v.email, href: v.emailUrl }",
+  "Contact section email should come from shared contact data"
+);
+
+for (const cv of ["cv/en.html", "cv/es.html"]) {
+  assertContains(
+    readFileSync(cv, "utf8"),
+    '<a href="mailto:hola@victoresteban.com">hola@victoresteban.com</a>',
+    `${cv} should list the contact email on the site's domain`
+  );
+}
 
 assertContains(
   siteSource,

@@ -35,6 +35,7 @@ window.STRINGS = {
     eduLang: "Education & languages",
     contact: "Contact",
     contactTitle: "Looking for a software engineer who owns production and builds with AI, *safely*?",
+    email: "Email",
     location: "Location",
     backToTop: "Back to top ↑"
   },
@@ -72,6 +73,7 @@ window.STRINGS = {
     eduLang: "Formación e idiomas",
     contact: "Contacto",
     contactTitle: "¿Buscas a alguien que se haga cargo de producción y construya con IA de forma *segura*?",
+    email: "Correo",
     location: "Ubicación",
     backToTop: "Volver arriba ↑"
   }
