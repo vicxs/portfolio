@@ -262,10 +262,10 @@ function CabanyalPortfolio() {
         <section className="hero wrap" aria-label="Introduction">
           <div className="grid">
             <h1>
-              <span className="ln"><span className="anim-rise" style={{ animationDelay: '150ms' }}><span className="serif">Product-minded</span> engineer.</span></span>{' '}
-              <span className="ln"><span className="anim-rise" style={{ animationDelay: '240ms' }}>I turn what a business needs</span></span>{' '}
-              <span className="ln"><span className="anim-rise" style={{ animationDelay: '330ms' }}>into software that works,</span></span>{' '}
-              <span className="ln"><span className="anim-rise" style={{ animationDelay: '420ms' }}>and use AI to do it better.</span></span>
+              <span className="ln"><span className="anim-rise" style={{ animationDelay: '150ms' }}><span className="serif">Product-minded</span> and</span></span>{' '}
+              <span className="ln"><span className="anim-rise" style={{ animationDelay: '240ms' }}>AI-oriented software engineer.</span></span>{' '}
+              <span className="ln"><span className="anim-rise" style={{ animationDelay: '330ms' }}>I turn what a business needs</span></span>{' '}
+              <span className="ln"><span className="anim-rise" style={{ animationDelay: '420ms' }}>into software that works.</span></span>
             </h1>
             <p className="hero-lede anim-fade" style={{ animationDelay: '700ms' }}>{v.lede}</p>
             <div className="hero-links anim-fade" style={{ animationDelay: '900ms' }}>

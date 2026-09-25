@@ -9,7 +9,7 @@ window.VICTOR = {
   githubUrl: "https://github.com/vicxs",
   cvUrl: "/portfolio/assets/Victor_Esteban_CV.pdf",
 
-  lede: "Software engineer in Valencia with 6+ years building products for Toyota, Inditex and Mercadona. I design the solution, build it with the team and own it in production.",
+  lede: "Based in Valencia, with 6+ years building products for Toyota, Inditex and Mercadona. I design the solution, build it with the team, own it in production and bring in AI where it adds value.",
 
   experiences: [
     {
