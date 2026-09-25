@@ -64,7 +64,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 
 /* ---------- Hero ---------- */
 .hero { padding-top: 120px; }
-.hero h1 { grid-column: 1 / span 9; margin: 0; font-size: clamp(38px, 4.9vw, 62px); line-height: 1.06; font-weight: 500; letter-spacing: -0.028em; }
+.hero h1 { grid-column: 1 / span 11; margin: 0; font-size: clamp(38px, 4.9vw, 62px); line-height: 1.06; font-weight: 500; letter-spacing: -0.028em; }
 .ln { display: block; overflow: hidden; padding-bottom: .1em; margin-bottom: -.1em; }
 .ln > span { display: inline-block; }
 .hero h1 .serif { font-size: 1.12em; letter-spacing: -0.01em; color: var(--sea); }

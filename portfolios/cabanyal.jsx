@@ -403,7 +403,7 @@ function CabanyalPortfolio() {
 
       <footer className="wrap">
         <div className="site-footer">
-          <span className="left"><RosaMark className="brand-mark" /><span>© {new Date().getFullYear()} {v.name} · Built with Claude Code</span></span>
+          <span className="left"><RosaMark className="brand-mark" /><span>© {new Date().getFullYear()} {v.name}</span></span>
           <a className="link" href="#top">Back to top ↑</a>
         </div>
       </footer>
