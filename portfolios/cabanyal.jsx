@@ -1,8 +1,62 @@
 // Cabanyal: light, Swiss grid, footnotes in the margin, and a band of
 // rajoles after the tiled façades of El Cabanyal that flips as one.
-// Styles live in cabanyal.css; content in data.js.
+// Styles live in cabanyal.css; content in data.js; interface copy in i18n.js.
 
 const { useState, useEffect, useRef } = React;
+
+// English by default; ?lang=es or a remembered choice switches to Spanish.
+const LANGS = ['en', 'es'];
+const DEFAULT_LANG = 'en';
+
+function initialLang() {
+  try {
+    const q = new URLSearchParams(window.location.search).get('lang');
+    if (LANGS.includes(q)) return q;
+  } catch (e) { /* no query string access */ }
+  try {
+    const saved = window.localStorage.getItem('lang');
+    if (LANGS.includes(saved)) return saved;
+  } catch (e) { /* storage blocked */ }
+  return DEFAULT_LANG;
+}
+
+// Keep the address shareable: ?lang=es in Spanish, clean URL in English.
+function persistLang(lang) {
+  try { window.localStorage.setItem('lang', lang); } catch (e) { /* storage blocked */ }
+  try {
+    const url = new URL(window.location.href);
+    if (lang === DEFAULT_LANG) url.searchParams.delete('lang');
+    else url.searchParams.set('lang', lang);
+    window.history.replaceState(null, '', url);
+  } catch (e) { /* history unavailable */ }
+}
+
+// Resolve an { en, es } pair to the current language; plain values pass through.
+function tr(value, lang) {
+  if (value && typeof value === 'object' && !Array.isArray(value) && DEFAULT_LANG in value) {
+    return value[lang] ?? value[DEFAULT_LANG];
+  }
+  return value;
+}
+
+// Text between *asterisks* is set in the serif italic.
+function withSerif(text) {
+  return text.split('*').map((part, i) => (i % 2 ? <span key={i} className="serif">{part}</span> : part));
+}
+
+function LangSwitch({ lang, onChange, label }) {
+  return (
+    <span className="lang" role="group" aria-label={label}>
+      {LANGS.map((l, i) => (
+        <React.Fragment key={l}>
+          {i > 0 && <span className="lang-sep" aria-hidden="true">/</span>}
+          <button type="button" lang={l} className={`lang-opt${lang === l ? ' is-on' : ''}`}
+            aria-pressed={lang === l} onClick={() => onChange(l)}>{l.toUpperCase()}</button>
+        </React.Fragment>
+      ))}
+    </span>
+  );
+}
 
 const TILE_SEQUENCE = ['flor', 'estrella', 'rombe', 'cenefa', 'ona'];
 const TILE_SIZE = 64;
@@ -187,13 +241,49 @@ function SectionHead({ n, title }) {
 }
 
 function CabanyalPortfolio() {
-  const v = window.VICTOR;
+  const data = window.VICTOR;
+  const [lang, setLang] = useState(initialLang);
   const [activeNote, setActiveNote] = useState(null);
+  const t = window.STRINGS[lang];
+
+  // Resolve every { en, es } pair once, so the markup reads plain values.
+  const v = {
+    ...data,
+    location: tr(data.location, lang),
+    lede: tr(data.lede, lang),
+    experiences: data.experiences.map((e) => ({
+      ...e,
+      role: tr(e.role, lang),
+      period: tr(e.period, lang),
+      domain: tr(e.domain, lang),
+      summary: tr(e.summary, lang),
+      note: tr(e.note, lang),
+      bullets: tr(e.bullets, lang),
+    })),
+    skills: data.skills.map((g) => ({ group: tr(g.group, lang), items: g.items.map((it) => tr(it, lang)) })),
+    certifications: data.certifications.map((c) => ({ ...c, name: tr(c.name, lang) })),
+    education: {
+      school: data.education.school,
+      degree: tr(data.education.degree, lang),
+      track: tr(data.education.track, lang),
+    },
+  };
+
+  useEffect(() => {
+    document.documentElement.lang = lang;
+    document.title = t.title;
+  }, [lang]);
+
+  const changeLang = (next) => {
+    setLang(next);
+    persistLang(next);
+  };
 
   // Reveal items as they scroll into view. Items entering together are
   // staggered so rows, cards and list entries cascade instead of popping.
+  // Re-runs on a language switch to pick up anything newly mounted.
   useEffect(() => {
-    const els = Array.from(document.querySelectorAll('.rv'));
+    const els = Array.from(document.querySelectorAll('.rv:not(.is-in)'));
     if (prefersReducedMotion() || !('IntersectionObserver' in window)) {
       els.forEach((el) => el.classList.add('is-in'));
       return undefined;
@@ -215,7 +305,7 @@ function CabanyalPortfolio() {
     }, { rootMargin: '0px 0px -8% 0px' });
     els.forEach((el) => io.observe(el));
     return () => { io.disconnect(); timers.forEach(clearTimeout); };
-  }, []);
+  }, [lang]);
 
   const main = v.experiences.filter((e) => e.tier === 'main');
   const secondary = v.experiences.filter((e) => e.tier === 'secondary');
@@ -231,8 +321,6 @@ function CabanyalPortfolio() {
     onFocus: () => setActiveNote(n),
     onBlur: () => setActiveNote(null),
   });
-  const pad = (i) => String(i + 1).padStart(2, '0');
-  const preparing = 'Currently preparing — ';
 
   return (
     <>
@@ -242,35 +330,38 @@ function CabanyalPortfolio() {
       <div id="top" className="site-header anim-fade">
         <div className="wrap">
           <div className="grid">
-            <a href="#top" className="brand" aria-label="Victor Esteban, back to top">
+            <a href="#top" className="brand" aria-label={t.backToTopLabel}>
               <RosaMark className="brand-mark anim-spin" />
               <span>{v.name}</span>
             </a>
             <span className="header-role muted">{v.role}</span>
-            <span className="header-place muted">Valencia, by the sea</span>
-            <nav className="nav" aria-label="Sections">
-              <a className="link" href="#work">Work</a>
-              <a className="link" href="#stack">Stack</a>
-              <a className="link" href="#contact">Contact</a>
-              <a className="link" href={v.cvUrl}>CV</a>
+            <span className="header-place muted">{t.place}</span>
+            <nav className="nav" aria-label={t.sectionsLabel}>
+              <a className="link" href="#work">{t.navWork}</a>
+              <a className="link" href="#stack">{t.navStack}</a>
+              <a className="link" href="#contact">{t.navContact}</a>
+              <a className="link" href={v.cvUrl}>{t.navCv}</a>
+              <LangSwitch lang={lang} onChange={changeLang} label={t.languageLabel} />
             </nav>
           </div>
         </div>
       </div>
 
       <main>
-        <section className="hero wrap" aria-label="Introduction">
+        <section className="hero wrap" aria-label={t.introLabel}>
           <div className="grid">
             <h1>
-              <span className="ln"><span className="anim-rise" style={{ animationDelay: '150ms' }}><span className="serif">Product-minded</span> and</span></span>{' '}
-              <span className="ln"><span className="anim-rise" style={{ animationDelay: '240ms' }}>AI-oriented software engineer.</span></span>{' '}
-              <span className="ln"><span className="anim-rise" style={{ animationDelay: '330ms' }}>I turn what a business needs</span></span>{' '}
-              <span className="ln"><span className="anim-rise" style={{ animationDelay: '420ms' }}>into software that works.</span></span>
+              {t.hero.map((line, i) => (
+                <React.Fragment key={i}>
+                  {i > 0 && ' '}
+                  <span className="ln"><span className="anim-rise" style={{ animationDelay: `${150 + i * 90}ms` }}>{withSerif(line)}</span></span>
+                </React.Fragment>
+              ))}
             </h1>
             <p className="hero-lede anim-fade" style={{ animationDelay: '700ms' }}>{v.lede}</p>
             <div className="hero-links anim-fade" style={{ animationDelay: '900ms' }}>
-              <a className="link link-on" href={v.linkedinUrl} target="_blank" rel="noreferrer">Get in touch on LinkedIn ↗</a>
-              <a className="link" href={v.cvUrl}>Download CV</a>
+              <a className="link link-on" href={v.linkedinUrl} target="_blank" rel="noreferrer">{t.linkedinCta}</a>
+              <a className="link" href={v.cvUrl}>{t.downloadCv}</a>
             </div>
           </div>
         </section>
@@ -278,36 +369,36 @@ function CabanyalPortfolio() {
         <TileBand />
 
         <section id="work" className="section wrap">
-          <SectionHead n="01" title="Work" />
+          <SectionHead n="01" title={t.work} />
           <div className="grid table-head rv" aria-hidden="true">
-            <span className="c-period">Period</span>
-            <span className="c-company">Company</span>
-            <span className="c-what">What I did</span>
-            <span className="c-notes">Notes</span>
+            <span className="c-period">{t.colPeriod}</span>
+            <span className="c-company">{t.colCompany}</span>
+            <span className="c-what">{t.colWhat}</span>
+            <span className="c-notes">{t.colNotes}</span>
           </div>
           {main.map((exp, i) => {
             const n = exp.note ? noteNumber(exp) : 0;
             return (
               <article key={exp.company} className={`grid row rv${i === 0 ? ' first' : ''}`}>
                 <span className="c-period">
-                  {exp.period.includes('Present') && <span className="live" aria-hidden="true"></span>}
+                  {exp.current && <span className="live" aria-hidden="true"></span>}
                   {exp.period}
                 </span>
                 <div className="c-company">
                   <h3 className="co" style={{ margin: 0 }}>{exp.client || exp.company}</h3>
-                  <span className="sub">{exp.client ? `via ${exp.company}` : exp.domain}</span>
+                  <span className="sub">{exp.client ? `${t.via} ${exp.company}` : exp.domain}</span>
                 </div>
                 <div className="c-what">
                   <p>
                     {exp.summary}
                     {n > 0 && (
                       <a href={`#note-${n}`} className={`fn${activeNote === n ? ' is-on' : ''}`}
-                        aria-label={`Note ${n}`} {...noteHandlers(n)}>{n}</a>
+                        aria-label={`${t.note} ${n}`} {...noteHandlers(n)}>{n}</a>
                     )}
                   </p>
                   <details className="contrib">
-                    <summary><span className="plus" aria-hidden="true">+</span>Contributions ({exp.bullets.length})</summary>
-                    <ul>{exp.bullets.map((b) => <li key={b}>{b}</li>)}</ul>
+                    <summary><span className="plus" aria-hidden="true">+</span>{t.contributions} ({exp.bullets.length})</summary>
+                    <ul>{exp.bullets.map((b, j) => <li key={j}>{b}</li>)}</ul>
                   </details>
                 </div>
                 {n > 0 && (
@@ -332,8 +423,8 @@ function CabanyalPortfolio() {
             <div className="grid row row-earlier last rv">
               <span className="c-period muted">{earlierSpan}</span>
               <div className="c-company">
-                <span className="co">Earlier experience</span>
-                <span className="sub">{earlier.length} roles</span>
+                <span className="co">{t.earlier}</span>
+                <span className="sub">{earlier.length} {t.roles}</span>
               </div>
               <ul className="c-what earlier-list">
                 {earlier.map((exp) => (
@@ -350,28 +441,28 @@ function CabanyalPortfolio() {
         </section>
 
         <section id="stack" className="section wrap">
-          <SectionHead n="02" title="Stack" />
+          <SectionHead n="02" title={t.stack} />
           {v.skills.map((g, i) => (
-            <div key={g.group} className={`grid stack-row rv${i === 0 ? ' first' : ''}${i === v.skills.length - 1 ? ' last' : ''}`}>
+            <div key={i} className={`grid stack-row rv${i === 0 ? ' first' : ''}${i === v.skills.length - 1 ? ' last' : ''}`}>
               <span className="g">{g.group}</span>
-              <span className="items">{g.items.map((it) => <span key={it}>{it}</span>)}</span>
+              <span className="items">{g.items.map((it, j) => <span key={j}>{it}</span>)}</span>
             </div>
           ))}
         </section>
 
         <section id="credentials" className="section wrap">
-          <SectionHead n="03" title="Education & certifications" />
+          <SectionHead n="03" title={t.credentials} />
           <div className="grid creds">
-            <span className="label rv" style={{ gridColumn: '1 / span 3' }}>Certifications</span>
+            <span className="label rv" style={{ gridColumn: '1 / span 3' }}>{t.certifications}</span>
             <ul className="certs rv">
-              {v.certifications.map((c) => (
-                c.startsWith(preparing)
-                  ? <li key={c} className="prep">{c.slice(preparing.length)} <span className="serif">— in preparation</span></li>
-                  : <li key={c}>{c}</li>
+              {v.certifications.map((c, i) => (
+                c.preparing
+                  ? <li key={i} className="prep">{c.name} <span className="serif">{t.inPreparation}</span></li>
+                  : <li key={i}>{c.name}</li>
               ))}
             </ul>
             <div className="edu rv">
-              <span className="label">Education</span>
+              <span className="label">{t.education}</span>
               <span className="school">{v.education.school}</span>
               <span>{v.education.degree}</span>
               <span className="muted">{v.education.track}</span>
@@ -380,17 +471,17 @@ function CabanyalPortfolio() {
         </section>
 
         <section id="contact" className="section wrap contact">
-          <SectionHead n="04" title="Contact" />
+          <SectionHead n="04" title={t.contact} />
           <div className="grid">
-            <h2 className="contact-title rv">Looking for a software engineer who owns production and builds with AI, <span className="serif">safely</span>?</h2>
+            <h2 className="contact-title rv">{withSerif(t.contactTitle)}</h2>
           </div>
           <div className="grid contact-links">
             {[
               { k: 'LinkedIn', val: v.linkedin, href: v.linkedinUrl, external: true },
               { k: 'GitHub', val: v.github, href: v.githubUrl, external: true },
-              { k: 'Location', val: v.location },
-            ].map(({ k, val, href, external }) => (
-              <div key={k} className="contact-cell rv">
+              { k: t.location, val: v.location },
+            ].map(({ k, val, href, external }, i) => (
+              <div key={i} className="contact-cell rv">
                 <span className="label">{k}</span>
                 {external
                   ? <a className="val link" href={href} target="_blank" rel="noreferrer">{val}</a>
@@ -404,7 +495,7 @@ function CabanyalPortfolio() {
       <footer className="wrap">
         <div className="site-footer">
           <span className="left"><RosaMark className="brand-mark" /><span>© {new Date().getFullYear()} {v.name}</span></span>
-          <a className="link" href="#top">Back to top ↑</a>
+          <a className="link" href="#top">{t.backToTop}</a>
         </div>
       </footer>
     </>

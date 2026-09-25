@@ -17,12 +17,17 @@ Personal portfolio site. Software Engineer · Backend / Integration / Production
 
 Content order: hero → Work → Stack → Education & certifications → Contact.
 
+## Languages
+
+English by default, with an EN / ES switch in the header. The choice is remembered in the browser, and `?lang=es` links straight to the Spanish version.
+
 ## Structure
 
 ```
 index.html              # Entry; loads React + mounts <CabanyalPortfolio />
 portfolios/
-  data.js               # Content (experience, skills, certifications, etc.)
+  data.js               # Content (experience, skills, certifications, etc.); translatable fields are { en, es }
+  i18n.js               # Interface copy (nav, headings, labels) per language
   cabanyal.jsx          # CabanyalPortfolio component, tile band, rosa mark
   cabanyal.css          # Layout, grid, motion and responsive styles
 tests/                  # Node assertion scripts (node tests/<file>.mjs)
@@ -37,7 +42,7 @@ python3 -m http.server 8000
 # then visit http://localhost:8000
 ```
 
-Edit `portfolios/data.js` to update content. Edit `portfolios/cabanyal.jsx` and `portfolios/cabanyal.css` to change layout.
+Edit `portfolios/data.js` to update content and `portfolios/i18n.js` for interface copy; `node tests/i18n.test.mjs` checks both languages are complete. Edit `portfolios/cabanyal.jsx` and `portfolios/cabanyal.css` to change layout.
 
 ## Deployment
 
