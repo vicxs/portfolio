@@ -52,8 +52,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .brand { grid-column: 1 / span 3; display: flex; gap: 10px; align-items: center; font-weight: 600; }
 .brand-mark { display: block; width: 24px; height: 24px; }
 .header-role { grid-column: 4 / span 3; }
-.header-place { grid-column: 7 / span 2; }
-.nav { grid-column: 9 / span 4; display: flex; justify-content: space-between; gap: 16px; }
+.header-place { grid-column: 7 / span 3; }
+.nav { grid-column: 10 / span 3; display: flex; justify-content: space-between; gap: 16px; }
 
 /* Scroll progress: a thin line of sea along the top edge */
 .progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; background: var(--sea); transform-origin: 0 50%; transform: scaleX(0); z-index: 10; pointer-events: none; display: none; }
@@ -72,14 +72,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .hero-links { grid-column: 1 / span 9; margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px 32px; font-size: 15px; }
 .hero-links a { font-weight: 500; }
 
-/* Key facts */
-.facts { margin: 72px 0 0; row-gap: 24px; }
-.fact { grid-column: span 3; margin: 0; padding-top: 14px; border-top: 1px solid var(--ink); }
-.fact dt { font-size: clamp(34px, 3.6vw, 46px); font-weight: 500; letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums; }
-.fact dd { margin: 10px 0 0; font-size: 14px; color: var(--muted); max-width: 24ch; }
-
 /* ---------- Band of rajoles ---------- */
-.bandbox { margin-top: 64px; padding: 12px 0; overflow: hidden; }
+.bandbox { margin-top: 72px; padding: 12px 0; overflow: hidden; }
 .track { display: flex; }
 .laid { perspective: 600px; }
 .cell { position: relative; width: 64px; height: 64px; flex: none; transform-style: preserve-3d; transition: transform 1s cubic-bezier(.65, 0, .25, 1); }
@@ -114,6 +108,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .c-what p { margin: 0; line-height: 1.55; text-wrap: pretty; }
 .row-earlier .co { font-size: 17px; }
 .row-earlier .c-what { color: var(--muted); }
+.earlier-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.earlier-list li { display: block; }
+.earlier-co { color: var(--ink); font-weight: 500; }
+.earlier-period { display: block; margin-top: 2px; font-size: 13px; font-variant-numeric: tabular-nums; }
+.earlier-sum { display: block; margin-top: 2px; }
 
 details.contrib { margin-top: 12px; }
 details.contrib summary { cursor: pointer; list-style: none; display: inline-flex; gap: 8px; align-items: center; font-size: 13px; color: var(--sea); font-weight: 500; }
@@ -141,26 +140,6 @@ details.contrib li::before { content: ""; position: absolute; left: 0; top: 15px
 .stack-row .g { grid-column: 1 / span 3; font-weight: 500; }
 .stack-row .items { grid-column: 4 / span 9; display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 17px; }
 
-/* AI in practice */
-.ai-intro { padding-top: 28px; row-gap: 20px; }
-.ai-intro .label { grid-column: 1 / span 3; }
-.ai-lede { grid-column: 4 / span 7; margin: 0; font-size: 21px; line-height: 1.5; letter-spacing: -0.01em; text-wrap: pretty; }
-.ai-certs { margin-top: 48px; row-gap: 16px; }
-.cert { grid-column: span 4; display: flex; flex-direction: column; gap: 6px; padding: 18px 20px 20px; background: var(--tile); border: 1px solid var(--rule); border-top: 3px solid var(--sea); border-radius: 2px; transition: background .35s, opacity .8s var(--ease), transform .8s var(--ease); }
-.cert:hover { background: var(--hover); }
-.cert-top { display: flex; gap: 8px; align-items: center; }
-.cert-mark { width: 16px; height: 16px; transition: transform .8s var(--ease); }
-.cert:hover .cert-mark { transform: rotate(45deg); }
-.cert h3 { margin: 18px 0 0; font-size: 30px; font-weight: 500; letter-spacing: -0.02em; line-height: 1; }
-.cert .serif { font-size: 20px; color: var(--sea); }
-.ai-block { margin-top: 56px; row-gap: 20px; align-items: start; }
-.ai-block > .label { grid-column: 1 / span 3; padding-top: 16px; }
-.split { grid-column: 4 / span 9; margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px var(--gap); }
-.practice, .project { display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 1px solid var(--rule); }
-.practice .serif { font-size: 18px; color: var(--sea); }
-.practice h3, .project h3 { margin: 0; font-size: 19px; font-weight: 500; letter-spacing: -0.01em; }
-.practice p, .project p { margin: 0; font-size: 15px; color: var(--muted); text-wrap: pretty; }
-
 /* Credentials */
 .creds { padding-top: 28px; row-gap: 32px; }
 .certs { grid-column: 4 / span 5; margin: 0; padding: 0; list-style: none; }
@@ -173,7 +152,6 @@ details.contrib li::before { content: ""; position: absolute; left: 0; top: 15px
 /* Contact */
 .contact-title { grid-column: 1 / span 9; margin: 48px 0 0; font-size: clamp(32px, 4.2vw, 54px); line-height: 1.08; font-weight: 500; letter-spacing: -0.025em; text-wrap: balance; }
 .contact-title .serif { font-size: 1.1em; color: var(--sea); }
-.contact-personal { grid-column: 1 / span 6; margin: 24px 0 0; font-size: 16px; color: var(--muted); text-wrap: pretty; }
 .contact-links { margin-top: 56px; border-top: 1px solid var(--ink); }
 .contact-cell { grid-column: span 4; padding: 18px 0; display: flex; flex-direction: column; gap: 6px; }
 .contact-cell .val { font-size: 19px; font-weight: 500; }
@@ -220,14 +198,6 @@ details.contrib li::before { content: ""; position: absolute; left: 0; top: 15px
   .ln > .anim-rise { animation-name: fadeonly; animation-duration: .9s; }
   .hero-lede { font-size: 17px; margin-top: 24px; }
   .hero-links { margin-top: 24px; }
-  .facts { margin-top: 48px; column-gap: 16px; }
-  .grid > .fact { grid-column: span 6 !important; }
-  .ai-lede { font-size: 18px; }
-  .grid > .cert { grid-column: 1 / -1 !important; }
-  .cert h3 { margin-top: 10px; }
-  .ai-block { margin-top: 40px; }
-  .ai-block > .label { padding-top: 0; }
-  .split { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .bandbox { margin-top: 48px; }
   .section { padding-top: 80px; }
   .table-head { display: none; }
