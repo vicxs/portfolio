@@ -8,6 +8,8 @@ window.VICTOR = {
   github: "github.com/vicxs",
   linkedinUrl: "https://www.linkedin.com/in/victorestebann",
   githubUrl: "https://github.com/vicxs",
+  email: "hola@victoresteban.com",
+  emailUrl: "mailto:hola@victoresteban.com",
   cvUrl: {
     en: "assets/Victor_Esteban_CV.pdf",
     es: "assets/Victor_Esteban_CV_ES.pdf"
