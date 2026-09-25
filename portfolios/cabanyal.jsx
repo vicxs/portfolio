@@ -231,11 +231,15 @@ function TileBand() {
   );
 }
 
-function SectionHead({ n, title }) {
+// Extra children (column labels) turn the head into a grid row on the section rule.
+function SectionHead({ n, title, children }) {
   return (
-    <header className="sec-head rv">
-      <span className="serif">{n}</span>
-      <h2>{title}</h2>
+    <header className={`sec-head rv${children ? ' grid sec-head-cols' : ''}`}>
+      <span className="sh-title">
+        <span className="serif">{n}</span>
+        <h2>{title}</h2>
+      </span>
+      {children}
     </header>
   );
 }
@@ -251,6 +255,7 @@ function CabanyalPortfolio() {
     ...data,
     location: tr(data.location, lang),
     lede: tr(data.lede, lang),
+    facts: data.facts.map((f) => ({ ...f, label: tr(f.label, lang), value: tr(f.value, lang), sub: tr(f.sub, lang) })),
     experiences: data.experiences.map((e) => ({
       ...e,
       role: tr(e.role, lang),
@@ -262,6 +267,7 @@ function CabanyalPortfolio() {
     })),
     skills: data.skills.map((g) => ({ group: tr(g.group, lang), items: g.items.map((it) => tr(it, lang)) })),
     certifications: data.certifications.map((c) => ({ ...c, name: tr(c.name, lang) })),
+    languages: data.languages.map((l) => ({ name: tr(l.name, lang), detail: tr(l.detail, lang) })),
     education: {
       school: data.education.school,
       degree: tr(data.education.degree, lang),
@@ -363,28 +369,36 @@ function CabanyalPortfolio() {
               <a className="link link-on" href={v.linkedinUrl} target="_blank" rel="noreferrer">{t.linkedinCta}</a>
               <a className="link" href={v.cvUrl}>{t.downloadCv}</a>
             </div>
+            <dl className="hero-facts anim-fade" style={{ animationDelay: '1000ms' }} aria-label={t.factsLabel}>
+              {v.facts.map((f) => (
+                <div key={f.label} className="fact">
+                  <dt className="label">{f.label}</dt>
+                  <dd>
+                    <span className="fact-v">{f.live && <span className="live" aria-hidden="true"></span>}{f.value}</span>
+                    {f.sub && <span className="fact-sub muted">{f.sub}</span>}
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </section>
 
         <TileBand />
 
         <section id="work" className="section wrap">
-          <SectionHead n="01" title={t.work} />
-          <div className="grid table-head rv" aria-hidden="true">
-            <span className="c-period">{t.colPeriod}</span>
-            <span className="c-company">{t.colCompany}</span>
-            <span className="c-what">{t.colWhat}</span>
-            <span className="c-notes">{t.colNotes}</span>
-          </div>
+          <SectionHead n="01" title={t.work}>
+            <span className="c-what label" aria-hidden="true">{t.colWhat}</span>
+            <span className="c-notes label" aria-hidden="true">{t.colNotes}</span>
+          </SectionHead>
           {main.map((exp, i) => {
             const n = exp.note ? noteNumber(exp) : 0;
             return (
               <article key={exp.company} className={`grid row rv${i === 0 ? ' first' : ''}`}>
-                <span className="c-period">
-                  {exp.current && <span className="live" aria-hidden="true"></span>}
-                  {exp.period}
-                </span>
                 <div className="c-company">
+                  <span className="per">
+                    {exp.current && <span className="live" aria-hidden="true"></span>}
+                    {exp.period}
+                  </span>
                   <h3 className="co" style={{ margin: 0 }}>{exp.client || exp.company}</h3>
                   <span className="sub">{exp.client ? `${t.via} ${exp.company}` : exp.domain}</span>
                 </div>
@@ -411,8 +425,8 @@ function CabanyalPortfolio() {
           })}
           {secondary.map((exp, i) => (
             <div key={exp.company} className={`grid row row-earlier rv${!earlier.length && i === secondary.length - 1 ? ' last' : ''}`}>
-              <span className="c-period muted">{exp.period}</span>
               <div className="c-company">
+                <span className="per">{exp.period}</span>
                 <span className="co">{exp.company}</span>
                 <span className="sub">{exp.role}</span>
               </div>
@@ -421,8 +435,8 @@ function CabanyalPortfolio() {
           ))}
           {earlier.length > 0 && (
             <div className="grid row row-earlier last rv">
-              <span className="c-period muted">{earlierSpan}</span>
               <div className="c-company">
+                <span className="per">{earlierSpan}</span>
                 <span className="co">{t.earlier}</span>
                 <span className="sub">{earlier.length} {t.roles}</span>
               </div>
@@ -440,20 +454,19 @@ function CabanyalPortfolio() {
           )}
         </section>
 
-        <section id="stack" className="section wrap">
-          <SectionHead n="02" title={t.stack} />
-          {v.skills.map((g, i) => (
-            <div key={i} className={`grid stack-row rv${i === 0 ? ' first' : ''}${i === v.skills.length - 1 ? ' last' : ''}`}>
-              <span className="g">{g.group}</span>
-              <span className="items">{g.items.map((it, j) => <span key={j}>{it}</span>)}</span>
-            </div>
-          ))}
-        </section>
+        <div className="wrap duo">
+          <section id="stack" className="section">
+            <SectionHead n="02" title={t.stack} />
+            {v.skills.map((g, i) => (
+              <div key={i} className={`grid stack-row rv${i === 0 ? ' first' : ''}${i === v.skills.length - 1 ? ' last' : ''}`}>
+                <span className="g">{g.group}</span>
+                <span className="items">{g.items.map((it, j) => <span key={j}>{it}</span>)}</span>
+              </div>
+            ))}
+          </section>
 
-        <section id="credentials" className="section wrap">
-          <SectionHead n="03" title={t.credentials} />
-          <div className="grid creds">
-            <span className="label rv" style={{ gridColumn: '1 / span 3' }}>{t.certifications}</span>
+          <section id="certifications" className="section">
+            <SectionHead n="03" title={t.certifications} />
             <ul className="certs rv">
               {v.certifications.map((c, i) => (
                 c.preparing
@@ -461,33 +474,45 @@ function CabanyalPortfolio() {
                   : <li key={i}>{c.name}</li>
               ))}
             </ul>
-            <div className="edu rv">
-              <span className="label">{t.education}</span>
+          </section>
+        </div>
+
+        <section id="education" className="section wrap">
+          <SectionHead n="04" title={t.eduLang} />
+          <div className="grid edu-row rv">
+            <div className="edu-main">
               <span className="school">{v.education.school}</span>
-              <span>{v.education.degree}</span>
-              <span className="muted">{v.education.track}</span>
+              <span className="muted">{v.education.degree} · {v.education.track}</span>
+            </div>
+            <div className="langs">
+              {v.languages.map((l) => (
+                <React.Fragment key={l.name}>
+                  <span className="school">{l.name}</span>
+                  <span className="muted">{l.detail}</span>
+                </React.Fragment>
+              ))}
             </div>
           </div>
         </section>
 
         <section id="contact" className="section wrap contact">
-          <SectionHead n="04" title={t.contact} />
-          <div className="grid">
+          <SectionHead n="05" title={t.contact} />
+          <div className="grid contact-duo">
             <h2 className="contact-title rv">{withSerif(t.contactTitle)}</h2>
-          </div>
-          <div className="grid contact-links">
-            {[
-              { k: 'LinkedIn', val: v.linkedin, href: v.linkedinUrl, external: true },
-              { k: 'GitHub', val: v.github, href: v.githubUrl, external: true },
-              { k: t.location, val: v.location },
-            ].map(({ k, val, href, external }, i) => (
-              <div key={i} className="contact-cell rv">
-                <span className="label">{k}</span>
-                {external
-                  ? <a className="val link" href={href} target="_blank" rel="noreferrer">{val}</a>
-                  : <span className="val">{val}</span>}
-              </div>
-            ))}
+            <div className="contact-stack">
+              {[
+                { k: 'LinkedIn', val: v.linkedin, href: v.linkedinUrl, external: true },
+                { k: 'GitHub', val: v.github, href: v.githubUrl, external: true },
+                { k: t.location, val: v.location },
+              ].map(({ k, val, href, external }, i) => (
+                <div key={i} className="contact-cell rv">
+                  <span className="label">{k}</span>
+                  {external
+                    ? <a className="val link" href={href} target="_blank" rel="noreferrer">{val}</a>
+                    : <span className="val">{val}</span>}
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       </main>
