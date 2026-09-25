@@ -19,7 +19,18 @@ Content order: hero → Work → Stack → Education & certifications → Contac
 
 ## Languages
 
-English by default, with an EN / ES switch in the header. The choice is remembered in the browser, and `?lang=es` links straight to the Spanish version.
+English by default, with an EN / ES switch in the header. The choice is remembered in the browser, and `?lang=es` links straight to the Spanish version. The CV links download the CV in the selected language.
+
+## CV
+
+A one-page A4 CV in the same style, with a sidebar (stack, certifications, education, languages) beside profile and experience. The main column comes first in the markup, so ATS parsers read it before the sidebar. `cv/en.html` and `cv/es.html` are the sources; `cv/build.mjs` prints them to `assets/Victor_Esteban_CV.pdf` and `assets/Victor_Esteban_CV_ES.pdf`:
+
+```sh
+npm install --no-save playwright-core
+node cv/build.mjs   # CHROMIUM_PATH=/path/to/chrome to pick a browser
+```
+
+The build fails if the Google Fonts don't load or the content no longer fits on one page.
 
 ## Structure
 
@@ -30,6 +41,10 @@ portfolios/
   i18n.js               # Interface copy (nav, headings, labels) per language
   cabanyal.jsx          # CabanyalPortfolio component, tile band, rosa mark
   cabanyal.css          # Layout, grid, motion and responsive styles
+cv/
+  en.html, es.html      # CV sources, one per language
+  cv.css                # CV layout (A4, Cabanyal style)
+  build.mjs             # Prints the CVs to assets/*.pdf
 tests/                  # Node assertion scripts (node tests/<file>.mjs)
 ```
 

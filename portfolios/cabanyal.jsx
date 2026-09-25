@@ -250,6 +250,7 @@ function CabanyalPortfolio() {
   const v = {
     ...data,
     location: tr(data.location, lang),
+    cvUrl: tr(data.cvUrl, lang),
     lede: tr(data.lede, lang),
     experiences: data.experiences.map((e) => ({
       ...e,

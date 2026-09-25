@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
+import vm from "node:vm";
 
 const dataSource = readFileSync("portfolios/data.js", "utf8");
 const siteSource = readFileSync("portfolios/cabanyal.jsx", "utf8");
@@ -31,15 +32,29 @@ assertContains(
   "window.VICTOR should expose the repository owner's full GitHub URL"
 );
 
-const cvUrl = dataSource.match(/cvUrl:\s*"([^"]+)"/)?.[1];
-assert.ok(cvUrl, "window.VICTOR should expose a CV href");
-assert.ok(
-  !cvUrl.startsWith("http"),
-  "CV href should point to the portfolio-hosted PDF asset"
-);
-assert.ok(
-  existsSync(path.join(".", cvUrl.replace(/^\/portfolio\//, ""))),
-  "CV href should point to an existing local PDF asset"
+const sandbox = { window: {} };
+vm.createContext(sandbox);
+vm.runInContext(dataSource, sandbox);
+const { cvUrl } = sandbox.window.VICTOR;
+
+for (const lang of ["en", "es"]) {
+  const href = cvUrl?.[lang];
+  assert.ok(href, `window.VICTOR should expose a ${lang} CV href`);
+  assert.ok(
+    !href.startsWith("http"),
+    `${lang} CV href should point to the portfolio-hosted PDF asset`
+  );
+  assert.ok(
+    href.endsWith(".pdf") && existsSync(path.join(".", href.replace(/^\/portfolio\//, ""))),
+    `${lang} CV href should point to an existing local PDF asset`
+  );
+}
+assert.notEqual(cvUrl.en, cvUrl.es, "Each language should download its own CV");
+
+assertContains(
+  siteSource,
+  "cvUrl: tr(data.cvUrl, lang)",
+  "The CV href should follow the selected language"
 );
 
 assertContains(
