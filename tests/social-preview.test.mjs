@@ -8,7 +8,7 @@ const repoRoot = path.resolve(__dirname, '..');
 const indexPath = path.join(repoRoot, 'index.html');
 const html = await readFile(indexPath, 'utf8');
 
-const expectedSiteUrl = 'https://vicxs.github.io/portfolio/';
+const expectedSiteUrl = 'https://victoresteban.com/';
 const expectedTitle = 'Victor Esteban — Software Engineer';
 const expectedDescription =
   'Product-minded and AI-oriented software engineer. I turn what a business needs into software that works.';

@@ -9,8 +9,8 @@ window.VICTOR = {
   linkedinUrl: "https://www.linkedin.com/in/victorestebann",
   githubUrl: "https://github.com/vicxs",
   cvUrl: {
-    en: "/portfolio/assets/Victor_Esteban_CV.pdf",
-    es: "/portfolio/assets/Victor_Esteban_CV_ES.pdf"
+    en: "assets/Victor_Esteban_CV.pdf",
+    es: "assets/Victor_Esteban_CV_ES.pdf"
   },
 
   lede: {
