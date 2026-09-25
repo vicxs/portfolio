@@ -14,8 +14,8 @@ window.VICTOR = {
   },
 
   lede: {
-    en: "Based in Valencia, with 6+ years building products for Toyota, Inditex and Mercadona. I design the solution, build it with the team, own it in production and bring in AI where it adds value.",
-    es: "Desde Valencia, con más de 6 años construyendo productos para Toyota, Inditex y Mercadona. Diseño la solución, la construyo con el equipo, me hago cargo de ella en producción e incorporo IA donde aporta valor."
+    en: "Based in Valencia, with 5+ years building products for Toyota, Inditex and Mercadona. I design the solution, build it with the team, own it in production and bring in AI where it adds value.",
+    es: "Desde Valencia, con más de 5 años construyendo productos para Toyota, Inditex y Mercadona. Diseño la solución, la construyo con el equipo, me hago cargo de ella en producción e incorporo IA donde aporta valor."
   },
 
   experiences: [
