@@ -1,0 +1,78 @@
+/* Servicios para administraciones públicas: a static page on top of
+   cabanyal.css. No scripts, so everything is visible without JS and the
+   section rules are drawn from the start. */
+
+.skip { position: absolute; left: var(--gutter); top: -48px; z-index: 20; padding: 8px 12px; background: var(--ink); color: var(--ground); border-radius: 2px; }
+.skip:focus { top: 12px; }
+
+.sec-head::after { transform: none; }
+.nav { justify-content: flex-end; gap: 28px; }
+.nav-cta { font-weight: 500; color: var(--sea); }
+
+.hero h1 { grid-column: 1 / span 10; text-wrap: balance; }
+
+/* A still row of rajoles in place of the flipping band */
+.band { margin-top: 56px; height: 64px; background: url(../assets/rajola-flor.svg) 0 0 / 64px 64px repeat-x; }
+
+/* Services: name, what it solves, what you get */
+.sec-head-cols .sh-title, .svc .c-name, .start .c-name { grid-column: 1 / span 3; }
+.sec-head-cols .c-problem, .svc .c-problem, .start .c-problem { grid-column: 4 / span 4; }
+.sec-head-cols .c-deliver, .svc .c-deliver, .start .c-deliver { grid-column: 9 / span 4; }
+.svc { padding: 20px 0; border-top: 1px solid var(--rule); align-items: start; }
+.svc.first { border-top: 0; }
+.svc.last { border-bottom: 1px solid var(--rule); }
+.svc .co, .start .co { margin: 0; font-size: 21px; font-weight: 500; letter-spacing: -0.01em; line-height: 1.25; }
+.c-name { display: flex; flex-direction: column; gap: 2px; }
+.c-name .sub { font-size: 14px; color: var(--muted); }
+.c-problem { margin: 0; line-height: 1.55; text-wrap: pretty; }
+.svc ul { margin: 0; padding: 0; list-style: none; }
+.svc li { position: relative; padding: 0 0 8px 18px; font-size: 14px; line-height: 1.5; color: var(--muted); }
+.svc li::before { content: ""; position: absolute; left: 0; top: 10px; width: 8px; height: 1px; background: var(--sea); }
+.variant { margin-top: 8px; padding-top: 12px; border-top: 1px solid var(--rule); }
+.variant p { margin: 4px 0 0; font-size: 14px; color: var(--muted); }
+.variant b { color: var(--ink); font-weight: 500; }
+
+/* The workshop, set apart as the way in */
+.start { margin-top: 24px; padding: 20px 0; background: var(--tile); border: 1px solid var(--rule); border-radius: 2px; align-items: start; }
+.start > .c-name { padding-left: 20px; }
+.start > .c-deliver { padding-right: 20px; }
+.start-kicker { font-size: 20px; color: var(--sea); }
+.start-meta { margin: 0; font-size: 14px; color: var(--muted); }
+
+/* How I work: steps on the left, commitments on the right */
+.how { padding-top: 20px; align-items: start; }
+.steps { grid-column: 1 / span 7; margin: 0; padding: 0; list-style: none; }
+.steps li { display: grid; grid-template-columns: 36px minmax(0, 1fr); padding: 12px 0; border-top: 1px solid var(--rule); line-height: 1.55; }
+.steps li:first-child { border-top: 0; padding-top: 0; }
+.steps .serif { font-size: 22px; line-height: 1.1; color: var(--sea); }
+.steps b, .principles b { font-weight: 500; }
+.principles { grid-column: 9 / span 4; margin: 0; padding: 0; list-style: none; }
+.principles li { padding: 12px 0; border-top: 1px solid var(--rule); font-size: 14px; line-height: 1.5; color: var(--muted); }
+.principles li:first-child { border-top: 0; padding-top: 0; }
+.principles b { display: block; color: var(--ink); font-size: 15px; }
+
+/* Demos and data protection side by side */
+.duo > #demos { grid-column: 1 / span 7; }
+.duo > #datos { grid-column: 9 / span 4; }
+.soon { margin: 20px 0 12px; line-height: 1.55; color: var(--muted); text-wrap: pretty; }
+.demo { margin: 20px 0 0; }
+.demo video { display: block; width: 100%; aspect-ratio: 16 / 9; background: var(--hover); }
+.demo figcaption { margin-top: 8px; font-size: 14px; color: var(--muted); }
+
+.who { padding-top: 20px; align-items: baseline; }
+.who p { grid-column: 1 / span 7; margin: 0; font-size: 18px; line-height: 1.55; text-wrap: pretty; }
+.who-link { grid-column: 9 / span 4; justify-self: start; font-weight: 500; }
+
+.contact-title { grid-column: 1 / span 7; }
+.contact-cell a.val::after { content: ""; }
+.contact-cell a.val.external::after { content: " ↗"; color: var(--sea); }
+
+@media (max-width: 900px) {
+  .nav { justify-content: flex-start; }
+  .band { margin-top: 36px; }
+  .svc, .start { row-gap: 10px; }
+  .start > * { padding-left: 16px !important; padding-right: 16px !important; }
+  .how, .who { row-gap: 20px; }
+  .principles li:first-child { border-top: 1px solid var(--rule); padding-top: 12px; }
+  .who p { font-size: 17px; }
+}

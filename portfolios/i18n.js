@@ -37,6 +37,7 @@ window.STRINGS = {
     contactTitle: "Looking for a software engineer who owns production and builds with AI, *safely*?",
     email: "Email",
     location: "Location",
+    publicSector: "Services for public administrations (in Spanish)",
     backToTop: "Back to top ↑"
   },
   es: {
@@ -75,6 +76,7 @@ window.STRINGS = {
     contactTitle: "¿Buscas a alguien que se haga cargo de producción y construya con IA de forma *segura*?",
     email: "Correo",
     location: "Ubicación",
+    publicSector: "Servicios para administraciones públicas",
     backToTop: "Volver arriba ↑"
   }
 };
