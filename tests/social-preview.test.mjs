@@ -11,7 +11,7 @@ const html = await readFile(indexPath, 'utf8');
 const expectedSiteUrl = 'https://vicxs.github.io/portfolio/';
 const expectedTitle = 'Victor Esteban — Software Engineer';
 const expectedDescription =
-  'Victor Esteban — Software Engineer. Backend, system integration, production support.';
+  'Product-minded and AI-oriented software engineer. I turn what a business needs into software that works.';
 const expectedThemeColor = '#F7F5EF';
 
 function findMetaValue(attribute, key) {
