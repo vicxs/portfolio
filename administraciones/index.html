@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../portfolios/cabanyal.css?v=9" />
-<link rel="stylesheet" href="administraciones.css?v=1" />
+<link rel="stylesheet" href="administraciones.css?v=2" />
 </head>
 <body>
 <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -36,92 +36,87 @@
         <span>Victor Esteban</span>
       </a>
       <span class="header-role muted">Servicios para administraciones públicas</span>
-      <span class="header-place muted">Valencia</span>
       <nav class="nav" aria-label="Secciones">
         <a class="link" href="#servicios">Servicios</a>
         <a class="link" href="#como-trabajo">Cómo trabajo</a>
-        <a class="link link-on nav-cta" href="#contacto">Pedir demo</a>
+        <a class="btn btn-sm" href="#contacto">Pedir demo</a>
       </nav>
     </div>
   </div>
 </header>
 
 <main id="contenido">
-  <section class="hero wrap" aria-label="Introducción">
-    <div class="grid">
-      <h1 class="anim-fade" style="animation-delay: 150ms">Accesibilidad web e <span class="serif">IA práctica</span> para ayuntamientos.</h1>
-      <p class="hero-lede anim-fade" style="animation-delay: 400ms">Ayudo a ayuntamientos y otras administraciones a cumplir la normativa de accesibilidad y a ahorrar horas de secretaría con IA: actas de pleno, respuestas a partir de vuestros propios documentos y anonimización para el portal de transparencia. Pilotos pequeños, con precio cerrado, y siempre con una persona de vuestro equipo validando el resultado.</p>
-      <div class="hero-links anim-fade" style="animation-delay: 550ms">
-        <a class="link link-on" href="mailto:hola@victoresteban.com?subject=Demo%20de%2015%20minutos">Pide una demo de 15 minutos →</a>
+  <section class="intro wrap" aria-label="Introducción">
+    <div class="intro-text">
+      <p class="eyebrow anim-fade">Para ayuntamientos y otras administraciones públicas</p>
+      <h1 class="anim-fade" style="animation-delay: 120ms">Accesibilidad web e <span class="serif">IA práctica</span> para ayuntamientos.</h1>
+      <p class="lede anim-fade" style="animation-delay: 300ms">Os ayudo a cumplir la normativa de accesibilidad y a ahorrar horas de secretaría con IA: actas de pleno, respuestas a partir de vuestros propios documentos y anonimización para el portal de transparencia. Pilotos pequeños, con precio cerrado, y siempre con una persona de vuestro equipo validando el resultado.</p>
+      <div class="actions anim-fade" style="animation-delay: 450ms">
+        <a class="btn" href="mailto:hola@victoresteban.com?subject=Demo%20de%2015%20minutos">Pide una demo de 15 minutos</a>
         <a class="link" href="#servicios">Ver los servicios ↓</a>
       </div>
-      <dl class="hero-facts anim-fade" style="animation-delay: 650ms" aria-label="En resumen">
-        <div class="fact">
-          <dt class="label">Contratación</dt>
-          <dd><span class="fact-v">Contrato menor</span><span class="fact-sub muted">precio cerrado antes de empezar</span></dd>
-        </div>
-        <div class="fact">
-          <dt class="label">Revisión</dt>
-          <dd><span class="fact-v">Siempre vuestra</span><span class="fact-sub muted">nada se publica sin validar</span></dd>
-        </div>
-        <div class="fact">
-          <dt class="label">Datos</dt>
-          <dd><span class="fact-v">Tratados en la UE</span><span class="fact-sub muted">con contrato de encargo (RGPD)</span></dd>
-        </div>
-        <div class="fact">
-          <dt class="label">Idiomas</dt>
-          <dd><span class="fact-v">Castellano · Valenciano</span></dd>
-        </div>
-      </dl>
     </div>
+
+    <aside class="ficha anim-fade" style="animation-delay: 550ms" aria-labelledby="ficha-titulo">
+      <div class="ficha-head">
+        <h2 id="ficha-titulo" class="ficha-title">Ficha del servicio</h2>
+        <span class="stamp">Contrato menor</span>
+      </div>
+      <dl>
+        <div><dt>Contratación</dt><dd>Contrato menor, con precio cerrado antes de empezar</dd></div>
+        <div><dt>Formato</dt><dd>Piloto acotado con vuestros documentos reales</dd></div>
+        <div><dt>Revisión</dt><dd>Siempre vuestra. Nada se publica sin validar</dd></div>
+        <div><dt>Datos</dt><dd>Tratados en la UE, con contrato de encargo (RGPD)</dd></div>
+        <div><dt>Idiomas</dt><dd>Castellano y valenciano</dd></div>
+      </dl>
+    </aside>
   </section>
 
   <div class="band" aria-hidden="true"></div>
 
-  <section id="servicios" class="section wrap" aria-labelledby="servicios-titulo">
-    <header class="sec-head grid sec-head-cols">
-      <span class="sh-title"><span class="serif">01</span><h2 id="servicios-titulo">Servicios</h2></span>
-      <span class="c-problem label" aria-hidden="true">Qué resuelve</span>
-      <span class="c-deliver label" aria-hidden="true">Qué recibís</span>
-    </header>
+  <section id="servicios" class="block wrap" aria-labelledby="servicios-titulo">
+    <div class="block-head">
+      <p class="eyebrow">Servicios</p>
+      <h2 id="servicios-titulo">Tres problemas concretos, <span class="serif">resueltos</span> con pilotos pequeños.</h2>
+    </div>
 
-    <article class="grid svc first">
-      <div class="c-name">
-        <span class="per">Diagnóstico, corrección y mantenimiento</span>
-        <h3 class="co">Accesibilidad web</h3>
-        <span class="sub">Web municipal y sede electrónica</span>
-      </div>
-      <p class="c-problem">El Real Decreto 1112/2018 obliga a que la web y la sede electrónica sean accesibles y a publicar una declaración de accesibilidad actualizada. Muchas no pasan una revisión básica: contraste, formularios, navegación con teclado o PDF sin etiquetar.</p>
-      <ul class="c-deliver">
-        <li>Diagnóstico según la norma UNE-EN 301 549 (WCAG 2.1 AA), con cada problema priorizado.</li>
-        <li>Corrección de las incidencias, o instrucciones concretas para vuestro proveedor.</li>
-        <li>Declaración de accesibilidad redactada y lista para publicar.</li>
-        <li>Mantenimiento anual opcional: revisiones periódicas y apoyo con las reclamaciones.</li>
-      </ul>
-    </article>
+    <div class="cards">
+      <article class="card">
+        <img class="card-tile" src="../assets/rajoles/flor.svg" alt="" width="48" height="48" />
+        <span class="tag">Diagnóstico · corrección · mantenimiento</span>
+        <h3>Accesibilidad web</h3>
+        <p class="card-for">Web municipal y sede electrónica</p>
+        <p>El Real Decreto 1112/2018 obliga a que la web y la sede electrónica sean accesibles y a publicar una declaración de accesibilidad actualizada. Muchas no pasan una revisión básica: contraste, formularios, navegación con teclado o PDF sin etiquetar.</p>
+        <h4>Qué recibís</h4>
+        <ul>
+          <li>Diagnóstico según la norma UNE-EN 301 549 (WCAG 2.1 AA), con cada problema priorizado.</li>
+          <li>Corrección de las incidencias, o instrucciones concretas para vuestro proveedor.</li>
+          <li>Declaración de accesibilidad redactada y lista para publicar.</li>
+          <li>Mantenimiento anual opcional: revisiones periódicas y apoyo con las reclamaciones.</li>
+        </ul>
+      </article>
 
-    <article class="grid svc">
-      <div class="c-name">
-        <span class="per">Piloto de 3 meses</span>
-        <h3 class="co">Actas de pleno con IA</h3>
-        <span class="sub">Secretaría</span>
-      </div>
-      <p class="c-problem">Redactar el acta de un pleno a partir de la grabación lleva horas de secretaría: escuchar, transcribir, resumir cada intervención y recoger los acuerdos y las votaciones.</p>
-      <ul class="c-deliver">
-        <li>Transcripción de la grabación, en castellano o en valenciano, con cada intervención identificada.</li>
-        <li>Borrador del acta con el formato de vuestro ayuntamiento: asistencia, orden del día, intervenciones, acuerdos y votaciones.</li>
-        <li>La secretaría revisa, corrige y firma. La herramienta solo prepara el borrador.</li>
-      </ul>
-    </article>
+      <article class="card">
+        <img class="card-tile" src="../assets/rajoles/estrella.svg" alt="" width="48" height="48" />
+        <span class="tag">Piloto de 3 meses</span>
+        <h3>Actas de pleno con IA</h3>
+        <p class="card-for">Secretaría</p>
+        <p>Redactar el acta de un pleno a partir de la grabación lleva horas de secretaría: escuchar, transcribir, resumir cada intervención y recoger los acuerdos y las votaciones.</p>
+        <h4>Qué recibís</h4>
+        <ul>
+          <li>Transcripción de la grabación, en castellano o en valenciano, con cada intervención identificada.</li>
+          <li>Borrador del acta con el formato de vuestro ayuntamiento: asistencia, orden del día, intervenciones, acuerdos y votaciones.</li>
+          <li>La secretaría revisa, corrige y firma. La herramienta solo prepara el borrador.</li>
+        </ul>
+      </article>
 
-    <article class="grid svc last">
-      <div class="c-name">
-        <span class="per">Piloto acotado</span>
-        <h3 class="co">Asistente con vuestros documentos</h3>
-        <span class="sub">Secretaría o atención ciudadana</span>
-      </div>
-      <p class="c-problem">Las mismas preguntas llegan una y otra vez a secretaría o a atención ciudadana, y la respuesta está en una ordenanza, un procedimiento o una resolución que hay que buscar.</p>
-      <div class="c-deliver">
+      <article class="card">
+        <img class="card-tile" src="../assets/rajoles/rombe.svg" alt="" width="48" height="48" />
+        <span class="tag">Piloto acotado</span>
+        <h3>Asistente con vuestros documentos</h3>
+        <p class="card-for">Secretaría o atención ciudadana</p>
+        <p>Las mismas preguntas llegan una y otra vez a secretaría o a atención ciudadana, y la respuesta está en una ordenanza, un procedimiento o una resolución que hay que buscar.</p>
+        <h4>Qué recibís</h4>
         <ul>
           <li>Un asistente para el personal o para la ciudadanía que responde a partir de vuestras ordenanzas, procedimientos y trámites.</li>
           <li>Cada respuesta cita el documento del que sale, para poder comprobarla.</li>
@@ -129,96 +124,86 @@
           <li>El piloto se centra en un área o un tipo de consulta.</li>
         </ul>
         <div class="variant">
-          <span class="label">Variante pequeña</span>
+          <span class="variant-label">Variante pequeña</span>
           <p><b>Anonimización de documentos.</b> Resoluciones, contratos o actas listos para el portal de transparencia, con los datos personales ocultos y una lista de lo ocultado para revisarla antes de publicar.</p>
         </div>
-      </div>
-    </article>
+      </article>
+    </div>
 
-    <aside class="grid start" aria-labelledby="taller-titulo">
-      <div class="c-name">
-        <span class="serif start-kicker">Para empezar</span>
-        <h3 id="taller-titulo" class="co">Taller de IA para secretaría e intervención</h3>
+    <aside class="taller" aria-labelledby="taller-titulo">
+      <img class="taller-tile" src="../assets/rajoles/ona.svg" alt="" width="64" height="64" />
+      <div class="taller-text">
+        <p class="taller-kicker serif">Para empezar</p>
+        <h3 id="taller-titulo">Taller de IA para secretaría e intervención</h3>
+        <p>Una sesión práctica con vuestro equipo: qué puede hacer hoy la IA con documentos municipales, qué no conviene hacer con ella y cómo usarla sin exponer datos personales. Sin compromiso de contratar nada más.</p>
       </div>
-      <p class="c-problem">Una sesión práctica con vuestro equipo: qué puede hacer hoy la IA con documentos municipales, qué no conviene hacer con ella y cómo usarla sin exponer datos personales. Sin compromiso de contratar nada más.</p>
-      <p class="c-deliver start-meta">Una sesión de 2 a 3 horas, presencial o en remoto.</p>
+      <div class="taller-side">
+        <span>2 a 3 horas · presencial o en remoto</span>
+        <a class="btn btn-light" href="mailto:hola@victoresteban.com?subject=Taller%20de%20IA">Pedir el taller</a>
+      </div>
     </aside>
   </section>
 
-  <section id="como-trabajo" class="section wrap" aria-labelledby="como-titulo">
-    <header class="sec-head">
-      <span class="sh-title"><span class="serif">02</span><h2 id="como-titulo">Cómo trabajo</h2></span>
-    </header>
-    <div class="grid how">
-      <ol class="steps">
-        <li><span class="serif">1</span><div><b>Demo de 15 minutos.</b> Os enseño el servicio con documentos de ejemplo y me contáis vuestro caso.</div></li>
-        <li><span class="serif">2</span><div><b>Propuesta con precio cerrado.</b> Alcance, plazos y precio por escrito antes de empezar. Todos los pilotos caben en un contrato menor.</div></li>
-        <li><span class="serif">3</span><div><b>Piloto acotado.</b> Con vuestros documentos reales y durante un periodo corto. Al terminar, decidís si seguir.</div></li>
-      </ol>
-      <ul class="principles">
-        <li><b>La secretaría valida siempre.</b> Ningún documento sale sin que lo revise una persona de vuestro equipo.</li>
-        <li><b>Datos en la UE.</b> Se procesan en servidores de la Unión Europea, con contrato de encargado del tratamiento (art. 28 RGPD).</li>
-        <li><b>Vuestros datos no entrenan modelos.</b> Se usan solo para vuestro servicio y se borran al terminar.</li>
-        <li><b>Accesible por defecto.</b> Lo que entrego cumple la misma norma de accesibilidad que os ayudo a cumplir.</li>
-      </ul>
+  <section id="como-trabajo" class="block wrap" aria-labelledby="como-titulo">
+    <div class="block-head">
+      <p class="eyebrow">Cómo trabajo</p>
+      <h2 id="como-titulo">De la demo al piloto, <span class="serif">sin sorpresas</span>.</h2>
     </div>
+    <ol class="steps">
+      <li><span class="step-n serif">1</span><h3>Demo de 15 minutos</h3><p>Os enseño el servicio con documentos de ejemplo y me contáis vuestro caso.</p></li>
+      <li><span class="step-n serif">2</span><h3>Propuesta con precio cerrado</h3><p>Alcance, plazos y precio por escrito antes de empezar. Todos los pilotos caben en un contrato menor.</p></li>
+      <li><span class="step-n serif">3</span><h3>Piloto acotado</h3><p>Con vuestros documentos reales y durante un periodo corto. Al terminar, decidís si seguir.</p></li>
+    </ol>
+    <ul class="principles">
+      <li><b>La secretaría valida siempre.</b> Ningún documento sale sin que lo revise una persona de vuestro equipo.</li>
+      <li><b>Datos en la UE.</b> Se procesan en servidores de la Unión Europea, con contrato de encargado del tratamiento (art. 28 RGPD).</li>
+      <li><b>Vuestros datos no entrenan modelos.</b> Se usan solo para vuestro servicio y se borran al terminar.</li>
+      <li><b>Accesible por defecto.</b> Lo que entrego cumple la misma norma de accesibilidad que os ayudo a cumplir.</li>
+    </ul>
   </section>
 
-  <div class="wrap duo">
-    <section id="demos" class="section" aria-labelledby="demos-titulo">
-      <header class="sec-head">
-        <span class="sh-title"><span class="serif">03</span><h2 id="demos-titulo">Demos</h2></span>
-      </header>
+  <div class="wrap pair">
+    <section id="demos" class="panel" aria-labelledby="demos-titulo">
+      <p class="eyebrow">Demos</p>
+      <h2 id="demos-titulo">Vedlo funcionar</h2>
       <!-- Cuando estén los vídeos, sustituir el párrafo por uno de estos por demo:
       <figure class="demo">
         <video controls preload="metadata" src="../assets/demos/actas.mp4"></video>
         <figcaption>Actas de pleno: de la grabación al borrador</figcaption>
       </figure>
       -->
-      <p class="soon">Los vídeos de las demos estarán aquí muy pronto. Mientras tanto, os la enseño en directo en 15 minutos: <a class="link link-on" href="mailto:hola@victoresteban.com?subject=Demo%20de%2015%20minutos">pedir demo</a>.</p>
+      <p>Los vídeos de las demos estarán aquí muy pronto. Mientras tanto, os la enseño en directo en 15 minutos.</p>
+      <a class="link link-on" href="mailto:hola@victoresteban.com?subject=Demo%20de%2015%20minutos">Pedir demo →</a>
     </section>
 
-    <section id="datos" class="section" aria-labelledby="datos-titulo">
-      <header class="sec-head">
-        <span class="sh-title"><span class="serif">04</span><h2 id="datos-titulo">Protección de datos</h2></span>
-      </header>
-      <p class="soon">Una hoja de una página con qué datos se tratan, dónde, durante cuánto tiempo y con qué garantías, para adjuntar al expediente.</p>
+    <section id="datos" class="panel" aria-labelledby="datos-titulo">
+      <p class="eyebrow">Protección de datos</p>
+      <h2 id="datos-titulo">Una hoja para el expediente</h2>
+      <p>Una página con qué datos se tratan, dónde, durante cuánto tiempo y con qué garantías, lista para adjuntar al expediente.</p>
       <!-- Cuando esté el PDF, sustituir el enlace por:
       <a class="link link-on" href="../assets/Proteccion_de_datos.pdf" download>Descargar la hoja de protección de datos (PDF)</a>
       -->
-      <a class="link link-on" href="mailto:hola@victoresteban.com?subject=Hoja%20de%20protecci%C3%B3n%20de%20datos">Pedir la hoja de protección de datos</a>
+      <a class="link link-on" href="mailto:hola@victoresteban.com?subject=Hoja%20de%20protecci%C3%B3n%20de%20datos">Pedir la hoja de protección de datos →</a>
     </section>
   </div>
 
-  <section id="quien" class="section wrap" aria-labelledby="quien-titulo">
-    <header class="sec-head">
-      <span class="sh-title"><span class="serif">05</span><h2 id="quien-titulo">Quién soy</h2></span>
-    </header>
-    <div class="grid who">
-      <p>Soy Victor Esteban, ingeniero de software en Valencia. Llevo más de 5 años construyendo y manteniendo sistemas en producción para empresas como Toyota, Inditex y Mercadona, y estoy certificado como Claude Certified Architect.</p>
-      <a class="link link-on who-link" href="../?lang=es">Ver mi trayectoria completa →</a>
+  <section id="quien" class="block wrap who" aria-labelledby="quien-titulo">
+    <svg class="who-mark" viewBox="0 0 64 64" aria-hidden="true"><path fill="var(--sea)" d="M32.00 2.00 L33.22 29.04 L41.19 22.81 L34.96 30.78 L62.00 32.00 L34.96 33.22 L41.19 41.19 L33.22 34.96 L32.00 62.00 L30.78 34.96 L22.81 41.19 L29.04 33.22 L2.00 32.00 L29.04 30.78 L22.81 22.81 L30.78 29.04 Z" /></svg>
+    <div>
+      <p class="eyebrow" id="quien-titulo">Quién soy</p>
+      <p class="who-text">Soy Victor Esteban, ingeniero de software en Valencia. Llevo más de 5 años construyendo y manteniendo sistemas en producción para empresas como Toyota, Inditex y Mercadona, y estoy certificado como Claude Certified Architect.</p>
+      <a class="link link-on" href="../?lang=es">Ver mi trayectoria completa →</a>
     </div>
   </section>
 
-  <section id="contacto" class="section wrap contact" aria-labelledby="contacto-titulo">
-    <header class="sec-head">
-      <span class="sh-title"><span class="serif">06</span><h2 id="contacto-titulo">Contacto</h2></span>
-    </header>
-    <div class="grid contact-duo">
-      <p class="contact-title">¿Lo vemos en <span class="serif">15 minutos</span>?</p>
-      <div class="contact-stack">
-        <div class="contact-cell">
-          <span class="label">Correo</span>
-          <a class="val link" href="mailto:hola@victoresteban.com?subject=Demo%20de%2015%20minutos">hola@victoresteban.com</a>
-        </div>
-        <div class="contact-cell">
-          <span class="label">LinkedIn</span>
-          <a class="val link external" href="https://www.linkedin.com/in/victorestebann" target="_blank" rel="noreferrer">linkedin.com/in/victorestebann</a>
-        </div>
-        <div class="contact-cell">
-          <span class="label">Ubicación</span>
-          <span class="val">Valencia · en remoto o presencial</span>
-        </div>
+  <section id="contacto" class="closing" aria-labelledby="contacto-titulo">
+    <div class="band band-cenefa" aria-hidden="true"></div>
+    <div class="wrap closing-inner">
+      <h2 id="contacto-titulo">¿Lo vemos en <span class="serif">15 minutos</span>?</h2>
+      <div class="closing-contact">
+        <a class="closing-mail" href="mailto:hola@victoresteban.com?subject=Demo%20de%2015%20minutos">hola@victoresteban.com</a>
+        <p class="muted">Valencia · en remoto o presencial · <a class="link" href="https://www.linkedin.com/in/victorestebann" target="_blank" rel="noreferrer">LinkedIn ↗</a></p>
+        <a class="btn" href="mailto:hola@victoresteban.com?subject=Demo%20de%2015%20minutos">Pedir una demo</a>
       </div>
     </div>
   </section>

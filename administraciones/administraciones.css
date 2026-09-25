@@ -1,78 +1,147 @@
-/* Servicios para administraciones públicas: a static page on top of
-   cabanyal.css. No scripts, so everything is visible without JS and the
-   section rules are drawn from the start. */
+/* Servicios para administraciones públicas. Builds on the tokens, header,
+   links and footer of cabanyal.css, with its own services-page layout:
+   cards with a rajola each, a sea-blue workshop panel and a tiled close.
+   No scripts, so everything is visible without JS. */
 
 .skip { position: absolute; left: var(--gutter); top: -48px; z-index: 20; padding: 8px 12px; background: var(--ink); color: var(--ground); border-radius: 2px; }
 .skip:focus { top: 12px; }
 
-.sec-head::after { transform: none; }
-.nav { justify-content: flex-end; gap: 28px; }
-.nav-cta { font-weight: 500; color: var(--sea); }
+.eyebrow { margin: 0; font-size: 13px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--sea); }
 
-.hero h1 { grid-column: 1 / span 10; text-wrap: balance; }
+/* Buttons: the one solid element, in sea blue */
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 20px; background: var(--sea); color: var(--tile); font-weight: 500; border-radius: 2px; transition: background .25s, transform .25s var(--ease); }
+.btn:hover { background: #174A73; transform: translateY(-1px); }
+.btn-sm { padding: 8px 14px; font-size: 14px; }
+.btn-light { background: var(--tile); color: var(--sea); }
+.btn-light:hover { background: #fff; }
 
-/* A still row of rajoles in place of the flipping band */
-.band { margin-top: 56px; height: 64px; background: url(../assets/rajola-flor.svg) 0 0 / 64px 64px repeat-x; }
+/* Header */
+.header-role { grid-column: 4 / span 4; }
+.nav { grid-column: 8 / span 5; justify-content: flex-end; gap: 28px; }
 
-/* Services: name, what it solves, what you get */
-.sec-head-cols .sh-title, .svc .c-name, .start .c-name { grid-column: 1 / span 3; }
-.sec-head-cols .c-problem, .svc .c-problem, .start .c-problem { grid-column: 4 / span 4; }
-.sec-head-cols .c-deliver, .svc .c-deliver, .start .c-deliver { grid-column: 9 / span 4; }
-.svc { padding: 20px 0; border-top: 1px solid var(--rule); align-items: start; }
-.svc.first { border-top: 0; }
-.svc.last { border-bottom: 1px solid var(--rule); }
-.svc .co, .start .co { margin: 0; font-size: 21px; font-weight: 500; letter-spacing: -0.01em; line-height: 1.25; }
-.c-name { display: flex; flex-direction: column; gap: 2px; }
-.c-name .sub { font-size: 14px; color: var(--muted); }
-.c-problem { margin: 0; line-height: 1.55; text-wrap: pretty; }
-.svc ul { margin: 0; padding: 0; list-style: none; }
-.svc li { position: relative; padding: 0 0 8px 18px; font-size: 14px; line-height: 1.5; color: var(--muted); }
-.svc li::before { content: ""; position: absolute; left: 0; top: 10px; width: 8px; height: 1px; background: var(--sea); }
-.variant { margin-top: 8px; padding-top: 12px; border-top: 1px solid var(--rule); }
-.variant p { margin: 4px 0 0; font-size: 14px; color: var(--muted); }
+/* Intro: headline and lede, with the service sheet beside them */
+.intro { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 32px clamp(32px, 5vw, 80px); align-items: center; padding-top: 72px; }
+.intro-text { display: flex; flex-direction: column; gap: 22px; }
+.intro h1 { margin: 0; font-size: clamp(38px, 4.8vw, 64px); line-height: 1.05; font-weight: 500; letter-spacing: -0.028em; text-wrap: balance; }
+.intro h1 .serif { font-size: 1.12em; letter-spacing: -0.01em; color: var(--sea); }
+.lede { margin: 0; max-width: 62ch; font-size: 18px; line-height: 1.55; color: var(--muted); text-wrap: pretty; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; margin-top: 6px; }
+.actions .link { font-weight: 500; }
+
+/* The sheet reads like a record in a file: labelled fields over dotted leaders */
+.ficha { position: relative; padding: 24px 26px 18px; background: var(--tile); border: 1px solid var(--rule); border-radius: 2px; box-shadow: 0 1px 0 var(--rule), 0 18px 40px -28px rgba(19, 26, 28, .35); }
+.ficha-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid var(--ink); }
+.ficha-title { margin: 0; font-size: 15px; font-weight: 600; }
+.stamp { padding: 4px 10px; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--green); border: 1.5px solid var(--green); border-radius: 2px; transform: rotate(-3deg); }
+.ficha dl { margin: 0; }
+.ficha dl > div { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 12px; padding: 11px 0; border-bottom: 1px dotted var(--rule); }
+.ficha dl > div:last-child { border-bottom: 0; }
+.ficha dt { font-size: 13px; color: var(--muted); }
+.ficha dd { margin: 0; font-size: 15px; font-weight: 500; line-height: 1.4; }
+
+/* Tile bands */
+.band { margin-top: 72px; height: 64px; background: url(../assets/rajoles/flor.svg) 0 0 / 64px 64px repeat-x; }
+.band-cenefa { margin-top: 0; background-image: url(../assets/rajoles/cenefa.svg); }
+
+/* Sections */
+.block { padding-top: 88px; }
+.block-head { display: flex; flex-direction: column; gap: 10px; max-width: 760px; margin-bottom: 36px; }
+.block-head h2 { margin: 0; font-size: clamp(28px, 3.2vw, 40px); line-height: 1.12; font-weight: 500; letter-spacing: -0.02em; text-wrap: balance; }
+.block-head h2 .serif { font-size: 1.1em; color: var(--sea); }
+
+/* Services: three cards, each headed by its rajola */
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); align-items: stretch; }
+.card { display: flex; flex-direction: column; padding: 26px 24px 24px; background: var(--tile); border: 1px solid var(--rule); border-radius: 2px; transition: border-color .3s, transform .35s var(--ease); }
+.card:hover { border-color: var(--sea); transform: translateY(-2px); }
+.card-tile { display: block; width: 48px; height: 48px; margin-bottom: 18px; border-radius: 1px; box-shadow: 0 0 0 1px var(--rule); }
+.tag { align-self: flex-start; font-size: 12px; font-weight: 500; letter-spacing: .02em; color: var(--sea); background: var(--sea-soft); padding: 4px 9px; border-radius: 2px; }
+.card h3 { margin: 14px 0 2px; font-size: 22px; line-height: 1.2; font-weight: 500; letter-spacing: -0.01em; }
+.card-for { margin: 0 0 14px; font-size: 14px; color: var(--muted); }
+.card > p:not(.card-for) { margin: 0; line-height: 1.55; text-wrap: pretty; }
+.card h4 { margin: 20px 0 8px; padding-top: 14px; border-top: 1px solid var(--rule); font-size: 13px; font-weight: 600; }
+.card ul { margin: 0; padding: 0; list-style: none; }
+.card li { position: relative; padding: 0 0 8px 18px; font-size: 14px; line-height: 1.5; color: var(--muted); }
+.card li::before { content: ""; position: absolute; left: 0; top: 10px; width: 8px; height: 1px; background: var(--sea); }
+.variant { margin-top: auto; padding: 14px 14px 12px; background: var(--ground); border: 1px dashed var(--rule); border-radius: 2px; }
+.card ul + .variant { margin-top: 12px; }
+.variant-label { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ochre); }
+.variant p { margin: 6px 0 0; font-size: 14px; line-height: 1.5; color: var(--muted); }
 .variant b { color: var(--ink); font-weight: 500; }
 
-/* The workshop, set apart as the way in */
-.start { margin-top: 24px; padding: 20px 0; background: var(--tile); border: 1px solid var(--rule); border-radius: 2px; align-items: start; }
-.start > .c-name { padding-left: 20px; }
-.start > .c-deliver { padding-right: 20px; }
-.start-kicker { font-size: 20px; color: var(--sea); }
-.start-meta { margin: 0; font-size: 14px; color: var(--muted); }
+/* The workshop: the one bold panel, as the way in */
+.taller { margin-top: var(--gap); display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; gap: 20px 32px; align-items: center; padding: 28px 32px; background: var(--sea); color: var(--tile); border-radius: 2px; }
+.taller-tile { display: block; width: 64px; height: 64px; border-radius: 1px; }
+.taller-kicker { margin: 0; font-size: 22px; line-height: 1; color: #F2D9A8; }
+.taller h3 { margin: 6px 0 8px; font-size: 24px; line-height: 1.2; font-weight: 500; letter-spacing: -0.01em; }
+.taller-text p:last-child { margin: 0; max-width: 64ch; line-height: 1.55; color: rgba(251, 248, 241, .82); }
+.taller-side { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; font-size: 14px; color: rgba(251, 248, 241, .82); }
+.taller .btn:focus-visible { outline-color: var(--tile); }
 
-/* How I work: steps on the left, commitments on the right */
-.how { padding-top: 20px; align-items: start; }
-.steps { grid-column: 1 / span 7; margin: 0; padding: 0; list-style: none; }
-.steps li { display: grid; grid-template-columns: 36px minmax(0, 1fr); padding: 12px 0; border-top: 1px solid var(--rule); line-height: 1.55; }
-.steps li:first-child { border-top: 0; padding-top: 0; }
-.steps .serif { font-size: 22px; line-height: 1.1; color: var(--sea); }
-.steps b, .principles b { font-weight: 500; }
-.principles { grid-column: 9 / span 4; margin: 0; padding: 0; list-style: none; }
-.principles li { padding: 12px 0; border-top: 1px solid var(--rule); font-size: 14px; line-height: 1.5; color: var(--muted); }
-.principles li:first-child { border-top: 0; padding-top: 0; }
-.principles b { display: block; color: var(--ink); font-size: 15px; }
+/* How I work: three steps along a line, commitments below */
+.steps { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); margin: 0; padding: 0; list-style: none; }
+.steps::before { content: ""; position: absolute; left: 22px; right: 22px; top: 22px; height: 1px; background: var(--rule); }
+.steps li { position: relative; display: flex; flex-direction: column; gap: 6px; padding-right: 16px; }
+.step-n { display: grid; place-items: center; width: 44px; height: 44px; margin-bottom: 10px; font-size: 24px; color: var(--sea); background: var(--ground); border: 1px solid var(--sea); border-radius: 50%; }
+.steps h3 { margin: 0; font-size: 18px; font-weight: 500; }
+.steps p { margin: 0; line-height: 1.55; color: var(--muted); text-wrap: pretty; }
+.principles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap); margin: 48px 0 0; padding: 0; list-style: none; }
+.principles li { padding-top: 14px; border-top: 2px solid var(--green); font-size: 14px; line-height: 1.5; color: var(--muted); }
+.principles b { display: block; margin-bottom: 4px; font-size: 15px; font-weight: 500; color: var(--ink); }
 
 /* Demos and data protection side by side */
-.duo > #demos { grid-column: 1 / span 7; }
-.duo > #datos { grid-column: 9 / span 4; }
-.soon { margin: 20px 0 12px; line-height: 1.55; color: var(--muted); text-wrap: pretty; }
-.demo { margin: 20px 0 0; }
-.demo video { display: block; width: 100%; aspect-ratio: 16 / 9; background: var(--hover); }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); padding-top: 88px; }
+.panel { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 26px 24px; border: 1px solid var(--rule); border-radius: 2px; }
+.panel h2 { margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -0.01em; }
+.panel p:not(.eyebrow) { margin: 0 0 4px; max-width: 58ch; line-height: 1.55; color: var(--muted); }
+.panel .link { font-weight: 500; }
+.demo { margin: 6px 0 0; width: 100%; }
+.demo video { display: block; width: 100%; max-width: 100%; aspect-ratio: 16 / 9; background: var(--hover); }
 .demo figcaption { margin-top: 8px; font-size: 14px; color: var(--muted); }
 
-.who { padding-top: 20px; align-items: baseline; }
-.who p { grid-column: 1 / span 7; margin: 0; font-size: 18px; line-height: 1.55; text-wrap: pretty; }
-.who-link { grid-column: 9 / span 4; justify-self: start; font-weight: 500; }
+/* Who I am */
+.who { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 24px; align-items: start; }
+.who-mark { width: 56px; height: 56px; margin-top: 4px; }
+.who > div { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; max-width: 760px; }
+.who-text { margin: 0; font-size: 20px; line-height: 1.5; text-wrap: pretty; }
+.who .link { font-weight: 500; }
 
-.contact-title { grid-column: 1 / span 7; }
-.contact-cell a.val::after { content: ""; }
-.contact-cell a.val.external::after { content: " ↗"; color: var(--sea); }
+/* Close: a band of cenefa tiles, then the question and the address */
+.closing { margin-top: 96px; }
+.closing-inner { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 28px clamp(32px, 5vw, 80px); align-items: end; padding-top: 56px; }
+.closing h2 { margin: 0; font-size: clamp(34px, 4.4vw, 58px); line-height: 1.06; font-weight: 500; letter-spacing: -0.025em; text-wrap: balance; }
+.closing h2 .serif { font-size: 1.1em; color: var(--sea); }
+.closing-contact { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.closing-mail { font-size: clamp(20px, 2vw, 26px); font-weight: 500; letter-spacing: -0.01em; border-bottom: 1px solid var(--sea); overflow-wrap: anywhere; }
+.closing-mail:hover { color: var(--sea); }
+.closing-contact p { margin: 0 0 8px; font-size: 14px; }
+
+@media (max-width: 1100px) {
+  .cards { grid-template-columns: minmax(0, 1fr); }
+  .card ul + .variant { margin-top: 12px; }
+  .principles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 
 @media (max-width: 900px) {
-  .nav { justify-content: flex-start; }
-  .band { margin-top: 36px; }
-  .svc, .start { row-gap: 10px; }
-  .start > * { padding-left: 16px !important; padding-right: 16px !important; }
-  .how, .who { row-gap: 20px; }
-  .principles li:first-child { border-top: 1px solid var(--rule); padding-top: 12px; }
-  .who p { font-size: 17px; }
+  .nav { justify-content: flex-start; gap: 8px 20px; }
+  .intro, .closing-inner, .pair { grid-template-columns: minmax(0, 1fr); }
+  .intro { padding-top: 40px; }
+  .lede { font-size: 17px; }
+  .ficha { padding: 20px 18px 14px; }
+  .ficha dl > div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .band { margin-top: 48px; }
+  .block, .pair { padding-top: 64px; }
+  .block-head { margin-bottom: 24px; }
+  .card { padding: 22px 18px 20px; }
+  .taller { grid-template-columns: minmax(0, 1fr); padding: 24px 20px; }
+  .taller-tile { width: 48px; height: 48px; }
+  .steps { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .steps::before { left: 22px; right: auto; top: 22px; bottom: 22px; width: 1px; height: auto; }
+  .steps li { display: grid; grid-template-columns: 44px minmax(0, 1fr); column-gap: 16px; padding-right: 0; }
+  .steps li > .step-n { grid-row: 1 / span 2; margin-bottom: 0; }
+  .principles { grid-template-columns: minmax(0, 1fr); margin-top: 36px; }
+  .who { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .who-mark { width: 40px; height: 40px; }
+  .who-text { font-size: 18px; }
+  .closing { margin-top: 72px; }
+  .closing-inner { padding-top: 40px; }
 }
