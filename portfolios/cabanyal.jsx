@@ -262,10 +262,10 @@ function CabanyalPortfolio() {
         <section className="hero wrap" aria-label="Introduction">
           <div className="grid">
             <h1>
-              <span className="ln"><span className="anim-rise" style={{ animationDelay: '150ms' }}>I build backend systems</span></span>{' '}
-              <span className="ln"><span className="anim-rise" style={{ animationDelay: '240ms' }}>that hold up in production,</span></span>{' '}
-              <span className="ln"><span className="anim-rise" style={{ animationDelay: '330ms' }}>and use AI to build them</span></span>{' '}
-              <span className="ln"><span className="anim-rise" style={{ animationDelay: '420ms' }}><span className="serif">better.</span></span></span>
+              <span className="ln"><span className="anim-rise" style={{ animationDelay: '150ms' }}>I design, build and run</span></span>{' '}
+              <span className="ln"><span className="anim-rise" style={{ animationDelay: '240ms' }}>software people can <span className="wave">rely on</span>,</span></span>{' '}
+              <span className="ln"><span className="anim-rise" style={{ animationDelay: '330ms' }}>and use AI to deliver</span></span>{' '}
+              <span className="ln"><span className="anim-rise" style={{ animationDelay: '420ms' }}>more value.</span></span>
             </h1>
             <p className="hero-lede anim-fade" style={{ animationDelay: '700ms' }}>{v.lede}</p>
             <div className="hero-links anim-fade" style={{ animationDelay: '900ms' }}>
@@ -382,7 +382,7 @@ function CabanyalPortfolio() {
         <section id="contact" className="section wrap contact">
           <SectionHead n="04" title="Contact" />
           <div className="grid">
-            <h2 className="contact-title rv">Looking for a backend engineer who owns production and builds with AI, <span className="serif">safely</span>?</h2>
+            <h2 className="contact-title rv">Looking for a software engineer who owns production and builds with AI, <span className="wave">safely</span>?</h2>
           </div>
           <div className="grid contact-links">
             {[

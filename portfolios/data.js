@@ -9,7 +9,7 @@ window.VICTOR = {
   githubUrl: "https://github.com/vicxs",
   cvUrl: "/portfolio/assets/Victor_Esteban_CV.pdf",
 
-  lede: "Software engineer in Valencia with 6+ years in backend, system integration and production support, focused on reliability, observability and practical solution design.",
+  lede: "Software engineer in Valencia with 6+ years turning business needs into products for Toyota, Inditex and Mercadona. I design the solution, build it with the team and own it in production.",
 
   experiences: [
     {
