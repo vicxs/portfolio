@@ -15,7 +15,7 @@ Personal portfolio site. Software Engineer · Backend / Integration / Production
 
 "Cabanyal" direction: a light lime-wash ground, a Swiss 12-column grid and footnotes in the margin, set in Schibsted Grotesk with Instrument Serif italic accents. The one ornament is a band of simplified rajoles after the tiled façades of El Cabanyal, Valencia's old fishing quarter; it flips as one, cycling Flor → Estrella → Rombe → Cenefa → Ona. The mark is a minimal rosa dels vents. On scroll, section rules draw in, rows and list items rise in staggered and a thin progress line tracks the page. All motion respects `prefers-reduced-motion`.
 
-Content order: hero → Work → Stack → Education & certifications → Contact.
+Content order: hero (with an at-a-glance panel beside the lede) → Work → Stack and Certifications side by side → Education & languages → Contact. The content runs up to 1440px wide with a fluid gutter; on phones everything stacks into one column.
 
 ## Languages
 

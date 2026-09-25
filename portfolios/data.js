@@ -18,6 +18,14 @@ window.VICTOR = {
     es: "Desde Valencia, con más de 5 años construyendo productos para Toyota, Inditex y Mercadona. Diseño la solución, la construyo con el equipo, me hago cargo de ella en producción e incorporo IA donde aporta valor."
   },
 
+  // Shown beside the lede, two by two. `live` adds the pulsing dot.
+  facts: [
+    { label: { en: "Now", es: "Ahora" }, value: "Toyota Motor Europe", sub: { en: "via Xplore Group", es: "vía Xplore Group" }, live: true },
+    { label: { en: "Experience", es: "Experiencia" }, value: { en: "5+ years", es: "5+ años" }, sub: { en: "in production systems", es: "en sistemas en producción" } },
+    { label: { en: "Sectors", es: "Sectores" }, value: { en: "Automotive · Retail · Logistics", es: "Automoción · Retail · Logística" } },
+    { label: { en: "Focus", es: "Foco" }, value: { en: "Backend · Integration · AI", es: "Backend · Integración · IA" } }
+  ],
+
   experiences: [
     {
       tier: "main",
@@ -170,9 +178,12 @@ window.VICTOR = {
     { name: "Claude Certified Architect — Foundations" },
     { name: "Claude Certified Developer — Foundations" },
     { name: "AWS Certified Cloud Practitioner" },
-    { name: { en: "English (Cambridge)", es: "Inglés (Cambridge)" } },
     { name: "AWS Developer Associate", preparing: true },
     { name: "Spring Professional", preparing: true }
+  ],
+
+  languages: [
+    { name: { en: "English", es: "Inglés" }, detail: "Cambridge B2 First" }
   ],
 
   education: {
