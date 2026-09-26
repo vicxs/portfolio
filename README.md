@@ -22,7 +22,7 @@ English by default, with an EN / ES switch in the header. The choice is remember
 
 ## CV
 
-A one-page A4 CV in the same style, with a sidebar (stack, certifications, education, languages) beside profile and experience. The main column comes first in the markup, so ATS parsers read it before the sidebar. `cv/en.html` and `cv/es.html` are the sources; `cv/build.mjs` prints them to `assets/Victor_Esteban_CV.pdf` and `assets/Victor_Esteban_CV_ES.pdf`:
+A one-page A4 CV in the same style, with a sidebar (stack, certifications, education, languages) beside profile and experience. The main column comes first in the markup, so ATS parsers read it before the sidebar. `cv/en.html`, `cv/es.html` and `cv/va.html` (Valencian) are the sources; `cv/build.mjs` prints them to `assets/Victor_Esteban_CV.pdf`, `assets/Victor_Esteban_CV_ES.pdf` and `assets/Victor_Esteban_CV_VA.pdf`:
 
 ```sh
 npm install --no-save playwright-core
@@ -67,7 +67,7 @@ portfolios/
   cabanyal.tsx          # CabanyalPortfolio component, tile band, rosa mark
   cabanyal.css          # Layout, grid, motion and responsive styles
 cv/
-  en.html, es.html      # CV sources, one per language
+  en/es/va.html         # CV sources, one per language
   cv.css                # CV layout (A4, Cabanyal style)
   build.mjs             # Prints the CVs to assets/*.pdf
 administraciones/

@@ -73,7 +73,7 @@ assertContains(
   "Contact section email should come from shared contact data"
 );
 
-for (const cv of ["cv/en.html", "cv/es.html"]) {
+for (const cv of ["cv/en.html", "cv/es.html", "cv/va.html"]) {
   assertContains(
     readFileSync(cv, "utf8"),
     '<a href="mailto:hola@victoresteban.com">hola@victoresteban.com</a>',
