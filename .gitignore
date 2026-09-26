@@ -31,3 +31,6 @@ yarn-error.log*
 .claude/
 .playwright-mcp/
 .claude.local.md
+
+# Cloudflare Workers
+.wrangler/

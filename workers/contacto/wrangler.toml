@@ -1,0 +1,14 @@
+# Receives the contact form on the services page and emails it through
+# Cloudflare Email Routing. Deploy with `npx wrangler deploy` from this
+# folder; set the destination address once with `npx wrangler secret put TO`
+# (it must be a verified destination address in Email Routing).
+name = "contacto"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+workers_dev = false
+routes = [{ pattern = "forms.victoresteban.com", custom_domain = true }]
+
+send_email = [{ name = "MAIL" }]
+
+[vars]
+FROM = "formulario@victoresteban.com"
