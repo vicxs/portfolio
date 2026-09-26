@@ -1,13 +1,15 @@
 // Shapes of the portfolio content in data.ts and the interface copy in i18n.ts.
 
-export const LANGS = ['en', 'es'] as const;
+export const LANGS = ['en', 'es', 'va'] as const;
 export type Lang = (typeof LANGS)[number];
 export const DEFAULT_LANG: Lang = 'en';
+/** The HTML lang attribute for each language; Valencian is ca-valencia. */
+export const HTML_LANG: Record<Lang, string> = { en: 'en', es: 'es', va: 'ca-valencia' };
 
-/** A value shared by both languages, or one per language. */
+/** A value shared by every language, or one per language. */
 export type Localized<T> = T | Record<Lang, T>;
 
-/** Content with every { en, es } pair replaced by the text for one language. */
+/** Content with every { en, es, va } triple replaced by the text for one language. */
 export type Resolved<T> =
   T extends Record<Lang, infer U> ? U
   : T extends readonly (infer I)[] ? Resolved<I>[]

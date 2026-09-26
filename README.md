@@ -18,7 +18,7 @@ Content order: hero (with an at-a-glance panel beside the lede) → Work → Sta
 
 ## Languages
 
-English by default, with an EN / ES switch in the header. The choice is remembered in the browser, and `?lang=es` links straight to the Spanish version. The CV links download the CV in the selected language.
+English by default, with an EN / ES / VA switch in the header. The choice is remembered in the browser, and `?lang=es` or `?lang=va` links straight to the Spanish or Valencian version. The CV links download the CV in the selected language.
 
 ## CV
 
@@ -33,7 +33,7 @@ The build fails if the Google Fonts don't load or the content no longer fits on 
 
 ## Services for public administrations
 
-`/administraciones/` is a separate static page (no scripts) offering web accessibility and AI services to town councils, in Spanish (`/administraciones/`), Valencian (`/administraciones/va/`) and English (`/administraciones/en/`). It reuses the Cabanyal tokens with its own layout and links to the portfolio; the portfolio does not link back. Copy lives in `administraciones/strings.mjs`; rebuild the three pages with:
+`/administraciones/` is a separate static page (no scripts) offering web accessibility and AI services to town councils, in Spanish (`/administraciones/`), Valencian (`/administraciones/va/`) and English (`/administraciones/en/`). It reuses the Cabanyal tokens with its own layout and links to the portfolio in the same language (English for the English page); the portfolio does not link back. Copy lives in `administraciones/strings.mjs`; rebuild the three pages with:
 
 ```sh
 node administraciones/build.mjs
@@ -62,7 +62,7 @@ robots.txt, sitemap.xml # Crawling: the portfolio and the three services pages
 portfolios/
   main.tsx              # Mounts <CabanyalPortfolio />
   types.ts              # Content types: Lang, Localized<T>, Experience, Portfolio…
-  data.ts               # Content (experience, skills, certifications, etc.); translatable fields are { en, es }
+  data.ts               # Content (experience, skills, certifications, etc.); translatable fields are { en, es, va }
   i18n.ts               # Interface copy (nav, headings, labels) per language
   cabanyal.tsx          # CabanyalPortfolio component, tile band, rosa mark
   cabanyal.css          # Layout, grid, motion and responsive styles
@@ -90,7 +90,7 @@ npm run build     # dist/, then npm run preview to serve it
 npm run lighthouse # Lighthouse budget over the built site
 ```
 
-Edit `portfolios/data.ts` to update content and `portfolios/i18n.ts` for interface copy; the compiler rejects a Spanish string missing from `i18n.ts` or an experience of an unknown tier, and `tests/i18n.test.mjs` checks both languages are complete and that periods use three-letter months. The JSON-LD in `index.html` repeats name, role, contact links and school from `data.ts`; `tests/seo.test.mjs` fails if they drift apart. Edit `portfolios/cabanyal.tsx` and `portfolios/cabanyal.css` to change layout.
+Edit `portfolios/data.ts` to update content and `portfolios/i18n.ts` for interface copy; the compiler rejects a Spanish or Valencian string missing from `i18n.ts` or a field missing its Valencian text in `data.ts` or an experience of an unknown tier, and `tests/i18n.test.mjs` checks all three languages are complete and that periods use three-letter months. The JSON-LD in `index.html` repeats name, role, contact links and school from `data.ts`; `tests/seo.test.mjs` fails if they drift apart. Edit `portfolios/cabanyal.tsx` and `portfolios/cabanyal.css` to change layout.
 
 Vite bundles only the portfolio. `CNAME`, `404.html`, `robots.txt`, `sitemap.xml`, `assets/`, `administraciones/` (without its build scripts) and `portfolios/cabanyal.css` are copied into `dist/` as they are, so their URLs stay the same.
 

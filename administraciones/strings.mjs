@@ -257,7 +257,7 @@ export const STRINGS = {
     dataCta: 'Demanar el full de protecció de dades →',
     whoEyebrow: 'Qui soc',
     whoText: 'Soc Victor Esteban, enginyer de programari a València. Fa més de 5 anys que construïsc i mantinc sistemes en producció per a empreses com Toyota, Inditex i Mercadona, i tinc la certificació Claude Certified Architect.',
-    whoLink: 'Veure la meua trajectòria completa (en castellà) →',
+    whoLink: 'Veure la meua trajectòria completa →',
     closingTitle: 'Ho veiem en *15 minuts*?',
     closingPlace: 'València · en remot o presencial',
     closingCta: 'Demanar una demo',

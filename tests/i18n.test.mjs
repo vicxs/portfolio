@@ -2,9 +2,9 @@ import assert from "node:assert/strict";
 import { VICTOR } from "../portfolios/data.ts";
 import { STRINGS } from "../portfolios/i18n.ts";
 
-const LANGS = ["en", "es"];
+const LANGS = ["en", "es", "va"];
 
-assert.deepEqual(Object.keys(STRINGS).sort(), [...LANGS].sort(), "STRINGS should define exactly en and es");
+assert.deepEqual(Object.keys(STRINGS).sort(), [...LANGS].sort(), "STRINGS should define exactly en, es and va");
 
 const enKeys = Object.keys(STRINGS.en).sort();
 for (const lang of LANGS) {
@@ -14,20 +14,25 @@ for (const lang of LANGS) {
     assert.ok(values.length > 0 && values.every((s) => typeof s === "string" && s.trim()), `STRINGS.${lang}.${key} should be non-empty text`);
   }
 }
-assert.equal(STRINGS.en.hero.length, STRINGS.es.hero.length, "Hero headline should have the same number of lines in each language");
+for (const lang of LANGS) {
+  assert.equal(STRINGS[lang].hero.length, STRINGS.en.hero.length, `Hero headline (${lang}) should have as many lines as in English`);
+}
 
-// Every { en, es } pair in the content must be complete and of matching shape.
+// Every { en, es, va } triple in the content must be complete and of matching shape.
 function walk(value, where) {
   if (Array.isArray(value)) return value.forEach((item, i) => walk(item, `${where}[${i}]`));
   if (!value || typeof value !== "object") return;
-  if ("en" in value || "es" in value) {
-    assert.deepEqual(Object.keys(value).sort(), [...LANGS].sort(), `${where} should have both en and es`);
-    const [en, es] = [value.en, value.es];
-    if (Array.isArray(en)) {
-      assert.ok(Array.isArray(es) && es.length === en.length, `${where}.es should list as many items as ${where}.en`);
-      [...en, ...es].forEach((s, i) => assert.ok(typeof s === "string" && s.trim(), `${where} item ${i} should be non-empty text`));
-    } else {
-      assert.ok(typeof en === "string" && en.trim() && typeof es === "string" && es.trim(), `${where} should be non-empty text in both languages`);
+  if (LANGS.some((lang) => lang in value)) {
+    assert.deepEqual(Object.keys(value).sort(), [...LANGS].sort(), `${where} should have en, es and va`);
+    const { en } = value;
+    for (const lang of LANGS) {
+      const text = value[lang];
+      if (Array.isArray(en)) {
+        assert.ok(Array.isArray(text) && text.length === en.length, `${where}.${lang} should list as many items as ${where}.en`);
+        text.forEach((s, i) => assert.ok(typeof s === "string" && s.trim(), `${where}.${lang} item ${i} should be non-empty text`));
+      } else {
+        assert.ok(typeof text === "string" && text.trim(), `${where}.${lang} should be non-empty text`);
+      }
     }
     return;
   }
@@ -39,8 +44,9 @@ walk(VICTOR, "VICTOR");
 const MONTHS = {
   en: "Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec",
   es: "Ene|Feb|Mar|Abr|May|Jun|Jul|Ago|Sep|Oct|Nov|Dic",
+  va: "Gen|Feb|Mar|Abr|Mai|Jun|Jul|Ago|Set|Oct|Nov|Des",
 };
-const PRESENT = { en: "Present", es: "Actualidad" };
+const PRESENT = { en: "Present", es: "Actualidad", va: "Actualitat" };
 for (const lang of LANGS) {
   const date = `(?:${MONTHS[lang]}) \\d{4}`;
   const period = new RegExp(`^${date} — (?:${date}|${PRESENT[lang]})$`);
@@ -49,4 +55,4 @@ for (const lang of LANGS) {
   });
 }
 
-console.log("translations are complete for en and es");
+console.log("translations are complete for en, es and va");

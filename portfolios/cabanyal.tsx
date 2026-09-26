@@ -7,10 +7,11 @@ import type { FocusEventHandler, MouseEventHandler, ReactNode } from 'react';
 import { flushSync } from 'react-dom';
 import { VICTOR } from './data.ts';
 import { STRINGS } from './i18n.ts';
-import { DEFAULT_LANG, LANGS } from './types.ts';
+import { DEFAULT_LANG, HTML_LANG, LANGS } from './types.ts';
 import type { Experience, Lang, MainExperience, Resolved } from './types.ts';
 
-// English by default; ?lang=es or a remembered choice switches to Spanish.
+// English by default; ?lang=es or ?lang=va, or a remembered choice, switches
+// to Spanish or Valencian.
 function isLang(value: unknown): value is Lang {
   return LANGS.includes(value as Lang);
 }
@@ -27,7 +28,7 @@ function initialLang(): Lang {
   return DEFAULT_LANG;
 }
 
-// Keep the address shareable: ?lang=es in Spanish, clean URL in English.
+// Keep the address shareable: ?lang=es or ?lang=va, clean URL in English.
 function persistLang(lang: Lang) {
   try { window.localStorage.setItem('lang', lang); } catch { /* storage blocked */ }
   try {
@@ -43,7 +44,7 @@ function isLocalized(value: object): value is Record<Lang, unknown> {
   return keys.length === LANGS.length && LANGS.every((l) => keys.includes(l));
 }
 
-// Replace every { en, es } pair with the text for one language, so the
+// Replace every { en, es, va } triple with the text for one language, so the
 // markup reads plain values; everything else passes through.
 function resolve<T>(value: T, lang: Lang): Resolved<T> {
   if (Array.isArray(value)) return value.map((item) => resolve(item, lang)) as Resolved<T>;
@@ -71,7 +72,7 @@ function LangSwitch({ lang, onChange, label }: LangSwitchProps) {
       {LANGS.map((l, i) => (
         <Fragment key={l}>
           {i > 0 && <span className="lang-sep" aria-hidden="true">/</span>}
-          <button type="button" lang={l} className={`lang-opt${lang === l ? ' is-on' : ''}`}
+          <button type="button" lang={HTML_LANG[l]} className={`lang-opt${lang === l ? ' is-on' : ''}`}
             aria-pressed={lang === l} onClick={() => onChange(l)}>{l.toUpperCase()}</button>
         </Fragment>
       ))}
@@ -288,7 +289,7 @@ export function CabanyalPortfolio() {
   const v = resolve(VICTOR, lang);
 
   useEffect(() => {
-    document.documentElement.lang = lang;
+    document.documentElement.lang = HTML_LANG[lang];
     document.title = t.title;
   }, [lang]);
 

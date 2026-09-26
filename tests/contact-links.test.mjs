@@ -35,7 +35,7 @@ assertContains(
 
 const { cvUrl } = VICTOR;
 
-for (const lang of ["en", "es"]) {
+for (const lang of ["en", "es", "va"]) {
   const href = cvUrl?.[lang];
   assert.ok(href, `VICTOR should expose a ${lang} CV href`);
   assert.ok(
@@ -47,7 +47,7 @@ for (const lang of ["en", "es"]) {
     `${lang} CV href should point to an existing local PDF asset`
   );
 }
-assert.notEqual(cvUrl.en, cvUrl.es, "Each language should download its own CV");
+assert.equal(new Set(Object.values(cvUrl)).size, 3, "Each language should download its own CV");
 
 assertContains(
   siteSource,

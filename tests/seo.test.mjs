@@ -23,7 +23,8 @@ assert.ok(Array.isArray(person.knowsAbout) && person.knowsAbout.length > 0, "JSO
 // Locales and language alternates.
 assert.match(html, /<meta property="og:locale" content="en_US" \/>/, "index.html should declare og:locale en_US");
 assert.match(html, /<meta property="og:locale:alternate" content="es_ES" \/>/, "index.html should declare the es_ES alternate locale");
-for (const [lang, href] of [["en", SITE], ["es", `${SITE}?lang=es`], ["x-default", SITE]]) {
+assert.match(html, /<meta property="og:locale:alternate" content="ca_ES" \/>/, "index.html should declare the ca_ES (Valencian) alternate locale");
+for (const [lang, href] of [["en", SITE], ["es", `${SITE}?lang=es`], ["ca", `${SITE}?lang=va`], ["x-default", SITE]]) {
   assert.ok(html.includes(`<link rel="alternate" hreflang="${lang}" href="${href}" />`), `index.html should link the ${lang} alternate`);
 }
 

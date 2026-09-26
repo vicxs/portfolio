@@ -36,7 +36,7 @@ function layout(lang, page, { title, description, noindex = false }, main) {
   const root = '../'.repeat(depth);
   const assets = `${root}assets/`;
   const own = `${root}administraciones/`;
-  const portfolio = lang === 'en' ? root : `${root}?lang=es`;
+  const portfolio = lang === 'en' ? root : `${root}?lang=${lang}`;
   const home = page ? `${own}${meta.dir}` : '';
 
   const alternates = noindex ? '<meta name="robots" content="noindex" />' : Object.keys(LANGS)

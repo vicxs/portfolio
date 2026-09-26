@@ -85,4 +85,44 @@ const es: UiStrings = {
   backToTop: "Volver arriba ↑"
 };
 
-export const STRINGS: Record<Lang, UiStrings> = { en, es };
+const va: UiStrings = {
+  title: "Victor Esteban — Software Engineer",
+  skipToContent: "Anar al contingut",
+  backToTopLabel: "Victor Esteban, tornar a dalt",
+  place: "València, vora la mar",
+  sectionsLabel: "Seccions",
+  languageLabel: "Idioma",
+  navWork: "Experiència",
+  navStack: "Stack",
+  navContact: "Contacte",
+  navCv: "CV",
+  introLabel: "Introducció",
+  factsLabel: "En resum",
+  hero: [
+    "Software engineer amb",
+    "*visió de producte* i focus en IA.",
+    "Convertisc el que cal a un negoci",
+    "en programari que funciona."
+  ],
+  linkedinCta: "Contacta amb mi a LinkedIn ↗",
+  downloadCv: "Descarregar el CV",
+  work: "Experiència",
+  colWhat: "Què vaig fer",
+  colNotes: "Notes",
+  via: "via",
+  note: "Nota",
+  contributions: "Contribucions",
+  earlier: "Experiència anterior",
+  roles: "llocs",
+  stack: "Stack",
+  certifications: "Certificacions",
+  inPreparation: "— en preparació",
+  eduLang: "Formació i idiomes",
+  contact: "Contacte",
+  contactTitle: "Busques algú que es faça càrrec de producció i construïsca amb IA de manera *segura*?",
+  email: "Correu",
+  location: "Ubicació",
+  backToTop: "Tornar a dalt ↑"
+};
+
+export const STRINGS: Record<Lang, UiStrings> = { en, es, va };
