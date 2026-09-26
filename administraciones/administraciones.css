@@ -16,8 +16,8 @@
 .btn-light:hover { background: #fff; }
 
 /* Header */
-.header-role { grid-column: 4 / span 4; }
-.nav { grid-column: 8 / span 5; justify-content: flex-end; gap: 28px; }
+.header-role { grid-column: 4 / span 3; }
+.nav { grid-column: 7 / span 6; justify-content: flex-end; gap: 28px; }
 
 /* Intro: headline and lede, with the service sheet beside them */
 .intro { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 32px clamp(32px, 5vw, 80px); align-items: center; padding-top: 72px; }

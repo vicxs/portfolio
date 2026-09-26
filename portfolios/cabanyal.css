@@ -185,7 +185,6 @@ details.contrib li::before { content: ""; position: absolute; left: 0; top: 15px
 .site-footer { margin-top: 80px; padding: 18px 0 32px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 13px; color: var(--muted); }
 .site-footer .brand-mark { width: 18px; height: 18px; }
 .site-footer .left { display: flex; gap: 10px; align-items: center; }
-.site-footer .footer-links { display: flex; flex-wrap: wrap; gap: 8px 28px; }
 
 /* ---------- Motion ---------- */
 .anim-fade { animation: fade .8s var(--ease) both; }

@@ -32,6 +32,16 @@ node cv/build.mjs   # CHROMIUM_PATH=/path/to/chrome to pick a browser
 
 The build fails if the Google Fonts don't load or the content no longer fits on one page.
 
+## Services for public administrations
+
+`/administraciones/` is a separate static page (no scripts) offering web accessibility and AI services to town councils, in Spanish (`/administraciones/`), Valencian (`/administraciones/va/`) and English (`/administraciones/en/`). It reuses the Cabanyal tokens with its own layout and links to the portfolio; the portfolio does not link back. Copy lives in `administraciones/strings.mjs`; rebuild the three pages with:
+
+```sh
+node administraciones/build.mjs
+```
+
+`node tests/administraciones.test.mjs` fails if the committed pages are out of date or a language is missing copy.
+
 ## Structure
 
 ```
@@ -45,6 +55,11 @@ cv/
   en.html, es.html      # CV sources, one per language
   cv.css                # CV layout (A4, Cabanyal style)
   build.mjs             # Prints the CVs to assets/*.pdf
+administraciones/
+  strings.mjs           # Services page copy, per language (es, va, en)
+  build.mjs             # Renders index.html, va/index.html and en/index.html
+  administraciones.css  # Services page layout
+assets/rajoles/         # One SVG per tile, used by the services page
 tests/                  # Node assertion scripts (node tests/<file>.mjs)
 ```
 
