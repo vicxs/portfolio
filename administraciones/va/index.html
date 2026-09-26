@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../../portfolios/cabanyal.css?v=8" />
-<link rel="stylesheet" href="../../administraciones/administraciones.css?v=3" />
+<link rel="stylesheet" href="../../administraciones/administraciones.css?v=4" />
 </head>
 <body>
 <a class="skip" href="#contenido">Ves al contingut</a>
@@ -57,7 +57,7 @@
       <h1 class="anim-fade" style="animation-delay: 120ms">Accessibilitat web i <span class="serif">IA pràctica</span> per a ajuntaments.</h1>
       <p class="lede anim-fade" style="animation-delay: 300ms">Vos ajude a complir la normativa d’accessibilitat i a estalviar hores de secretaria amb IA: actes de ple, respostes a partir dels vostres propis documents i anonimització per al portal de transparència. Pilots xicotets, amb preu tancat, i sempre amb una persona del vostre equip validant el resultat.</p>
       <div class="actions anim-fade" style="animation-delay: 450ms">
-        <a class="btn" href="mailto:hola@victoresteban.com?subject=Demo%20de%2015%20minuts">Demaneu una demo de 15 minuts</a>
+        <a class="btn" href="#contacto">Demaneu una demo de 15 minuts</a>
         <a class="link" href="#servicios">Veure els serveis ↓</a>
       </div>
     </div>
@@ -144,7 +144,7 @@
       </div>
       <div class="taller-side">
         <span>De 2 a 3 hores · presencial o en remot</span>
-        <a class="btn btn-light" href="mailto:hola@victoresteban.com?subject=Taller%20d%E2%80%99IA">Demanar el taller</a>
+        <a class="btn btn-light" href="#contacto">Demanar el taller</a>
       </div>
     </aside>
   </section>
@@ -178,7 +178,7 @@
       </figure>
       -->
       <p>Els vídeos de les demos estaran ací molt prompte. Mentrestant, vos la mostre en directe en 15 minuts.</p>
-      <a class="link link-on" href="mailto:hola@victoresteban.com?subject=Demo%20de%2015%20minuts">Demanar demo →</a>
+      <a class="link link-on" href="#contacto">Demanar demo →</a>
     </section>
 
     <section id="datos" class="panel" aria-labelledby="datos-titulo">
@@ -186,7 +186,7 @@
       <h2 id="datos-titulo">Un full per a l’expedient</h2>
       <p>Una pàgina amb quines dades es tracten, on, durant quant de temps i amb quines garanties, preparada per a adjuntar a l’expedient.</p>
       <!-- When the PDF exists, link it here with the download attribute. -->
-      <a class="link link-on" href="mailto:hola@victoresteban.com?subject=Full%20de%20protecci%C3%B3%20de%20dades">Demanar el full de protecció de dades →</a>
+      <a class="link link-on" href="#contacto">Demanar el full de protecció de dades →</a>
     </section>
   </div>
 
@@ -202,12 +202,71 @@
   <section id="contacto" class="closing" aria-labelledby="contacto-titulo">
     <div class="band band-cenefa" aria-hidden="true"></div>
     <div class="wrap closing-inner">
-      <h2 id="contacto-titulo">Ho veiem en <span class="serif">15 minuts</span>?</h2>
-      <div class="closing-contact">
+      <div class="closing-intro">
+        <h2 id="contacto-titulo">Ho veiem en <span class="serif">15 minuts</span>?</h2>
+        <p class="closing-lead">Conteu-me què vos interessa i vos escric per a buscar un moment. Si ho preferiu, escriviu-me directament:</p>
         <a class="closing-mail" href="mailto:hola@victoresteban.com?subject=Demo%20de%2015%20minuts">hola@victoresteban.com</a>
-        <p class="muted">València · en remot o presencial · <a class="link" href="https://www.linkedin.com/in/victorestebann" target="_blank" rel="noreferrer">LinkedIn ↗</a></p>
-        <a class="btn" href="mailto:hola@victoresteban.com?subject=Demo%20de%2015%20minuts">Demanar una demo</a>
+        <p class="muted closing-place">València · en remot o presencial · <a class="link" href="https://www.linkedin.com/in/victorestebann" target="_blank" rel="noreferrer">LinkedIn ↗</a></p>
       </div>
+    <form class="form" action="https://forms.victoresteban.com/contacto" method="post" accept-charset="utf-8">
+      <input type="hidden" name="lang" value="va" />
+        <div class="field">
+          <label for="f-nombre">Nom i cognoms</label>
+          <input id="f-nombre" name="nombre" type="text" required maxlength="200" autocomplete="name" />
+        </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="f-organismo">Organisme</label>
+          <input id="f-organismo" name="organismo" type="text" required maxlength="200" autocomplete="organization" placeholder="Ajuntament de…" />
+        </div>
+        <div class="field">
+          <label for="f-cargo">Càrrec <span class="opt">(opcional)</span></label>
+          <input id="f-cargo" name="cargo" type="text" maxlength="200" autocomplete="organization-title" />
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="f-email">Correu electrònic</label>
+          <input id="f-email" name="email" type="email" required maxlength="200" autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="f-telefono">Telèfon <span class="opt">(opcional)</span></label>
+          <input id="f-telefono" name="telefono" type="tel" maxlength="40" autocomplete="tel" />
+        </div>
+      </div>
+      <fieldset class="field checks">
+        <legend>Què vos interessa? <span class="opt">(opcional)</span></legend>
+        <div class="check-grid">
+          <label class="check"><input type="checkbox" name="interes" value="accesibilidad" /> <span>Accessibilitat web</span></label>
+          <label class="check"><input type="checkbox" name="interes" value="actas" /> <span>Actes de ple amb IA</span></label>
+          <label class="check"><input type="checkbox" name="interes" value="asistente" /> <span>Assistent o anonimització</span></label>
+          <label class="check"><input type="checkbox" name="interes" value="taller" /> <span>Taller d’IA</span></label>
+          <label class="check"><input type="checkbox" name="interes" value="datos" /> <span>Full de protecció de dades</span></label>
+          <label class="check"><input type="checkbox" name="interes" value="otro" /> <span>Una altra cosa</span></label>
+        </div>
+      </fieldset>
+      <div class="field">
+        <label for="f-mensaje">Missatge <span class="opt">(opcional)</span></label>
+        <textarea id="f-mensaje" name="mensaje" rows="4" maxlength="5000" placeholder="Conteu-me el vostre cas, o quan vos va bé la demo."></textarea>
+      </div>
+      <div class="hp" aria-hidden="true">
+        <label for="f-web">No ompliu este camp</label>
+        <input id="f-web" name="web" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+      <label class="check consent"><input type="checkbox" name="privacidad" value="si" required /> <span>He llegit la informació sobre protecció de dades i accepte que s’usen les meues dades per a respondre a esta sol·licitud.</span></label>
+      <details class="privacy">
+        <summary>Protecció de dades</summary>
+        <dl>
+          <div><dt>Responsable</dt><dd>Victor Esteban (hola@victoresteban.com).</dd></div>
+          <div><dt>Finalitat</dt><dd>Respondre a la vostra sol·licitud i, si vos interessa, preparar una proposta.</dd></div>
+          <div><dt>Legitimació</dt><dd>El vostre consentiment.</dd></div>
+          <div><dt>Destinataris</dt><dd>Ningú més. El formulari s’envia a través de Cloudflare i arriba al meu correu (Google), que actuen com a encarregats del tractament.</dd></div>
+          <div><dt>Conservació</dt><dd>Mentre dure la conversa i, com a màxim, un any després si no hi ha contractació.</dd></div>
+          <div><dt>Drets</dt><dd>Accés, rectificació, supressió, oposició, limitació i portabilitat, en hola@victoresteban.com. També podeu reclamar davant de l’Agència Espanyola de Protecció de Dades (aepd.es).</dd></div>
+        </dl>
+      </details>
+      <button class="btn" type="submit">Enviar la sol·licitud</button>
+    </form>
     </div>
   </section>
 </main>

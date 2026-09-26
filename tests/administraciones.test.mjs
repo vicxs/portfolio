@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { LANGS, STRINGS } from "../administraciones/strings.mjs";
-import { outputPath, renderPage } from "../administraciones/build.mjs";
+import { PAGES, outputPath, renderPage } from "../administraciones/build.mjs";
 
 const langs = Object.keys(LANGS);
 assert.deepEqual(langs, ["es", "va", "en"], "The services page should be in Spanish, Valencian and English");
@@ -22,24 +22,28 @@ for (const lang of langs) {
 }
 
 for (const lang of langs) {
-  const html = renderPage(lang);
-  const file = outputPath(lang);
-  assert.ok(existsSync(file), `${path.relative(".", file)} should exist; run node administraciones/build.mjs`);
-  assert.equal(readFileSync(file, "utf8"), html, `${path.relative(".", file)} is out of date; run node administraciones/build.mjs`);
+  for (const [page, render] of PAGES) {
+    const html = render(lang);
+    const file = outputPath(lang, page);
+    const name = path.relative(".", file);
+    assert.ok(existsSync(file), `${name} should exist; run node administraciones/build.mjs`);
+    assert.equal(readFileSync(file, "utf8"), html, `${name} is out of date; run node administraciones/build.mjs`);
+    assert.ok(html.includes(`<html lang="${LANGS[lang].htmlLang}">`), `${name} should declare its language`);
+    assert.ok(!/<script\b/.test(html), `${name} should work without scripts`);
 
-  assert.ok(html.includes(`<html lang="${LANGS[lang].htmlLang}">`), `${lang} page should declare its language`);
+    // Relative links resolve to files that exist (commented-out examples aside).
+    const dir = path.dirname(file);
+    for (const [, ref] of html.replace(/<!--[\s\S]*?-->/g, "").matchAll(/(?:src|href)="((?:\.\.\/)+[^"?#]*)/g)) {
+      assert.ok(existsSync(path.join(dir, ref)), `${name} links to missing ${ref}`);
+    }
+  }
+
+  const html = renderPage(lang);
   for (const other of langs) {
     assert.ok(html.includes(`hreflang="${LANGS[other].hreflang}" href="https://victoresteban.com/administraciones/${LANGS[other].dir}"`), `${lang} page should list the ${other} alternate`);
   }
-  assert.ok(!/<script\b/.test(html), `${lang} page should work without scripts`);
-  assert.ok(html.includes("mailto:hola@victoresteban.com?subject="), `${lang} page should offer the contact email`);
-
-  // Relative links resolve to files that exist (commented-out examples aside).
-  const dir = path.dirname(file);
-  for (const [, ref] of html.replace(/<!--[\s\S]*?-->/g, "").matchAll(/(?:src|href)="((?:\.\.\/)+[^"?#]*)/g)) {
-    const target = path.join(dir, ref);
-    assert.ok(existsSync(target), `${lang} page links to missing ${ref}`);
-  }
+  assert.ok(html.includes("mailto:hola@victoresteban.com"), `${lang} page should show the contact email`);
+  assert.ok(outputPath(lang, "gracias/") && readFileSync(outputPath(lang, "gracias/"), "utf8").includes('<meta name="robots" content="noindex" />'), `${lang} thank-you page should not be indexed`);
 }
 
 // The services page links to the portfolio, but not the other way round.

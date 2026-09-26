@@ -105,15 +105,54 @@
 .who-text { margin: 0; font-size: 20px; line-height: 1.5; text-wrap: pretty; }
 .who .link { font-weight: 500; }
 
-/* Close: a band of cenefa tiles, then the question and the address */
+/* Close: a band of cenefa tiles, then the question beside the form */
 .closing { margin-top: 96px; }
-.closing-inner { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 28px clamp(32px, 5vw, 80px); align-items: end; padding-top: 56px; }
+.closing-inner { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 32px clamp(32px, 5vw, 80px); align-items: start; padding-top: 56px; }
+.closing-intro { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
 .closing h2 { margin: 0; font-size: clamp(34px, 4.4vw, 58px); line-height: 1.06; font-weight: 500; letter-spacing: -0.025em; text-wrap: balance; }
 .closing h2 .serif { font-size: 1.1em; color: var(--sea); }
-.closing-contact { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.closing-lead { margin: 6px 0 0; max-width: 44ch; line-height: 1.55; color: var(--muted); }
 .closing-mail { font-size: clamp(20px, 2vw, 26px); font-weight: 500; letter-spacing: -0.01em; border-bottom: 1px solid var(--sea); overflow-wrap: anywhere; }
 .closing-mail:hover { color: var(--sea); }
-.closing-contact p { margin: 0 0 8px; font-size: 14px; }
+.closing-place { margin: 0; font-size: 14px; }
+
+/* Contact form: sheet-like, labels above fields, one solid button */
+.form { display: flex; flex-direction: column; gap: 18px; padding: 28px; background: var(--tile); border: 1px solid var(--rule); border-radius: 2px; }
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; margin: 0; padding: 0; border: 0; }
+.field-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px var(--gap); }
+.field label, .field legend { padding: 0; font-size: 14px; font-weight: 500; }
+.opt { font-weight: 400; color: var(--muted); }
+.form input[type="text"], .form input[type="email"], .form input[type="tel"], .form textarea {
+  width: 100%; padding: 11px 12px; font: inherit; font-size: 16px; color: var(--ink);
+  background: var(--ground); border: 1px solid var(--rule); border-bottom-color: var(--muted); border-radius: 2px;
+  transition: border-color .2s, box-shadow .2s;
+}
+.form textarea { resize: vertical; min-height: 104px; line-height: 1.5; }
+.form input::placeholder, .form textarea::placeholder { color: var(--muted); opacity: .8; }
+.form input:focus, .form textarea:focus { outline: none; border-color: var(--sea); box-shadow: 0 0 0 3px var(--sea-soft); }
+.form input:user-invalid, .form textarea:user-invalid { border-color: #A23B2A; }
+.checks legend { margin-bottom: 8px; }
+.check-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px var(--gap); }
+.check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.45; cursor: pointer; }
+.check input { flex: none; width: 18px; height: 18px; margin: 1px 0 0; accent-color: var(--sea); }
+.check input:focus-visible { outline: 2px solid var(--sea); outline-offset: 2px; }
+.consent { padding-top: 16px; border-top: 1px solid var(--rule); color: var(--ink); }
+.privacy { font-size: 13px; color: var(--muted); }
+.privacy summary { cursor: pointer; width: fit-content; font-weight: 500; color: var(--sea); }
+.privacy dl { margin: 10px 0 0; display: grid; gap: 6px; }
+.privacy dl > div { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 12px; }
+.privacy dt { font-weight: 500; color: var(--ink); }
+.privacy dd { margin: 0; line-height: 1.5; }
+.form .btn { align-self: flex-start; border: 0; font: inherit; font-weight: 500; cursor: pointer; }
+/* Honeypot: off screen for people, still in the form for bots */
+.hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+
+/* Thank-you page */
+.thanks { display: flex; flex-direction: column; align-items: flex-start; gap: 22px; padding-top: 88px; padding-bottom: 72px; }
+.thanks > * { max-width: 900px; }
+.thanks-tile { width: 64px; height: 64px; box-shadow: 0 0 0 1px var(--rule); }
+.thanks h1 { margin: 0; font-size: clamp(36px, 4.6vw, 60px); line-height: 1.06; font-weight: 500; letter-spacing: -0.028em; text-wrap: balance; }
+.thanks h1 .serif { font-size: 1.12em; color: var(--sea); }
 
 @media (max-width: 1100px) {
   .cards { grid-template-columns: minmax(0, 1fr); }
@@ -124,6 +163,10 @@
 @media (max-width: 900px) {
   .nav { justify-content: flex-start; gap: 8px 20px; }
   .intro, .closing-inner, .pair { grid-template-columns: minmax(0, 1fr); }
+  .form { padding: 20px 16px; }
+  .field-row, .check-grid { grid-template-columns: minmax(0, 1fr); }
+  .privacy dl > div { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .thanks { padding-top: 48px; padding-bottom: 48px; }
   .intro { padding-top: 40px; }
   .lede { font-size: 17px; }
   .ficha { padding: 20px 18px 14px; }

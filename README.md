@@ -42,6 +42,17 @@ node administraciones/build.mjs
 
 `node tests/administraciones.test.mjs` fails if the committed pages are out of date or a language is missing copy.
 
+The contact form posts to a Cloudflare Worker in `workers/contacto/` at `https://forms.victoresteban.com/contacto`. It checks the fields (with a honeypot against bots), emails the request through Cloudflare Email Routing with Reply-To set to the sender, stores nothing, and redirects to `/administraciones/gracias/` in the sender's language. To deploy it:
+
+```sh
+cd workers/contacto
+npx wrangler login
+npx wrangler secret put TO   # the verified Email Routing destination address
+npx wrangler deploy          # also creates the forms.victoresteban.com custom domain
+```
+
+`node tests/contacto-worker.test.mjs` checks the Worker's parsing and email, and that the form and the Worker agree on fields and route.
+
 ## Structure
 
 ```
@@ -60,6 +71,7 @@ administraciones/
   build.mjs             # Renders index.html, va/index.html and en/index.html
   administraciones.css  # Services page layout
 assets/rajoles/         # One SVG per tile, used by the services page
+workers/contacto/       # Cloudflare Worker that emails the contact form
 tests/                  # Node assertion scripts (node tests/<file>.mjs)
 ```
 

@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../../portfolios/cabanyal.css?v=8" />
-<link rel="stylesheet" href="../../administraciones/administraciones.css?v=3" />
+<link rel="stylesheet" href="../../administraciones/administraciones.css?v=4" />
 </head>
 <body>
 <a class="skip" href="#contenido">Skip to content</a>
@@ -57,7 +57,7 @@
       <h1 class="anim-fade" style="animation-delay: 120ms">Web accessibility and <span class="serif">practical AI</span> for town councils.</h1>
       <p class="lede anim-fade" style="animation-delay: 300ms">I help councils meet accessibility law and save hours of clerk’s office work with AI: minutes of council meetings, answers drawn from your own documents, and anonymisation for the transparency portal. Small pilots at a fixed price, always with someone on your team validating the result.</p>
       <div class="actions anim-fade" style="animation-delay: 450ms">
-        <a class="btn" href="mailto:hola@victoresteban.com?subject=15-minute%20demo">Book a 15-minute demo</a>
+        <a class="btn" href="#contacto">Book a 15-minute demo</a>
         <a class="link" href="#servicios">See the services ↓</a>
       </div>
     </div>
@@ -144,7 +144,7 @@
       </div>
       <div class="taller-side">
         <span>2 to 3 hours · on site or remote</span>
-        <a class="btn btn-light" href="mailto:hola@victoresteban.com?subject=AI%20workshop">Ask for the workshop</a>
+        <a class="btn btn-light" href="#contacto">Ask for the workshop</a>
       </div>
     </aside>
   </section>
@@ -178,7 +178,7 @@
       </figure>
       -->
       <p>Demo videos will be here very soon. Until then, I can show you one live in 15 minutes.</p>
-      <a class="link link-on" href="mailto:hola@victoresteban.com?subject=15-minute%20demo">Book a demo →</a>
+      <a class="link link-on" href="#contacto">Book a demo →</a>
     </section>
 
     <section id="datos" class="panel" aria-labelledby="datos-titulo">
@@ -186,7 +186,7 @@
       <h2 id="datos-titulo">A sheet for the procurement file</h2>
       <p>One page on what data is processed, where, for how long and with what safeguards, ready to attach to the file.</p>
       <!-- When the PDF exists, link it here with the download attribute. -->
-      <a class="link link-on" href="mailto:hola@victoresteban.com?subject=Data%20protection%20sheet">Ask for the data protection sheet →</a>
+      <a class="link link-on" href="#contacto">Ask for the data protection sheet →</a>
     </section>
   </div>
 
@@ -202,12 +202,71 @@
   <section id="contacto" class="closing" aria-labelledby="contacto-titulo">
     <div class="band band-cenefa" aria-hidden="true"></div>
     <div class="wrap closing-inner">
-      <h2 id="contacto-titulo">Shall we talk for <span class="serif">15 minutes</span>?</h2>
-      <div class="closing-contact">
+      <div class="closing-intro">
+        <h2 id="contacto-titulo">Shall we talk for <span class="serif">15 minutes</span>?</h2>
+        <p class="closing-lead">Tell me what you are interested in and I will write back to find a time. If you prefer, email me directly:</p>
         <a class="closing-mail" href="mailto:hola@victoresteban.com?subject=15-minute%20demo">hola@victoresteban.com</a>
-        <p class="muted">Valencia · remote or on site · <a class="link" href="https://www.linkedin.com/in/victorestebann" target="_blank" rel="noreferrer">LinkedIn ↗</a></p>
-        <a class="btn" href="mailto:hola@victoresteban.com?subject=15-minute%20demo">Book a demo</a>
+        <p class="muted closing-place">Valencia · remote or on site · <a class="link" href="https://www.linkedin.com/in/victorestebann" target="_blank" rel="noreferrer">LinkedIn ↗</a></p>
       </div>
+    <form class="form" action="https://forms.victoresteban.com/contacto" method="post" accept-charset="utf-8">
+      <input type="hidden" name="lang" value="en" />
+        <div class="field">
+          <label for="f-nombre">Full name</label>
+          <input id="f-nombre" name="nombre" type="text" required maxlength="200" autocomplete="name" />
+        </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="f-organismo">Organisation</label>
+          <input id="f-organismo" name="organismo" type="text" required maxlength="200" autocomplete="organization" placeholder="Town council of…" />
+        </div>
+        <div class="field">
+          <label for="f-cargo">Position <span class="opt">(optional)</span></label>
+          <input id="f-cargo" name="cargo" type="text" maxlength="200" autocomplete="organization-title" />
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" required maxlength="200" autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="f-telefono">Phone <span class="opt">(optional)</span></label>
+          <input id="f-telefono" name="telefono" type="tel" maxlength="40" autocomplete="tel" />
+        </div>
+      </div>
+      <fieldset class="field checks">
+        <legend>What are you interested in? <span class="opt">(optional)</span></legend>
+        <div class="check-grid">
+          <label class="check"><input type="checkbox" name="interes" value="accesibilidad" /> <span>Web accessibility</span></label>
+          <label class="check"><input type="checkbox" name="interes" value="actas" /> <span>AI-drafted council minutes</span></label>
+          <label class="check"><input type="checkbox" name="interes" value="asistente" /> <span>Assistant or anonymisation</span></label>
+          <label class="check"><input type="checkbox" name="interes" value="taller" /> <span>AI workshop</span></label>
+          <label class="check"><input type="checkbox" name="interes" value="datos" /> <span>Data protection sheet</span></label>
+          <label class="check"><input type="checkbox" name="interes" value="otro" /> <span>Something else</span></label>
+        </div>
+      </fieldset>
+      <div class="field">
+        <label for="f-mensaje">Message <span class="opt">(optional)</span></label>
+        <textarea id="f-mensaje" name="mensaje" rows="4" maxlength="5000" placeholder="Tell me about your case, or when suits you for the demo."></textarea>
+      </div>
+      <div class="hp" aria-hidden="true">
+        <label for="f-web">Leave this field empty</label>
+        <input id="f-web" name="web" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+      <label class="check consent"><input type="checkbox" name="privacidad" value="si" required /> <span>I have read the data protection information and agree to my data being used to answer this request.</span></label>
+      <details class="privacy">
+        <summary>Data protection</summary>
+        <dl>
+          <div><dt>Controller</dt><dd>Victor Esteban (hola@victoresteban.com).</dd></div>
+          <div><dt>Purpose</dt><dd>To answer your request and, if you are interested, prepare a proposal.</dd></div>
+          <div><dt>Legal basis</dt><dd>Your consent.</dd></div>
+          <div><dt>Recipients</dt><dd>Nobody else. The form is sent through Cloudflare and reaches my mailbox (Google), both acting as processors.</dd></div>
+          <div><dt>Retention</dt><dd>For as long as the conversation lasts and at most one year after it if nothing is contracted.</dd></div>
+          <div><dt>Your rights</dt><dd>Access, rectification, erasure, objection, restriction and portability, at hola@victoresteban.com. You can also complain to the Spanish Data Protection Agency (aepd.es).</dd></div>
+        </dl>
+      </details>
+      <button class="btn" type="submit">Send request</button>
+    </form>
     </div>
   </section>
 </main>

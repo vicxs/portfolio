@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../portfolios/cabanyal.css?v=8" />
-<link rel="stylesheet" href="../administraciones/administraciones.css?v=3" />
+<link rel="stylesheet" href="../administraciones/administraciones.css?v=4" />
 </head>
 <body>
 <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -57,7 +57,7 @@
       <h1 class="anim-fade" style="animation-delay: 120ms">Accesibilidad web e <span class="serif">IA práctica</span> para ayuntamientos.</h1>
       <p class="lede anim-fade" style="animation-delay: 300ms">Os ayudo a cumplir la normativa de accesibilidad y a ahorrar horas de secretaría con IA: actas de pleno, respuestas a partir de vuestros propios documentos y anonimización para el portal de transparencia. Pilotos pequeños, con precio cerrado, y siempre con una persona de vuestro equipo validando el resultado.</p>
       <div class="actions anim-fade" style="animation-delay: 450ms">
-        <a class="btn" href="mailto:hola@victoresteban.com?subject=Demo%20de%2015%20minutos">Pide una demo de 15 minutos</a>
+        <a class="btn" href="#contacto">Pide una demo de 15 minutos</a>
         <a class="link" href="#servicios">Ver los servicios ↓</a>
       </div>
     </div>
@@ -144,7 +144,7 @@
       </div>
       <div class="taller-side">
         <span>2 a 3 horas · presencial o en remoto</span>
-        <a class="btn btn-light" href="mailto:hola@victoresteban.com?subject=Taller%20de%20IA">Pedir el taller</a>
+        <a class="btn btn-light" href="#contacto">Pedir el taller</a>
       </div>
     </aside>
   </section>
@@ -178,7 +178,7 @@
       </figure>
       -->
       <p>Los vídeos de las demos estarán aquí muy pronto. Mientras tanto, os la enseño en directo en 15 minutos.</p>
-      <a class="link link-on" href="mailto:hola@victoresteban.com?subject=Demo%20de%2015%20minutos">Pedir demo →</a>
+      <a class="link link-on" href="#contacto">Pedir demo →</a>
     </section>
 
     <section id="datos" class="panel" aria-labelledby="datos-titulo">
@@ -186,7 +186,7 @@
       <h2 id="datos-titulo">Una hoja para el expediente</h2>
       <p>Una página con qué datos se tratan, dónde, durante cuánto tiempo y con qué garantías, lista para adjuntar al expediente.</p>
       <!-- When the PDF exists, link it here with the download attribute. -->
-      <a class="link link-on" href="mailto:hola@victoresteban.com?subject=Hoja%20de%20protecci%C3%B3n%20de%20datos">Pedir la hoja de protección de datos →</a>
+      <a class="link link-on" href="#contacto">Pedir la hoja de protección de datos →</a>
     </section>
   </div>
 
@@ -202,12 +202,71 @@
   <section id="contacto" class="closing" aria-labelledby="contacto-titulo">
     <div class="band band-cenefa" aria-hidden="true"></div>
     <div class="wrap closing-inner">
-      <h2 id="contacto-titulo">¿Lo vemos en <span class="serif">15 minutos</span>?</h2>
-      <div class="closing-contact">
+      <div class="closing-intro">
+        <h2 id="contacto-titulo">¿Lo vemos en <span class="serif">15 minutos</span>?</h2>
+        <p class="closing-lead">Cuéntame qué os interesa y te escribo para buscar un hueco. Si lo prefieres, escríbeme directamente:</p>
         <a class="closing-mail" href="mailto:hola@victoresteban.com?subject=Demo%20de%2015%20minutos">hola@victoresteban.com</a>
-        <p class="muted">Valencia · en remoto o presencial · <a class="link" href="https://www.linkedin.com/in/victorestebann" target="_blank" rel="noreferrer">LinkedIn ↗</a></p>
-        <a class="btn" href="mailto:hola@victoresteban.com?subject=Demo%20de%2015%20minutos">Pedir una demo</a>
+        <p class="muted closing-place">Valencia · en remoto o presencial · <a class="link" href="https://www.linkedin.com/in/victorestebann" target="_blank" rel="noreferrer">LinkedIn ↗</a></p>
       </div>
+    <form class="form" action="https://forms.victoresteban.com/contacto" method="post" accept-charset="utf-8">
+      <input type="hidden" name="lang" value="es" />
+        <div class="field">
+          <label for="f-nombre">Nombre y apellidos</label>
+          <input id="f-nombre" name="nombre" type="text" required maxlength="200" autocomplete="name" />
+        </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="f-organismo">Organismo</label>
+          <input id="f-organismo" name="organismo" type="text" required maxlength="200" autocomplete="organization" placeholder="Ayuntamiento de…" />
+        </div>
+        <div class="field">
+          <label for="f-cargo">Cargo <span class="opt">(opcional)</span></label>
+          <input id="f-cargo" name="cargo" type="text" maxlength="200" autocomplete="organization-title" />
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="f-email">Correo electrónico</label>
+          <input id="f-email" name="email" type="email" required maxlength="200" autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="f-telefono">Teléfono <span class="opt">(opcional)</span></label>
+          <input id="f-telefono" name="telefono" type="tel" maxlength="40" autocomplete="tel" />
+        </div>
+      </div>
+      <fieldset class="field checks">
+        <legend>¿Qué os interesa? <span class="opt">(opcional)</span></legend>
+        <div class="check-grid">
+          <label class="check"><input type="checkbox" name="interes" value="accesibilidad" /> <span>Accesibilidad web</span></label>
+          <label class="check"><input type="checkbox" name="interes" value="actas" /> <span>Actas de pleno con IA</span></label>
+          <label class="check"><input type="checkbox" name="interes" value="asistente" /> <span>Asistente o anonimización</span></label>
+          <label class="check"><input type="checkbox" name="interes" value="taller" /> <span>Taller de IA</span></label>
+          <label class="check"><input type="checkbox" name="interes" value="datos" /> <span>Hoja de protección de datos</span></label>
+          <label class="check"><input type="checkbox" name="interes" value="otro" /> <span>Otra cosa</span></label>
+        </div>
+      </fieldset>
+      <div class="field">
+        <label for="f-mensaje">Mensaje <span class="opt">(opcional)</span></label>
+        <textarea id="f-mensaje" name="mensaje" rows="4" maxlength="5000" placeholder="Contadme vuestro caso, o cuándo os viene bien la demo."></textarea>
+      </div>
+      <div class="hp" aria-hidden="true">
+        <label for="f-web">No rellenes este campo</label>
+        <input id="f-web" name="web" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+      <label class="check consent"><input type="checkbox" name="privacidad" value="si" required /> <span>He leído la información sobre protección de datos y acepto que se usen mis datos para responder a esta solicitud.</span></label>
+      <details class="privacy">
+        <summary>Protección de datos</summary>
+        <dl>
+          <div><dt>Responsable</dt><dd>Victor Esteban (hola@victoresteban.com).</dd></div>
+          <div><dt>Finalidad</dt><dd>Responder a tu solicitud y, si os interesa, preparar una propuesta.</dd></div>
+          <div><dt>Legitimación</dt><dd>Tu consentimiento.</dd></div>
+          <div><dt>Destinatarios</dt><dd>Nadie más. El formulario se envía a través de Cloudflare y llega a mi correo (Google), que actúan como encargados del tratamiento.</dd></div>
+          <div><dt>Conservación</dt><dd>Mientras dure la conversación y, como máximo, un año después si no hay contratación.</dd></div>
+          <div><dt>Derechos</dt><dd>Acceso, rectificación, supresión, oposición, limitación y portabilidad, en hola@victoresteban.com. También puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).</dd></div>
+        </dl>
+      </details>
+      <button class="btn" type="submit">Enviar solicitud</button>
+    </form>
     </div>
   </section>
 </main>
