@@ -37,3 +37,6 @@ yarn-error.log*
 
 # Build output
 /dist
+
+# Lighthouse CI
+/.lighthouseci/

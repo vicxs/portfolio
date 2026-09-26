@@ -87,6 +87,7 @@ npm run dev       # http://localhost:5173
 npm test          # every tests/*.test.mjs (Node ≥ 22.18 runs the .ts content directly)
 npm run typecheck # tsc in strict mode; npm run build runs it first
 npm run build     # dist/, then npm run preview to serve it
+npm run lighthouse # Lighthouse budget over the built site
 ```
 
 Edit `portfolios/data.ts` to update content and `portfolios/i18n.ts` for interface copy; the compiler rejects a Spanish string missing from `i18n.ts` or an experience of an unknown tier, and `tests/i18n.test.mjs` checks both languages are complete and that periods use three-letter months. The JSON-LD in `index.html` repeats name, role, contact links and school from `data.ts`; `tests/seo.test.mjs` fails if they drift apart. Edit `portfolios/cabanyal.tsx` and `portfolios/cabanyal.css` to change layout.
@@ -95,7 +96,13 @@ Vite bundles only the portfolio. `CNAME`, `404.html`, `robots.txt`, `sitemap.xml
 
 ## Deployment
 
-GitHub Pages must serve the built `dist/` folder, not the repository as it is: a GitHub Actions workflow builds on every push to `main` and deploys `dist/` to Pages (issue #11), with the Pages source set to "GitHub Actions".
+`.github/workflows/deploy.yml` runs on every push to `main`: `npm ci`, `npm test`, `npm run build` (type-check included), then publishes `dist/` to GitHub Pages. Pages uses "GitHub Actions" as its source (Settings → Pages); the custom domain `victoresteban.com` is set there too.
+
+Pull requests run the same build without deploying, plus a Lighthouse budget over the portfolio (EN and ES) and the three services pages: performance ≥ 0.90 and accessibility, best practices and SEO ≥ 0.95 (median of three runs), with colour contrast, labels, link and button names, alt text, title and `lang` as hard failures. Reports are attached to the run as the `lighthouse-reports` artifact. On `main` Lighthouse runs too, but a low score does not hold back a deploy. To run it locally after a build:
+
+```sh
+npm run build && npm run lighthouse   # CHROME_PATH=/path/to/chrome to pick a browser
+```
 
 ## License
 
