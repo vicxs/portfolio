@@ -43,7 +43,6 @@ for (const lang of langs) {
     assert.ok(html.includes(`hreflang="${LANGS[other].hreflang}" href="https://victoresteban.com/administraciones/${LANGS[other].dir}"`), `${lang} page should list the ${other} alternate`);
   }
   assert.ok(html.includes("mailto:hola@victoresteban.com"), `${lang} page should show the contact email`);
-  assert.ok(html.includes(`assets/${LANGS[lang].cv}"`), `${lang} page should link the CV in its own language`);
   assert.ok(outputPath(lang, "gracias/") && readFileSync(outputPath(lang, "gracias/"), "utf8").includes('<meta name="robots" content="noindex" />'), `${lang} thank-you page should not be indexed`);
 }
 

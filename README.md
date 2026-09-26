@@ -33,7 +33,7 @@ The build fails if the Google Fonts don't load or the content no longer fits on 
 
 ## Services for public administrations
 
-`/administraciones/` is a separate static page (no scripts) offering web accessibility and AI services to town councils, in Spanish (`/administraciones/`), Valencian (`/administraciones/va/`) and English (`/administraciones/en/`). It reuses the Cabanyal tokens with its own layout and links to the portfolio and to the CV in the page's language (the Valencian page gets the Valencian CV); the portfolio does not link back. Copy lives in `administraciones/strings.mjs`; rebuild the three pages with:
+`/administraciones/` is a separate static page (no scripts) offering web accessibility and AI services to town councils, in Spanish (`/administraciones/`), Valencian (`/administraciones/va/`) and English (`/administraciones/en/`). It reuses the Cabanyal tokens with its own layout and links to the portfolio; the portfolio does not link back. Copy lives in `administraciones/strings.mjs`; rebuild the three pages with:
 
 ```sh
 node administraciones/build.mjs

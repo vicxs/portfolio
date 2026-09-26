@@ -2,9 +2,9 @@
 // build.mjs renders each into its own static page. Text between
 // *asterisks* is set in the serif italic.
 export const LANGS = {
-  es: { dir: '', htmlLang: 'es', hreflang: 'es', locale: 'es_ES', label: 'ES', name: 'Castellano', cv: 'Victor_Esteban_CV_ES.pdf' },
-  va: { dir: 'va/', htmlLang: 'ca-valencia', hreflang: 'ca', locale: 'ca_ES', label: 'VA', name: 'Valencià', cv: 'Victor_Esteban_CV_VA.pdf' },
-  en: { dir: 'en/', htmlLang: 'en', hreflang: 'en', locale: 'en_GB', label: 'EN', name: 'English', cv: 'Victor_Esteban_CV.pdf' },
+  es: { dir: '', htmlLang: 'es', hreflang: 'es', locale: 'es_ES', label: 'ES', name: 'Castellano' },
+  va: { dir: 'va/', htmlLang: 'ca-valencia', hreflang: 'ca', locale: 'ca_ES', label: 'VA', name: 'Valencià' },
+  en: { dir: 'en/', htmlLang: 'en', hreflang: 'en', locale: 'en_GB', label: 'EN', name: 'English' },
 };
 
 export const STRINGS = {
@@ -111,7 +111,6 @@ export const STRINGS = {
     whoEyebrow: 'Quién soy',
     whoText: 'Soy Victor Esteban, ingeniero de software en Valencia. Llevo más de 5 años construyendo y manteniendo sistemas en producción para empresas como Toyota, Inditex y Mercadona, y estoy certificado como Claude Certified Architect.',
     whoLink: 'Ver mi trayectoria completa →',
-    whoCv: 'Descargar mi CV (PDF) ↓',
     closingTitle: '¿Lo vemos en *15 minutos*?',
     closingPlace: 'Valencia · en remoto o presencial',
     closingCta: 'Pedir una demo',
@@ -259,7 +258,6 @@ export const STRINGS = {
     whoEyebrow: 'Qui soc',
     whoText: 'Soc Victor Esteban, enginyer de programari a València. Fa més de 5 anys que construïsc i mantinc sistemes en producció per a empreses com Toyota, Inditex i Mercadona, i tinc la certificació Claude Certified Architect.',
     whoLink: 'Veure la meua trajectòria completa (en castellà) →',
-    whoCv: 'Descarregar el meu CV (PDF) ↓',
     closingTitle: 'Ho veiem en *15 minuts*?',
     closingPlace: 'València · en remot o presencial',
     closingCta: 'Demanar una demo',
@@ -407,7 +405,6 @@ export const STRINGS = {
     whoEyebrow: 'About me',
     whoText: 'I’m Victor Esteban, a software engineer in Valencia. I’ve spent 5+ years building and running production systems for companies such as Toyota, Inditex and Mercadona, and I’m a Claude Certified Architect.',
     whoLink: 'See my full background →',
-    whoCv: 'Download my CV (PDF) ↓',
     closingTitle: 'Shall we talk for *15 minutes*?',
     closingPlace: 'Valencia · remote or on site',
     closingCta: 'Book a demo',

@@ -277,7 +277,6 @@ ${principles}
       <p class="eyebrow" id="quien-titulo">${esc(t.whoEyebrow)}</p>
       <p class="who-text">${esc(t.whoText)}</p>
       <a class="link link-on" href="${portfolio}">${esc(t.whoLink)}</a>
-      <a class="link link-on" href="${assets}${LANGS[lang].cv}">${esc(t.whoCv)}</a>
     </div>
   </section>
 
