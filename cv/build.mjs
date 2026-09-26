@@ -1,4 +1,4 @@
-// Prints cv/en.html and cv/es.html to the PDFs the portfolio links to.
+// Prints cv/en.html, cv/es.html and cv/va.html to the PDFs the portfolio links to.
 //
 //   npm install --no-save playwright-core
 //   node cv/build.mjs
@@ -15,6 +15,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const TARGETS = [
   { src: 'cv/en.html', out: 'assets/Victor_Esteban_CV.pdf' },
   { src: 'cv/es.html', out: 'assets/Victor_Esteban_CV_ES.pdf' },
+  { src: 'cv/va.html', out: 'assets/Victor_Esteban_CV_VA.pdf' },
 ];
 
 const proxy = process.env.HTTPS_PROXY || process.env.https_proxy;
