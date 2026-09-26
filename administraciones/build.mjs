@@ -76,8 +76,8 @@ ${alternates}
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="${root}portfolios/cabanyal.css?v=9" />
-<link rel="stylesheet" href="${own}administraciones.css?v=5" />
+<link rel="stylesheet" href="${root}portfolios/cabanyal.css?v=10" />
+<link rel="stylesheet" href="${own}administraciones.css?v=6" />
 </head>
 <body>
 <a class="skip" href="#contenido">${esc(t.skip)}</a>
@@ -190,7 +190,7 @@ ${s.items.map((it) => `          <li>${esc(it)}</li>`).join('\n')}
   <section class="intro wrap" aria-label="${esc(t.introLabel)}">
     <div class="intro-text">
       <p class="eyebrow anim-fade">${esc(t.eyebrow)}</p>
-      <h1 class="anim-fade" style="animation-delay: 120ms">${serif(t.headline)}</h1>
+      <h1 class="anim-lift" style="animation-delay: 120ms">${serif(t.headline)}</h1>
       <p class="lede anim-fade" style="animation-delay: 300ms">${esc(t.lede)}</p>
       <div class="actions anim-fade" style="animation-delay: 450ms">
         <a class="btn" href="#contacto">${esc(t.ctaDemo)}</a>

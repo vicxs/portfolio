@@ -61,7 +61,9 @@
 .card li::before { content: ""; position: absolute; left: 0; top: 10px; width: 8px; height: 1px; background: var(--sea); }
 .variant { margin-top: auto; padding: 14px 14px 12px; background: var(--ground); border: 1px dashed var(--rule); border-radius: 2px; }
 .card ul + .variant { margin-top: 12px; }
-.variant-label { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ochre); }
+/* Ochre is for tiles, never text (2.3:1 on ground): it stays as a dot beside the label. */
+.variant-label { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.variant-label::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--ochre); }
 .variant p { margin: 6px 0 0; font-size: 14px; line-height: 1.5; color: var(--muted); }
 .variant b { color: var(--ink); font-weight: 500; }
 

@@ -195,6 +195,10 @@ details.contrib li::before { content: ""; position: absolute; left: 0; top: 15px
 
 /* ---------- Motion ---------- */
 .anim-fade { animation: fade .8s var(--ease) both; }
+/* Lift without fading: headlines stay painted from the first frame, since
+   Chrome never counts an element that starts at opacity 0 as its LCP. */
+.anim-lift { animation: lift .8s var(--ease) both; }
+@keyframes lift { from { transform: translateY(8px); } to { transform: none; } }
 @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 .anim-rise { animation: rise 1s var(--ease) both; }
 @keyframes fadeonly { from { opacity: 0; } to { opacity: 1; } }
