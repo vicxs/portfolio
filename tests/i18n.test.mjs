@@ -41,4 +41,18 @@ function walk(value, where) {
 }
 walk(VICTOR, "VICTOR");
 
+// Periods read "Mmm YYYY — Mmm YYYY", with three-letter months, or end in the present.
+const MONTHS = {
+  en: "Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec",
+  es: "Ene|Feb|Mar|Abr|May|Jun|Jul|Ago|Sep|Oct|Nov|Dic",
+};
+const PRESENT = { en: "Present", es: "Actualidad" };
+for (const lang of LANGS) {
+  const date = `(?:${MONTHS[lang]}) \\d{4}`;
+  const period = new RegExp(`^${date} — (?:${date}|${PRESENT[lang]})$`);
+  VICTOR.experiences.forEach((e) => {
+    assert.match(e.period[lang], period, `${e.company} period (${lang}) should use three-letter months`);
+  });
+}
+
 console.log("translations are complete for en and es");

@@ -13,7 +13,7 @@ Personal portfolio site. Software Engineer · Backend / Integration / Production
 
 ## Design
 
-"Cabanyal" direction: a light lime-wash ground, a Swiss 12-column grid and footnotes in the margin, set in Schibsted Grotesk with Instrument Serif italic accents. The one ornament is a band of simplified rajoles after the tiled façades of El Cabanyal, Valencia's old fishing quarter; it flips as one, cycling Flor → Estrella → Rombe → Cenefa → Ona. The mark is a minimal rosa dels vents. On scroll, section rules draw in, rows and list items rise in staggered and a thin progress line tracks the page. All motion respects `prefers-reduced-motion`.
+"Cabanyal" direction: a light lime-wash ground, a Swiss 12-column grid and footnotes in the margin, set in Schibsted Grotesk with Instrument Serif italic accents. The one ornament is a band of simplified rajoles after the tiled façades of El Cabanyal, Valencia's old fishing quarter; it flips as one, cycling Flor → Estrella → Rombe → Cenefa → Ona. The mark is a minimal rosa dels vents. On scroll, section rules draw in, rows and list items rise in staggered and a thin progress line tracks the page. Switching language cross-fades where the browser supports View Transitions. All motion respects `prefers-reduced-motion`.
 
 Content order: hero (with an at-a-glance panel beside the lede) → Work → Stack and Certifications side by side → Education & languages → Contact. The content runs up to 1440px wide with a fluid gutter; on phones everything stacks into one column.
 
@@ -56,7 +56,9 @@ npx wrangler deploy          # also creates the forms.victoresteban.com custom d
 ## Structure
 
 ```
-index.html              # Entry; loads React + mounts <CabanyalPortfolio />
+index.html              # Entry; loads React + mounts <CabanyalPortfolio />; SEO meta and JSON-LD
+404.html                # Static page GitHub Pages serves at any missing path (absolute URLs only)
+robots.txt, sitemap.xml # Crawling: the portfolio and the three services pages
 portfolios/
   data.js               # Content (experience, skills, certifications, etc.); translatable fields are { en, es }
   i18n.js               # Interface copy (nav, headings, labels) per language
@@ -84,7 +86,11 @@ python3 -m http.server 8000
 # then visit http://localhost:8000
 ```
 
-Edit `portfolios/data.js` to update content and `portfolios/i18n.js` for interface copy; `node tests/i18n.test.mjs` checks both languages are complete. Edit `portfolios/cabanyal.jsx` and `portfolios/cabanyal.css` to change layout.
+Edit `portfolios/data.js` to update content and `portfolios/i18n.js` for interface copy; `node tests/i18n.test.mjs` checks both languages are complete and that periods use three-letter months. The JSON-LD in `index.html` repeats name, role, contact links and school from `data.js`; `node tests/seo.test.mjs` fails if they drift apart. Run every check with:
+
+```sh
+for f in tests/*.mjs; do node "$f" || exit 1; done
+``` Edit `portfolios/cabanyal.jsx` and `portfolios/cabanyal.css` to change layout.
 
 ## Deployment
 

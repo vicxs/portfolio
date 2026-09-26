@@ -140,7 +140,7 @@ window.VICTOR = {
       tier: "earlier",
       company: "F1-Connecting",
       role: { en: "Systems Technician", es: "Soporte de sistemas" },
-      period: { en: "Feb 2019 — Sept 2019", es: "Feb 2019 — Sept 2019" },
+      period: { en: "Feb 2019 — Sep 2019", es: "Feb 2019 — Sep 2019" },
       summary: {
         en: "Contributed to a HelpDesk handling 8,000+ incidents per month.",
         es: "Participé en un HelpDesk que gestionaba más de 8.000 incidencias al mes."

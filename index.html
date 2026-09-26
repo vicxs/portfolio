@@ -7,12 +7,17 @@
 <meta name="description" content="Product-minded and AI-oriented software engineer. I turn what a business needs into software that works." />
 <meta name="theme-color" content="#F7F5EF" />
 <link rel="canonical" href="https://victoresteban.com/" />
+<link rel="alternate" hreflang="en" href="https://victoresteban.com/" />
+<link rel="alternate" hreflang="es" href="https://victoresteban.com/?lang=es" />
+<link rel="alternate" hreflang="x-default" href="https://victoresteban.com/" />
 
 <meta property="og:title" content="Victor Esteban — Software Engineer" />
 <meta property="og:description" content="Product-minded and AI-oriented software engineer. I turn what a business needs into software that works." />
 <meta property="og:image" content="https://victoresteban.com/assets/apple-touch-icon.png" />
 <meta property="og:url" content="https://victoresteban.com/" />
 <meta property="og:type" content="website" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="es_ES" />
 
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Victor Esteban — Software Engineer" />
@@ -26,7 +31,25 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="portfolios/cabanyal.css?v=8" />
+<link rel="stylesheet" href="portfolios/cabanyal.css?v=9" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Victor Esteban",
+  "jobTitle": "Software Engineer",
+  "url": "https://victoresteban.com/",
+  "email": "mailto:hola@victoresteban.com",
+  "address": { "@type": "PostalAddress", "addressLocality": "Valencia", "addressCountry": "ES" },
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "Universitat Politècnica de València (UPV)" },
+  "sameAs": [
+    "https://www.linkedin.com/in/victorestebann",
+    "https://github.com/vicxs"
+  ],
+  "knowsAbout": ["Java", "Spring", "Node.js", "TypeScript", "Kafka", "Microservices", "Domain-Driven Design", "Kubernetes", "AWS", "Claude Code", "Agentic workflows"]
+}
+</script>
 
 <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
@@ -36,9 +59,9 @@
 <body>
 <div id="root"></div>
 
-<script src="portfolios/data.js?v=14"></script>
-<script src="portfolios/i18n.js?v=3"></script>
-<script type="text/babel" data-presets="react" src="portfolios/cabanyal.jsx?v=11"></script>
+<script src="portfolios/data.js?v=15"></script>
+<script src="portfolios/i18n.js?v=4"></script>
+<script type="text/babel" data-presets="react" src="portfolios/cabanyal.jsx?v=12"></script>
 <script type="text/babel" data-presets="react">
   ReactDOM.createRoot(document.getElementById('root')).render(<CabanyalPortfolio />);
 </script>
