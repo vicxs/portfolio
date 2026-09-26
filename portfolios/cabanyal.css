@@ -180,7 +180,7 @@ details.contrib li::before { content: ""; position: absolute; left: 0; top: 15px
 .edu-row .school { font-size: 18px; font-weight: 500; line-height: 1.3; }
 
 /* Contact: headline on the left, links stacked on the right */
-.contact-duo { margin-top: 32px; align-items: end; }
+.contact-duo { margin-top: 32px; align-items: center; }
 .contact-title { grid-column: 1 / span 7; margin: 0; font-size: clamp(32px, 4.2vw, 54px); line-height: 1.08; font-weight: 500; letter-spacing: -0.025em; text-wrap: balance; }
 .contact-title .serif { font-size: 1.1em; color: var(--sea); }
 .contact-stack { grid-column: 9 / span 4; display: flex; flex-direction: column; }
