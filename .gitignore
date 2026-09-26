@@ -34,3 +34,9 @@ yarn-error.log*
 
 # Cloudflare Workers
 .wrangler/
+
+# Build output
+/dist
+
+# Lighthouse CI
+/.lighthouseci/

@@ -180,7 +180,7 @@ details.contrib li::before { content: ""; position: absolute; left: 0; top: 15px
 .edu-row .school { font-size: 18px; font-weight: 500; line-height: 1.3; }
 
 /* Contact: headline on the left, links stacked on the right */
-.contact-duo { margin-top: 32px; align-items: end; }
+.contact-duo { margin-top: 32px; align-items: center; }
 .contact-title { grid-column: 1 / span 7; margin: 0; font-size: clamp(32px, 4.2vw, 54px); line-height: 1.08; font-weight: 500; letter-spacing: -0.025em; text-wrap: balance; }
 .contact-title .serif { font-size: 1.1em; color: var(--sea); }
 .contact-stack { grid-column: 9 / span 4; display: flex; flex-direction: column; }
@@ -195,6 +195,10 @@ details.contrib li::before { content: ""; position: absolute; left: 0; top: 15px
 
 /* ---------- Motion ---------- */
 .anim-fade { animation: fade .8s var(--ease) both; }
+/* Lift without fading: headlines stay painted from the first frame, since
+   Chrome never counts an element that starts at opacity 0 as its LCP. */
+.anim-lift { animation: lift .8s var(--ease) both; }
+@keyframes lift { from { transform: translateY(8px); } to { transform: none; } }
 @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 .anim-rise { animation: rise 1s var(--ease) both; }
 @keyframes fadeonly { from { opacity: 0; } to { opacity: 1; } }

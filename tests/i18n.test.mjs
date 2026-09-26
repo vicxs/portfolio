@@ -1,13 +1,7 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
-import vm from "node:vm";
+import { VICTOR } from "../portfolios/data.ts";
+import { STRINGS } from "../portfolios/i18n.ts";
 
-const sandbox = { window: {} };
-vm.createContext(sandbox);
-vm.runInContext(readFileSync("portfolios/data.js", "utf8"), sandbox);
-vm.runInContext(readFileSync("portfolios/i18n.js", "utf8"), sandbox);
-
-const { VICTOR, STRINGS } = sandbox.window;
 const LANGS = ["en", "es"];
 
 assert.deepEqual(Object.keys(STRINGS).sort(), [...LANGS].sort(), "STRINGS should define exactly en and es");

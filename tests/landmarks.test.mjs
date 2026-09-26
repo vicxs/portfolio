@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 
 // The portfolio exposes header, nav, main and footer landmarks, and a
 // skip link as the first focusable element that jumps to <main>.
-const site = readFileSync("portfolios/cabanyal.jsx", "utf8");
+const site = readFileSync("portfolios/cabanyal.tsx", "utf8");
 const css = readFileSync("portfolios/cabanyal.css", "utf8");
 
 const skip = site.indexOf('<a className="skip" href="#main">{t.skipToContent}</a>');

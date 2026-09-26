@@ -1,6 +1,8 @@
-// Portfolio content, rendered by portfolios/cabanyal.jsx
+// Portfolio content, rendered by portfolios/cabanyal.tsx
 // Translatable fields are { en, es } pairs; plain values are shared by both.
-window.VICTOR = {
+import type { Portfolio } from './types.ts';
+
+export const VICTOR: Portfolio = {
   name: "Victor Esteban",
   role: "Software Engineer",
   location: { en: "Valencia, Spain", es: "Valencia, España" },

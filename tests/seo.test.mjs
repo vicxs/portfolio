@@ -1,28 +1,23 @@
 import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
-import vm from "node:vm";
+import { VICTOR } from "../portfolios/data.ts";
 
 const SITE = "https://victoresteban.com/";
 const html = readFileSync("index.html", "utf8");
 
-const sandbox = { window: {} };
-vm.createContext(sandbox);
-vm.runInContext(readFileSync("portfolios/data.js", "utf8"), sandbox);
-const { VICTOR } = sandbox.window;
-
-// JSON-LD Person schema, kept in step with the content in data.js.
+// JSON-LD Person schema, kept in step with the content in data.ts.
 const blocks = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
 assert.equal(blocks.length, 1, "index.html should have exactly one JSON-LD block");
 const person = JSON.parse(blocks[0][1]);
 assert.equal(person["@context"], "https://schema.org");
 assert.equal(person["@type"], "Person");
-assert.equal(person.name, VICTOR.name, "JSON-LD name should match data.js");
-assert.equal(person.jobTitle, VICTOR.role, "JSON-LD jobTitle should match data.js");
+assert.equal(person.name, VICTOR.name, "JSON-LD name should match data.ts");
+assert.equal(person.jobTitle, VICTOR.role, "JSON-LD jobTitle should match data.ts");
 assert.equal(person.url, SITE);
-assert.equal(person.email, VICTOR.emailUrl, "JSON-LD email should match data.js");
-assert.deepEqual(person.sameAs, [VICTOR.linkedinUrl, VICTOR.githubUrl], "JSON-LD sameAs should list LinkedIn and GitHub from data.js");
-assert.equal(person.alumniOf?.name, VICTOR.education.school, "JSON-LD alumniOf should match data.js");
+assert.equal(person.email, VICTOR.emailUrl, "JSON-LD email should match data.ts");
+assert.deepEqual(person.sameAs, [VICTOR.linkedinUrl, VICTOR.githubUrl], "JSON-LD sameAs should list LinkedIn and GitHub from data.ts");
+assert.equal(person.alumniOf?.name, VICTOR.education.school, "JSON-LD alumniOf should match data.ts");
 assert.ok(Array.isArray(person.knowsAbout) && person.knowsAbout.length > 0, "JSON-LD should list knowsAbout");
 
 // Locales and language alternates.

@@ -6,9 +6,8 @@ Personal portfolio site. Software Engineer · Backend / Integration / Production
 
 ## Stack
 
-- React 18 (UMD)
-- Babel Standalone (in-browser JSX transform)
-- Plain HTML/CSS — no build step
+- React 18 and TypeScript (strict), bundled with Vite
+- Plain CSS; the services pages, 404 page and CVs are static HTML
 - Hosted on GitHub Pages
 
 ## Design
@@ -56,13 +55,16 @@ npx wrangler deploy          # also creates the forms.victoresteban.com custom d
 ## Structure
 
 ```
-index.html              # Entry; loads React + mounts <CabanyalPortfolio />; SEO meta and JSON-LD
+index.html              # Vite entry: SEO meta, JSON-LD, loads portfolios/main.tsx
+vite.config.ts          # Builds the portfolio; copies the static pages and assets into dist/ unchanged
 404.html                # Static page GitHub Pages serves at any missing path (absolute URLs only)
 robots.txt, sitemap.xml # Crawling: the portfolio and the three services pages
 portfolios/
-  data.js               # Content (experience, skills, certifications, etc.); translatable fields are { en, es }
-  i18n.js               # Interface copy (nav, headings, labels) per language
-  cabanyal.jsx          # CabanyalPortfolio component, tile band, rosa mark
+  main.tsx              # Mounts <CabanyalPortfolio />
+  types.ts              # Content types: Lang, Localized<T>, Experience, Portfolio…
+  data.ts               # Content (experience, skills, certifications, etc.); translatable fields are { en, es }
+  i18n.ts               # Interface copy (nav, headings, labels) per language
+  cabanyal.tsx          # CabanyalPortfolio component, tile band, rosa mark
   cabanyal.css          # Layout, grid, motion and responsive styles
 cv/
   en.html, es.html      # CV sources, one per language
@@ -79,22 +81,28 @@ tests/                  # Node assertion scripts (node tests/<file>.mjs)
 
 ## Local development
 
-Open `index.html` over a static server (file:// breaks `<script src>` in some browsers):
-
 ```sh
-python3 -m http.server 8000
-# then visit http://localhost:8000
+npm install
+npm run dev       # http://localhost:5173
+npm test          # every tests/*.test.mjs (Node ≥ 22.18 runs the .ts content directly)
+npm run typecheck # tsc in strict mode; npm run build runs it first
+npm run build     # dist/, then npm run preview to serve it
+npm run lighthouse # Lighthouse budget over the built site
 ```
 
-Edit `portfolios/data.js` to update content and `portfolios/i18n.js` for interface copy; `node tests/i18n.test.mjs` checks both languages are complete and that periods use three-letter months. The JSON-LD in `index.html` repeats name, role, contact links and school from `data.js`; `node tests/seo.test.mjs` fails if they drift apart. Run every check with:
+Edit `portfolios/data.ts` to update content and `portfolios/i18n.ts` for interface copy; the compiler rejects a Spanish string missing from `i18n.ts` or an experience of an unknown tier, and `tests/i18n.test.mjs` checks both languages are complete and that periods use three-letter months. The JSON-LD in `index.html` repeats name, role, contact links and school from `data.ts`; `tests/seo.test.mjs` fails if they drift apart. Edit `portfolios/cabanyal.tsx` and `portfolios/cabanyal.css` to change layout.
 
-```sh
-for f in tests/*.mjs; do node "$f" || exit 1; done
-``` Edit `portfolios/cabanyal.jsx` and `portfolios/cabanyal.css` to change layout.
+Vite bundles only the portfolio. `CNAME`, `404.html`, `robots.txt`, `sitemap.xml`, `assets/`, `administraciones/` (without its build scripts) and `portfolios/cabanyal.css` are copied into `dist/` as they are, so their URLs stay the same.
 
 ## Deployment
 
-Pushes to `main` deploy automatically via GitHub Pages (root `/`).
+`.github/workflows/deploy.yml` runs on every push to `main`: `npm ci`, `npm test`, `npm run build` (type-check included), then publishes `dist/` to GitHub Pages. Pages uses "GitHub Actions" as its source (Settings → Pages); the custom domain `victoresteban.com` is set there too.
+
+Pull requests run the same build without deploying, plus a Lighthouse budget over the portfolio (EN and ES) and the three services pages: performance ≥ 0.90 and accessibility, best practices and SEO ≥ 0.95 (median of three runs), with colour contrast, labels, link and button names, alt text, title and `lang` as hard failures. Reports are attached to the run as the `lighthouse-reports` artifact. On `main` Lighthouse runs too, but a low score does not hold back a deploy. To run it locally after a build:
+
+```sh
+npm run build && npm run lighthouse   # CHROME_PATH=/path/to/chrome to pick a browser
+```
 
 ## License
 
