@@ -34,3 +34,6 @@ yarn-error.log*
 
 # Cloudflare Workers
 .wrangler/
+
+# Build output
+/dist

@@ -1,6 +1,6 @@
 // Portfolio content, rendered by portfolios/cabanyal.jsx
 // Translatable fields are { en, es } pairs; plain values are shared by both.
-window.VICTOR = {
+export const VICTOR = {
   name: "Victor Esteban",
   role: "Software Engineer",
   location: { en: "Valencia, Spain", es: "Valencia, España" },

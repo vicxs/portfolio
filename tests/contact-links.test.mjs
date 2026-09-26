@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
-import vm from "node:vm";
+import { VICTOR } from "../portfolios/data.js";
 
 const dataSource = readFileSync("portfolios/data.js", "utf8");
 const siteSource = readFileSync("portfolios/cabanyal.jsx", "utf8");
@@ -12,35 +12,32 @@ function assertContains(source, expected, message) {
 
 assert.ok(
   !dataSource.includes("example.com"),
-  "window.VICTOR should not publish placeholder example.com contact data"
+  "VICTOR should not publish placeholder example.com contact data"
 );
 
 assertContains(
   dataSource,
   'emailUrl: "mailto:hola@victoresteban.com"',
-  "window.VICTOR should expose the public contact email on the site's domain"
+  "VICTOR should expose the public contact email on the site's domain"
 );
 
 assertContains(
   dataSource,
   'linkedinUrl: "https://www.linkedin.com/in/victorestebann"',
-  "window.VICTOR should expose a full LinkedIn URL"
+  "VICTOR should expose a full LinkedIn URL"
 );
 
 assertContains(
   dataSource,
   'githubUrl: "https://github.com/vicxs"',
-  "window.VICTOR should expose the repository owner's full GitHub URL"
+  "VICTOR should expose the repository owner's full GitHub URL"
 );
 
-const sandbox = { window: {} };
-vm.createContext(sandbox);
-vm.runInContext(dataSource, sandbox);
-const { cvUrl } = sandbox.window.VICTOR;
+const { cvUrl } = VICTOR;
 
 for (const lang of ["en", "es"]) {
   const href = cvUrl?.[lang];
-  assert.ok(href, `window.VICTOR should expose a ${lang} CV href`);
+  assert.ok(href, `VICTOR should expose a ${lang} CV href`);
   assert.ok(
     !href.startsWith("http"),
     `${lang} CV href should point to the portfolio-hosted PDF asset`

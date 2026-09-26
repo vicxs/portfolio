@@ -6,9 +6,8 @@ Personal portfolio site. Software Engineer · Backend / Integration / Production
 
 ## Stack
 
-- React 18 (UMD)
-- Babel Standalone (in-browser JSX transform)
-- Plain HTML/CSS — no build step
+- React 18, bundled with Vite
+- Plain CSS; the services pages, 404 page and CVs are static HTML
 - Hosted on GitHub Pages
 
 ## Design
@@ -56,10 +55,12 @@ npx wrangler deploy          # also creates the forms.victoresteban.com custom d
 ## Structure
 
 ```
-index.html              # Entry; loads React + mounts <CabanyalPortfolio />; SEO meta and JSON-LD
+index.html              # Vite entry: SEO meta, JSON-LD, loads portfolios/main.jsx
+vite.config.js          # Builds the portfolio; copies the static pages and assets into dist/ unchanged
 404.html                # Static page GitHub Pages serves at any missing path (absolute URLs only)
 robots.txt, sitemap.xml # Crawling: the portfolio and the three services pages
 portfolios/
+  main.jsx              # Mounts <CabanyalPortfolio />
   data.js               # Content (experience, skills, certifications, etc.); translatable fields are { en, es }
   i18n.js               # Interface copy (nav, headings, labels) per language
   cabanyal.jsx          # CabanyalPortfolio component, tile band, rosa mark
@@ -79,22 +80,20 @@ tests/                  # Node assertion scripts (node tests/<file>.mjs)
 
 ## Local development
 
-Open `index.html` over a static server (file:// breaks `<script src>` in some browsers):
-
 ```sh
-python3 -m http.server 8000
-# then visit http://localhost:8000
+npm install
+npm run dev       # http://localhost:5173
+npm test          # every tests/*.test.mjs
+npm run build     # dist/, then npm run preview to serve it
 ```
 
-Edit `portfolios/data.js` to update content and `portfolios/i18n.js` for interface copy; `node tests/i18n.test.mjs` checks both languages are complete and that periods use three-letter months. The JSON-LD in `index.html` repeats name, role, contact links and school from `data.js`; `node tests/seo.test.mjs` fails if they drift apart. Run every check with:
+Edit `portfolios/data.js` to update content and `portfolios/i18n.js` for interface copy; `tests/i18n.test.mjs` checks both languages are complete and that periods use three-letter months. The JSON-LD in `index.html` repeats name, role, contact links and school from `data.js`; `tests/seo.test.mjs` fails if they drift apart. Edit `portfolios/cabanyal.jsx` and `portfolios/cabanyal.css` to change layout.
 
-```sh
-for f in tests/*.mjs; do node "$f" || exit 1; done
-``` Edit `portfolios/cabanyal.jsx` and `portfolios/cabanyal.css` to change layout.
+Vite bundles only the portfolio. `CNAME`, `404.html`, `robots.txt`, `sitemap.xml`, `assets/`, `administraciones/` (without its build scripts) and `portfolios/cabanyal.css` are copied into `dist/` as they are, so their URLs stay the same.
 
 ## Deployment
 
-Pushes to `main` deploy automatically via GitHub Pages (root `/`).
+GitHub Pages must serve the built `dist/` folder, not the repository as it is: a GitHub Actions workflow builds on every push to `main` and deploys `dist/` to Pages (issue #11), with the Pages source set to "GitHub Actions".
 
 ## License
 

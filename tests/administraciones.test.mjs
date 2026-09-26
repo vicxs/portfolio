@@ -48,7 +48,7 @@ for (const lang of langs) {
 
 // The services page links to the portfolio, but not the other way round.
 assert.ok(renderPage("es").includes('href="../?lang=es"'), "The Spanish page should link to the Spanish portfolio");
-for (const file of ["index.html", "portfolios/cabanyal.jsx", "portfolios/i18n.js", "portfolios/data.js"]) {
+for (const file of ["index.html", "portfolios/main.jsx", "portfolios/cabanyal.jsx", "portfolios/i18n.js", "portfolios/data.js"]) {
   assert.ok(!readFileSync(file, "utf8").includes("administraciones"), `${file} should not link to the services page`);
 }
 

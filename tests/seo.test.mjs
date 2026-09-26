@@ -1,15 +1,10 @@
 import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
-import vm from "node:vm";
+import { VICTOR } from "../portfolios/data.js";
 
 const SITE = "https://victoresteban.com/";
 const html = readFileSync("index.html", "utf8");
-
-const sandbox = { window: {} };
-vm.createContext(sandbox);
-vm.runInContext(readFileSync("portfolios/data.js", "utf8"), sandbox);
-const { VICTOR } = sandbox.window;
 
 // JSON-LD Person schema, kept in step with the content in data.js.
 const blocks = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];

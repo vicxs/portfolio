@@ -1,6 +1,6 @@
 // Interface copy for each language, rendered by portfolios/cabanyal.jsx.
 // Content lives in data.js. Text between *asterisks* is set in the serif italic.
-window.STRINGS = {
+export const STRINGS = {
   en: {
     title: "Victor Esteban — Software Engineer",
     skipToContent: "Skip to content",

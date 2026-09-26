@@ -2,7 +2,10 @@
 // rajoles after the tiled façades of El Cabanyal that flips as one.
 // Styles live in cabanyal.css; content in data.js; interface copy in i18n.js.
 
-const { useState, useEffect, useRef } = React;
+import { Fragment, useEffect, useRef, useState } from 'react';
+import { flushSync } from 'react-dom';
+import { VICTOR } from './data.js';
+import { STRINGS } from './i18n.js';
 
 // English by default; ?lang=es or a remembered choice switches to Spanish.
 const LANGS = ['en', 'es'];
@@ -48,11 +51,11 @@ function LangSwitch({ lang, onChange, label }) {
   return (
     <span className="lang" role="group" aria-label={label}>
       {LANGS.map((l, i) => (
-        <React.Fragment key={l}>
+        <Fragment key={l}>
           {i > 0 && <span className="lang-sep" aria-hidden="true">/</span>}
           <button type="button" lang={l} className={`lang-opt${lang === l ? ' is-on' : ''}`}
             aria-pressed={lang === l} onClick={() => onChange(l)}>{l.toUpperCase()}</button>
-        </React.Fragment>
+        </Fragment>
       ))}
     </span>
   );
@@ -244,11 +247,11 @@ function SectionHead({ n, title, children }) {
   );
 }
 
-function CabanyalPortfolio() {
-  const data = window.VICTOR;
+export function CabanyalPortfolio() {
+  const data = VICTOR;
   const [lang, setLang] = useState(initialLang);
   const [activeNote, setActiveNote] = useState(null);
-  const t = window.STRINGS[lang];
+  const t = STRINGS[lang];
 
   // Resolve every { en, es } pair once, so the markup reads plain values.
   const v = {
@@ -288,7 +291,7 @@ function CabanyalPortfolio() {
       setLang(next);
       return;
     }
-    document.startViewTransition(() => ReactDOM.flushSync(() => setLang(next)));
+    document.startViewTransition(() => flushSync(() => setLang(next)));
   };
 
   // Reveal items as they scroll into view. Items entering together are
@@ -365,10 +368,10 @@ function CabanyalPortfolio() {
           <div className="grid">
             <h1>
               {t.hero.map((line, i) => (
-                <React.Fragment key={i}>
+                <Fragment key={i}>
                   {i > 0 && ' '}
                   <span className="ln"><span className="anim-rise" style={{ animationDelay: `${150 + i * 90}ms` }}>{withSerif(line)}</span></span>
-                </React.Fragment>
+                </Fragment>
               ))}
             </h1>
             <p className="hero-lede anim-fade" style={{ animationDelay: '700ms' }}>{v.lede}</p>
@@ -493,10 +496,10 @@ function CabanyalPortfolio() {
             </div>
             <div className="langs">
               {v.languages.map((l) => (
-                <React.Fragment key={l.name}>
+                <Fragment key={l.name}>
                   <span className="school">{l.name}</span>
                   <span className="muted">{l.detail}</span>
-                </React.Fragment>
+                </Fragment>
               ))}
             </div>
           </div>
@@ -536,5 +539,3 @@ function CabanyalPortfolio() {
     </>
   );
 }
-
-window.CabanyalPortfolio = CabanyalPortfolio;
