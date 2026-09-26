@@ -2,6 +2,7 @@ import { cpSync } from 'node:fs';
 import path from 'node:path';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
+import type { Plugin } from 'vite';
 
 // Vite builds only the React portfolio (index.html). Everything else is
 // already static and ships as committed: the services pages, the 404 page,
@@ -20,8 +21,8 @@ const STATIC = [
 // Build scripts and page copy stay in the repo, not on the site.
 const PRIVATE = /\.(mjs|md)$/;
 
-function copyStatic() {
-  let outDir;
+function copyStatic(): Plugin {
+  let outDir = 'dist';
   return {
     name: 'copy-static',
     apply: 'build',

@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
-import { VICTOR } from "../portfolios/data.js";
-import { STRINGS } from "../portfolios/i18n.js";
+import { VICTOR } from "../portfolios/data.ts";
+import { STRINGS } from "../portfolios/i18n.ts";
 
 const LANGS = ["en", "es"];
 

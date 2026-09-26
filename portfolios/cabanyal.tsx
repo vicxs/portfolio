@@ -1,53 +1,71 @@
 // Cabanyal: light, Swiss grid, footnotes in the margin, and a band of
 // rajoles after the tiled façades of El Cabanyal that flips as one.
-// Styles live in cabanyal.css; content in data.js; interface copy in i18n.js.
+// Styles live in cabanyal.css; content in data.ts; interface copy in i18n.ts.
 
 import { Fragment, useEffect, useRef, useState } from 'react';
+import type { FocusEventHandler, MouseEventHandler, ReactNode } from 'react';
 import { flushSync } from 'react-dom';
-import { VICTOR } from './data.js';
-import { STRINGS } from './i18n.js';
+import { VICTOR } from './data.ts';
+import { STRINGS } from './i18n.ts';
+import { DEFAULT_LANG, LANGS } from './types.ts';
+import type { Experience, Lang, MainExperience, Resolved } from './types.ts';
 
 // English by default; ?lang=es or a remembered choice switches to Spanish.
-const LANGS = ['en', 'es'];
-const DEFAULT_LANG = 'en';
+function isLang(value: unknown): value is Lang {
+  return LANGS.includes(value as Lang);
+}
 
-function initialLang() {
+function initialLang(): Lang {
   try {
     const q = new URLSearchParams(window.location.search).get('lang');
-    if (LANGS.includes(q)) return q;
-  } catch (e) { /* no query string access */ }
+    if (isLang(q)) return q;
+  } catch { /* no query string access */ }
   try {
     const saved = window.localStorage.getItem('lang');
-    if (LANGS.includes(saved)) return saved;
-  } catch (e) { /* storage blocked */ }
+    if (isLang(saved)) return saved;
+  } catch { /* storage blocked */ }
   return DEFAULT_LANG;
 }
 
 // Keep the address shareable: ?lang=es in Spanish, clean URL in English.
-function persistLang(lang) {
-  try { window.localStorage.setItem('lang', lang); } catch (e) { /* storage blocked */ }
+function persistLang(lang: Lang) {
+  try { window.localStorage.setItem('lang', lang); } catch { /* storage blocked */ }
   try {
     const url = new URL(window.location.href);
     if (lang === DEFAULT_LANG) url.searchParams.delete('lang');
     else url.searchParams.set('lang', lang);
     window.history.replaceState(null, '', url);
-  } catch (e) { /* history unavailable */ }
+  } catch { /* history unavailable */ }
 }
 
-// Resolve an { en, es } pair to the current language; plain values pass through.
-function tr(value, lang) {
-  if (value && typeof value === 'object' && !Array.isArray(value) && DEFAULT_LANG in value) {
-    return value[lang] ?? value[DEFAULT_LANG];
+function isLocalized(value: object): value is Record<Lang, unknown> {
+  const keys = Object.keys(value);
+  return keys.length === LANGS.length && LANGS.every((l) => keys.includes(l));
+}
+
+// Replace every { en, es } pair with the text for one language, so the
+// markup reads plain values; everything else passes through.
+function resolve<T>(value: T, lang: Lang): Resolved<T> {
+  if (Array.isArray(value)) return value.map((item) => resolve(item, lang)) as Resolved<T>;
+  if (value && typeof value === 'object') {
+    if (isLocalized(value)) return (value[lang] ?? value[DEFAULT_LANG]) as Resolved<T>;
+    return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, resolve(v, lang)])) as Resolved<T>;
   }
-  return value;
+  return value as Resolved<T>;
 }
 
 // Text between *asterisks* is set in the serif italic.
-function withSerif(text) {
+function withSerif(text: string): ReactNode[] {
   return text.split('*').map((part, i) => (i % 2 ? <span key={i} className="serif">{part}</span> : part));
 }
 
-function LangSwitch({ lang, onChange, label }) {
+interface LangSwitchProps {
+  lang: Lang;
+  onChange: (lang: Lang) => void;
+  label: string;
+}
+
+function LangSwitch({ lang, onChange, label }: LangSwitchProps) {
   return (
     <span className="lang" role="group" aria-label={label}>
       {LANGS.map((l, i) => (
@@ -61,7 +79,8 @@ function LangSwitch({ lang, onChange, label }) {
   );
 }
 
-const TILE_SEQUENCE = ['flor', 'estrella', 'rombe', 'cenefa', 'ona'];
+const TILE_SEQUENCE = ['flor', 'estrella', 'rombe', 'cenefa', 'ona'] as const;
+type TileName = (typeof TILE_SEQUENCE)[number];
 const TILE_SIZE = 64;
 const FLIP_MS = 1000;
 const REST_MS = 3500;
@@ -71,8 +90,8 @@ function prefersReducedMotion() {
 }
 
 // Eight-point wind rose: long points N/E/S/W, short diagonals.
-function rosaPath(cx = 32, cy = 32, long = 30, short = 13, inner = 3.2) {
-  const pts = [];
+function rosaPath(cx = 32, cy = 32, long = 30, short = 13, inner = 3.2): string {
+  const pts: string[] = [];
   for (let k = 0; k < 16; k++) {
     const ang = (-90 + 22.5 * k) * Math.PI / 180;
     const r = k % 4 === 0 ? long : k % 2 === 0 ? short : inner;
@@ -82,7 +101,7 @@ function rosaPath(cx = 32, cy = 32, long = 30, short = 13, inner = 3.2) {
 }
 const ROSA = rosaPath();
 
-function RosaMark({ className }) {
+function RosaMark({ className }: { className: string }) {
   return (
     <svg className={className} viewBox="0 0 64 64" aria-hidden="true">
       <path d={ROSA} fill="var(--sea)" />
@@ -101,7 +120,7 @@ function TileDefs() {
       <rect x="0" y="61" width="64" height="3" fill={c1} />
     </>
   );
-  const tile = (id, body) => (
+  const tile = (id: TileName, body: ReactNode) => (
     <pattern id={`b-${id}`} width="64" height="64" patternUnits="userSpaceOnUse">
       <rect width="64" height="64" fill={g} />
       {body}
@@ -171,7 +190,7 @@ function TileDefs() {
 // the same next design. Two faces per tile; the hidden face is repainted
 // with the following design only once the wave has fully passed.
 function TileBand() {
-  const boxRef = useRef(null);
+  const boxRef = useRef<HTMLDivElement>(null);
   const [count, setCount] = useState(() => Math.ceil(window.innerWidth / TILE_SIZE) + 1);
   const [turn, setTurn] = useState(0);      // drives rotation
   const [painted, setPainted] = useState(0); // drives which designs the faces hold
@@ -189,9 +208,9 @@ function TileBand() {
     if (prefersReducedMotion()) return undefined;
     let visible = true;
     let n = 0;
-    const timers = [];
+    const timers: number[] = [];
     const io = 'IntersectionObserver' in window
-      ? new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; })
+      ? new IntersectionObserver(([entry]) => { visible = entry?.isIntersecting ?? visible; })
       : null;
     if (io && boxRef.current) io.observe(boxRef.current);
     const tick = () => {
@@ -199,10 +218,10 @@ function TileBand() {
         n += 1;
         const step = n;
         setTurn(step);
-        timers.push(setTimeout(() => setPainted(step), waveMs));
+        timers.push(window.setTimeout(() => setPainted(step), waveMs));
       }
     };
-    const id = setInterval(tick, waveMs + REST_MS);
+    const id = window.setInterval(tick, waveMs + REST_MS);
     return () => {
       clearInterval(id);
       timers.forEach(clearTimeout);
@@ -210,7 +229,7 @@ function TileBand() {
     };
   }, [waveMs]);
 
-  const design = (i) => `url(#b-${TILE_SEQUENCE[i % TILE_SEQUENCE.length]})`;
+  const design = (i: number) => `url(#b-${TILE_SEQUENCE[i % TILE_SEQUENCE.length]})`;
   const faceA = painted % 2 === 0 ? design(painted) : design(painted + 1);
   const faceB = painted % 2 === 0 ? design(painted + 1) : design(painted);
 
@@ -235,7 +254,13 @@ function TileBand() {
 }
 
 // Extra children (column labels) turn the head into a grid row on the section rule.
-function SectionHead({ n, title, children }) {
+interface SectionHeadProps {
+  n: string;
+  title: string;
+  children?: ReactNode;
+}
+
+function SectionHead({ n, title, children }: SectionHeadProps) {
   return (
     <header className={`sec-head rv${children ? ' grid sec-head-cols' : ''}`}>
       <span className="sh-title">
@@ -247,37 +272,20 @@ function SectionHead({ n, title, children }) {
   );
 }
 
-export function CabanyalPortfolio() {
-  const data = VICTOR;
-  const [lang, setLang] = useState(initialLang);
-  const [activeNote, setActiveNote] = useState(null);
-  const t = STRINGS[lang];
+type ResolvedExperience = Resolved<Experience>;
+type ResolvedMain = Resolved<MainExperience>;
 
-  // Resolve every { en, es } pair once, so the markup reads plain values.
-  const v = {
-    ...data,
-    location: tr(data.location, lang),
-    cvUrl: tr(data.cvUrl, lang),
-    lede: tr(data.lede, lang),
-    facts: data.facts.map((f) => ({ ...f, label: tr(f.label, lang), value: tr(f.value, lang), sub: tr(f.sub, lang) })),
-    experiences: data.experiences.map((e) => ({
-      ...e,
-      role: tr(e.role, lang),
-      period: tr(e.period, lang),
-      domain: tr(e.domain, lang),
-      summary: tr(e.summary, lang),
-      note: tr(e.note, lang),
-      bullets: tr(e.bullets, lang),
-    })),
-    skills: data.skills.map((g) => ({ group: tr(g.group, lang), items: g.items.map((it) => tr(it, lang)) })),
-    certifications: data.certifications.map((c) => ({ ...c, name: tr(c.name, lang) })),
-    languages: data.languages.map((l) => ({ name: tr(l.name, lang), detail: tr(l.detail, lang) })),
-    education: {
-      school: data.education.school,
-      degree: tr(data.education.degree, lang),
-      track: tr(data.education.track, lang),
-    },
-  };
+const isMain = (e: ResolvedExperience): e is ResolvedMain => e.tier === 'main';
+
+// "Mmm YYYY — Mmm YYYY" → its start or its end.
+const periodStart = (period: string) => period.split(' — ')[0] ?? period;
+const periodEnd = (period: string) => period.split(' — ')[1] ?? period;
+
+export function CabanyalPortfolio() {
+  const [lang, setLang] = useState<Lang>(initialLang);
+  const [activeNote, setActiveNote] = useState<number | null>(null);
+  const t = STRINGS[lang];
+  const v = resolve(VICTOR, lang);
 
   useEffect(() => {
     document.documentElement.lang = lang;
@@ -285,9 +293,9 @@ export function CabanyalPortfolio() {
   }, [lang]);
 
   // Cross-fade between languages where View Transitions are supported.
-  const changeLang = (next) => {
+  const changeLang = (next: Lang) => {
     persistLang(next);
-    if (!document.startViewTransition || prefersReducedMotion()) {
+    if (!('startViewTransition' in document) || prefersReducedMotion()) {
       setLang(next);
       return;
     }
@@ -298,39 +306,45 @@ export function CabanyalPortfolio() {
   // staggered so rows, cards and list entries cascade instead of popping.
   // Re-runs on a language switch to pick up anything newly mounted.
   useEffect(() => {
-    const els = Array.from(document.querySelectorAll('.rv:not(.is-in)'));
+    const els = Array.from(document.querySelectorAll<HTMLElement>('.rv:not(.is-in)'));
     if (prefersReducedMotion() || !('IntersectionObserver' in window)) {
       els.forEach((el) => el.classList.add('is-in'));
       return undefined;
     }
-    const timers = [];
+    const timers: number[] = [];
     const io = new IntersectionObserver((entries) => {
       let k = 0;
       entries.forEach((e) => {
         if (!e.isIntersecting) return;
-        const el = e.target;
+        const el = e.target as HTMLElement;
         const delay = Math.min(k, 6) * 90;
         k += 1;
         el.style.transitionDelay = `${delay}ms`;
         el.classList.add('is-in');
         io.unobserve(el);
         // Drop the delay once in, so hover transitions stay instant.
-        timers.push(setTimeout(() => { el.style.transitionDelay = ''; }, delay + 1100));
+        timers.push(window.setTimeout(() => { el.style.transitionDelay = ''; }, delay + 1100));
       });
     }, { rootMargin: '0px 0px -8% 0px' });
     els.forEach((el) => io.observe(el));
     return () => { io.disconnect(); timers.forEach(clearTimeout); };
   }, [lang]);
 
-  const main = v.experiences.filter((e) => e.tier === 'main');
+  const main = v.experiences.filter(isMain);
   const secondary = v.experiences.filter((e) => e.tier === 'secondary');
   const earlier = v.experiences.filter((e) => e.tier === 'earlier');
-  const earlierSpan = earlier.length
-    ? `${earlier[earlier.length - 1].period.split(' — ')[0]} — ${earlier[0].period.split(' — ')[1]}`
-    : '';
+  // Earlier roles are listed newest first, so the span runs last → first.
+  const oldest = earlier[earlier.length - 1];
+  const newest = earlier[0];
+  const earlierSpan = oldest && newest ? `${periodStart(oldest.period)} — ${periodEnd(newest.period)}` : '';
   const noted = main.filter((e) => e.note);
-  const noteNumber = (exp) => noted.indexOf(exp) + 1;
-  const noteHandlers = (n) => ({
+  const noteNumber = (exp: ResolvedMain) => noted.indexOf(exp) + 1;
+  const noteHandlers = (n: number): {
+    onMouseEnter: MouseEventHandler;
+    onMouseLeave: MouseEventHandler;
+    onFocus: FocusEventHandler;
+    onBlur: FocusEventHandler;
+  } => ({
     onMouseEnter: () => setActiveNote(n),
     onMouseLeave: () => setActiveNote(null),
     onFocus: () => setActiveNote(n),

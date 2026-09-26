@@ -1,10 +1,10 @@
 import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
-import { VICTOR } from "../portfolios/data.js";
+import { VICTOR } from "../portfolios/data.ts";
 
-const dataSource = readFileSync("portfolios/data.js", "utf8");
-const siteSource = readFileSync("portfolios/cabanyal.jsx", "utf8");
+const dataSource = readFileSync("portfolios/data.ts", "utf8");
+const siteSource = readFileSync("portfolios/cabanyal.tsx", "utf8");
 
 function assertContains(source, expected, message) {
   assert.ok(source.includes(expected), message);
@@ -51,7 +51,7 @@ assert.notEqual(cvUrl.en, cvUrl.es, "Each language should download its own CV");
 
 assertContains(
   siteSource,
-  "cvUrl: tr(data.cvUrl, lang)",
+  "const v = resolve(VICTOR, lang);",
   "The CV href should follow the selected language"
 );
 
