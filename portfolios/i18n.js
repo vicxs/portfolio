@@ -3,6 +3,7 @@
 window.STRINGS = {
   en: {
     title: "Victor Esteban — Software Engineer",
+    skipToContent: "Skip to content",
     backToTopLabel: "Victor Esteban, back to top",
     place: "Valencia, by the sea",
     sectionsLabel: "Sections",
@@ -41,6 +42,7 @@ window.STRINGS = {
   },
   es: {
     title: "Victor Esteban — Software Engineer",
+    skipToContent: "Saltar al contenido",
     backToTopLabel: "Victor Esteban, volver arriba",
     place: "Valencia, junto al mar",
     sectionsLabel: "Secciones",

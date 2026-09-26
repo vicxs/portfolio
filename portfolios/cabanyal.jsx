@@ -281,9 +281,14 @@ function CabanyalPortfolio() {
     document.title = t.title;
   }, [lang]);
 
+  // Cross-fade between languages where View Transitions are supported.
   const changeLang = (next) => {
-    setLang(next);
     persistLang(next);
+    if (!document.startViewTransition || prefersReducedMotion()) {
+      setLang(next);
+      return;
+    }
+    document.startViewTransition(() => ReactDOM.flushSync(() => setLang(next)));
   };
 
   // Reveal items as they scroll into view. Items entering together are
@@ -333,8 +338,9 @@ function CabanyalPortfolio() {
     <>
       <TileDefs />
       <div className="progress" aria-hidden="true"></div>
+      <a className="skip" href="#main">{t.skipToContent}</a>
 
-      <div id="top" className="site-header anim-fade">
+      <header id="top" className="site-header anim-fade">
         <div className="wrap">
           <div className="grid">
             <a href="#top" className="brand" aria-label={t.backToTopLabel}>
@@ -352,9 +358,9 @@ function CabanyalPortfolio() {
             </nav>
           </div>
         </div>
-      </div>
+      </header>
 
-      <main>
+      <main id="main" tabIndex={-1}>
         <section className="hero wrap" aria-label={t.introLabel}>
           <div className="grid">
             <h1>
